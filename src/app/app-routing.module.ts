@@ -5,9 +5,11 @@ import { CharsheetsComponent } from "./pages/charsheets/charsheets.component";
 import { NewcharComponent } from "./pages/newchar/newchar.component";
 import { LoginComponent } from "./authentication/login/login.component";
 import { RegisterComponent } from "./authentication/register/register.component";
+import { MainComponent } from "./pages/main/main.component";
 
 const routes: Routes = [
-  { path: "", component: CharsheetsComponent },
+  { path: "", component: MainComponent },
+  { path: "characters", component: CharsheetsComponent },
   { path: "newchar", component: NewcharComponent},
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent},

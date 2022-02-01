@@ -1,1 +1,5 @@
-<p>login works!</p>
+<form [formGroup]="loginUser" (ngSubmit)="onLogin()">
+  <input type="email" formControlName="useremail" placeholder="E-amil cím">
+  <input type="password" formControlName="userpass" placeholder="Jelszó">
+  <button type="submit">Belépés</button>
+</form>
