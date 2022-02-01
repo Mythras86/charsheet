@@ -2,13 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const Post = require("./models/post");
-
 const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://max:QuBqs0T45GDKPlIG@cluster0-ntrwp.mongodb.net/node-angular?retryWrites=true"
+    "mongodb+srv://Mythras:Sineas8689Daneya@mydevdb.igiaj.mongodb.net/MyDevDB&w=majority"
   )
   .then(() => {
     console.log("Connected to database!");
