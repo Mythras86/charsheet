@@ -1,6 +1,6 @@
-<form [formGroup]="registerUser" (ngSubmit)="onSubmit()">
+<form [formGroup]="regUserForm" (ngSubmit)="onSubmit()">
   <input type="text" formControlName="username" placeholder="Név">
   <input type="email" formControlName="useremail" placeholder="E-amil cím">
   <input type="password" formControlName="userpass" placeholder="Jelszó">
-  <button type="submit">Regisztráció</button>
+  <button type="submit" [disabled]="!regUserForm.invalid">Regisztráció</button>
 </form>

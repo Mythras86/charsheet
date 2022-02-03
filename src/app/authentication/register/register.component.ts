@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,12 +9,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  registerUser!: FormGroup;
+  regUserForm!: FormGroup;
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.registerUser = new FormGroup({
+    this.regUserForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
       'useremail': new FormControl(null, Validators.required),
       'userpass': new FormControl(null, Validators.required),
@@ -21,7 +22,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registerUser);
+    var form = this.regUserForm;
+    if (form.invalid) {
+      return;
+    }
+    this.authService.registerUser(form.value.username, form.value.useremail, form.value.userpass);
   }
 
 }

@@ -28,7 +28,7 @@ exports.registerUser = (req, res, next) => {
 
 exports.loginUser = (req, res, next) => {
   let fetchedUser;
-  User.findOne({ email: req.body.email })
+  User.findOne({ useremail: req.body.useremail })
     .then(user => {
       if (!user) {
         return res.status(401).json({
@@ -36,7 +36,7 @@ exports.loginUser = (req, res, next) => {
         });
       }
       fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password);
+      return bcrypt.compare(req.body.userpass, user.userpass);
     })
     .then(result => {
       if (!result) {
@@ -45,7 +45,7 @@ exports.loginUser = (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: fetchedUser.email, userId: fetchedUser._id },
+        { useremail: fetchedUser.useremail, userId: fetchedUser._id },
         process.env.JWT_KEY,
         { expiresIn: "1h" }
       );

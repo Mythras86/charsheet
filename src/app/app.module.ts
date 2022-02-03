@@ -7,10 +7,8 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { CharsheetsComponent } from './pages/charsheets/charsheets.component';
 import { NewcharComponent } from './pages/newchar/newchar.component';
-import { LoginComponent } from './authentication/login/login.component';
-import { RegisterComponent } from './authentication/register/register.component';
 import { MainComponent } from './pages/main/main.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from './authentication/auth.module';
 
 @NgModule({
   declarations: [
@@ -19,14 +17,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     CharsheetsComponent,
     NewcharComponent,
-    LoginComponent,
-    RegisterComponent,
     MainComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
