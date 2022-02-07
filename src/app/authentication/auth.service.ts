@@ -12,9 +12,9 @@ const BACKEND_URL = environment.apiUrl + "/user/";
 @Injectable({ providedIn: "root" })
 export class AuthService {
   private isAuthenticated = false;
-  private token: string;
+  private token: any;
   private tokenTimer: any;
-  private userId: string;
+  private userId: any;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -107,7 +107,7 @@ export class AuthService {
   private setAuthTimer(duration: number) {
     console.log("Setting timer: " + duration);
     this.tokenTimer = setTimeout(() => {
-      this.logout();
+      this.logoutUser();
     }, duration * 1000);
   }
 

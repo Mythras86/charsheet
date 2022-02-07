@@ -8,7 +8,11 @@ import { HeaderComponent } from './elements/header/header.component';
 import { CharsheetsComponent } from './pages/charsheets/charsheets.component';
 import { NewcharComponent } from './pages/newchar/newchar.component';
 import { MainComponent } from './pages/main/main.component';
-import { AuthModule } from './authentication/auth.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './authentication/auth-interceptor';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { AuthModule } from './authentication/auth.module';
     CharsheetsComponent,
     NewcharComponent,
     MainComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,29 +1,22 @@
-  <nav>
-    <ul class="element-cont">
-      <div class="navbaritem">
-        <li>
-          <a routerLink="/">Főoldal</a>
-        </li>
-      </div>
-      <div class="navbaritem">
-        <li>
-          <a routerLink="/newchar">Új Karakter</a>
-        </li>
-      </div>
-      <div class="navbaritem">
-        <li>
-          <a routerLink="/characters">Karakterek</a>
-        </li>
-      </div>
-      <div class="navbaritem">
-        <li>
-          <a routerLink="/login">Belépés</a>
-        </li>
-      </div>
-      <div class="navbaritem">
-        <li>
-          <a routerLink="/register">Regisztráció</a>
-        </li>
-      </div>
-    </ul>
-  </nav>
+<nav>
+  <ul class="element-cont">
+      <li class="navbaritem">
+        <a routerLink="/">Főoldal</a>
+      </li>
+      <li class="navbaritem">
+        <a routerLink="/newchar">Új Karakter</a>
+      </li>
+      <li class="navbaritem">
+        <a routerLink="/characters">Karakterek</a>
+      </li>
+      <li class="navbaritem" *ngIf="!userIsAuthenticated">
+        <a routerLink="/login">Belépés</a>
+      </li>
+      <li class="navbaritem" *ngIf="!userIsAuthenticated">
+        <a routerLink="/register">Regisztráció</a>
+      </li>
+      <button class="navbaritem" *ngIf="userIsAuthenticated" (click)="onLogout">
+        Kilépés
+      </button>
+  </ul>
+</nav>

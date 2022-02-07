@@ -1,20 +1,20 @@
-a {display: block; color: white;}
+a {
+  display: block;
+  color: white;
+  font-size: 1.2rem;
+}
 
 .element-cont {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: stretch;
 }
 
 .navbaritem {
-  flex: 1 1 100%;
+  display: block;
   text-align: center;
-  line-height: 3rem;
-  font-size: 1.5rem;
-  height: 3rem;
+  flex: 1 1 auto;
 }
 
-.navbaritem :hover {
-  background-color: darkblue;
+li :hover {
+  background-color: orange;
 }

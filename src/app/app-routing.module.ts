@@ -3,9 +3,9 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { CharsheetsComponent } from "./pages/charsheets/charsheets.component";
 import { NewcharComponent } from "./pages/newchar/newchar.component";
+import { MainComponent } from "./pages/main/main.component";
 import { LoginComponent } from "./authentication/login/login.component";
 import { RegisterComponent } from "./authentication/register/register.component";
-import { MainComponent } from "./pages/main/main.component";
 
 const routes: Routes = [
   { path: "", component: MainComponent },
