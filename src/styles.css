@@ -14,5 +14,12 @@ li {list-style: none;}
   color: black;
   max-width: 1000px;
   min-height: 500px;
-  padding: 5% 1%
+}
+
+h2 {
+  text-align: center;
+  background-color: black;
+  color: white;
+  margin: 1rem auto;
+  border-radius: 1rem;
 }

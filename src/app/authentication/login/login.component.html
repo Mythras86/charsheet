@@ -2,6 +2,6 @@
 
   <input type="email" formControlName="useremail" placeholder="E-amil cím">
   <input type="password" formControlName="userpass" placeholder="Jelszó">
-  <button type="submit" [disabled]="!loginUserForm.invalid">Belépés</button>
+  <button type="submit" [disabled]="!loginUserForm.valid">Belépés</button>
 
 </form>

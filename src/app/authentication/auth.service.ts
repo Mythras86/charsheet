@@ -37,7 +37,7 @@ export class AuthService {
 
   registerUser(username: string, useremail: string, userpass: string) {
     const authRegister: AuthRegister = {username: username, useremail: useremail, userpass: userpass };
-    this.http.post(BACKEND_URL + "/register", authRegister).subscribe(
+    this.http.post(BACKEND_URL + "register", authRegister).subscribe(
       () => {
         this.router.navigate(["/"]);
       },
@@ -51,7 +51,7 @@ export class AuthService {
     const authLogin: AuthLogin = { useremail: useremail, userpass: userpass };
     this.http
       .post<{ token: string; expiresIn: number; userId: string }>(
-        BACKEND_URL + "/login", authLogin
+        BACKEND_URL + "login", authLogin
       )
       .subscribe(
         response => {

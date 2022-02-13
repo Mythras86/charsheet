@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.registerUser = (req, res, next) => {
-  bcrypt.hash(req.body.password, 17).then(hash => {
+  bcrypt.hash(req.body.userpass, 17).then(hash => {
     const user = new User({
       username: req.body.username,
       useremail: req.body.useremail,
@@ -46,7 +46,7 @@ exports.loginUser = (req, res, next) => {
       }
       const token = jwt.sign(
         { useremail: fetchedUser.useremail, userId: fetchedUser._id },
-        process.env.JWT_KEY,
+        "its_a_secret_dont_tell_anyone",
         { expiresIn: "1h" }
       );
       res.status(200).json({

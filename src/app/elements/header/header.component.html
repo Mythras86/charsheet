@@ -1,3 +1,19 @@
+<div class="element-cont">
+  <div class="navbaritem logo">
+    Shadowrun KarGen
+  </div>
+  <div class="navbaritem">
+    <div>Üdv username</div>
+    <button *ngIf="!userIsAuthenticated">
+      Belépés/Regisztráció
+    </button>
+    <button *ngIf="userIsAuthenticated" (click)="onLogout">
+      Kilépés
+    </button>
+
+  </div>
+</div>
+
 <nav>
   <ul class="element-cont">
       <li class="navbaritem">
@@ -15,8 +31,5 @@
       <li class="navbaritem" *ngIf="!userIsAuthenticated">
         <a routerLink="/register">Regisztráció</a>
       </li>
-      <button class="navbaritem" *ngIf="userIsAuthenticated" (click)="onLogout">
-        Kilépés
-      </button>
   </ul>
 </nav>

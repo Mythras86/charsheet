@@ -1,0 +1,9 @@
+.auth-cont {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.auth-elem {
+  flex: 1 1 50%;
+  padding: 1rem 1rem;
+}

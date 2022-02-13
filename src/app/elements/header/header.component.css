@@ -18,3 +18,9 @@ a {
 li :hover {
   background-color: orange;
 }
+
+.logo {
+  text-align: center;
+  font-size: 2rem;
+  text-shadow: 2px 2px 2px orange;
+}
