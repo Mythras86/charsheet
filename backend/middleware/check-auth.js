@@ -1,12 +1,12 @@
-const jwt = require("jasonwebtoken");
+const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
-  try{
+  try {
     const token = req.headers.authorization.split(" ")[1];
-    jwt.verify(token, "its_a_secret_dont_tell_anyone");
+    const decodedToken = jwt.verify(token, process.env.JWT_KEY);
+    req.userData = { useremail: decodedToken.useremail, userId: decodedToken.userId };
     next();
   } catch (error) {
-    res.status(401).json({message: "Auth failed!"});
+    res.status(401).json({ message: "You are not authenticated!" });
   }
-
 };

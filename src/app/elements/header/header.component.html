@@ -1,35 +1,29 @@
-<div class="element-cont">
-  <div class="navbaritem logo">
-    Shadowrun KarGen
-  </div>
-  <div class="navbaritem">
-    <div>Üdv username</div>
-    <button *ngIf="!userIsAuthenticated">
-      Belépés/Regisztráció
-    </button>
-    <button *ngIf="userIsAuthenticated" (click)="onLogout">
-      Kilépés
-    </button>
-
-  </div>
-</div>
-
 <nav>
+  <div class="element-cont">
+    <div class="logo">
+      <h1>Shadowrun</h1>
+      <h5>Karakterlap by Mythras</h5>
+    </div>
+  </div>
   <ul class="element-cont">
-      <li class="navbaritem">
+      <li>
         <a routerLink="/">Főoldal</a>
       </li>
-      <li class="navbaritem">
+      <li *ngIf="userIsAuthenticated">
         <a routerLink="/newchar">Új Karakter</a>
       </li>
-      <li class="navbaritem">
+      <li *ngIf="userIsAuthenticated">
         <a routerLink="/characters">Karakterek</a>
       </li>
-      <li class="navbaritem" *ngIf="!userIsAuthenticated">
+      <li *ngIf="!userIsAuthenticated">
         <a routerLink="/login">Belépés</a>
       </li>
-      <li class="navbaritem" *ngIf="!userIsAuthenticated">
+      <li *ngIf="!userIsAuthenticated">
         <a routerLink="/register">Regisztráció</a>
       </li>
+      <li *ngIf="userIsAuthenticated">
+        <a (click)="onLogout()">Kilépés</a>
+      </li>
+
   </ul>
 </nav>

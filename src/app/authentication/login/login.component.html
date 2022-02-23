@@ -2,6 +2,7 @@
 
   <input type="email" formControlName="useremail" placeholder="E-amil cím">
   <input type="password" formControlName="userpass" placeholder="Jelszó">
-  <button type="submit" [disabled]="!loginUserForm.valid">Belépés</button>
+  <button type="submit"  *ngIf="!isLoading" [disabled]="!loginUserForm.valid">Belépés</button>
+  <app-spinner *ngIf="isLoading"></app-spinner>
 
 </form>

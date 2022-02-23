@@ -1,6 +1,9 @@
 <form [formGroup]="regUserForm" (ngSubmit)="onSubmit()">
+
   <input type="text" formControlName="username" placeholder="Név">
   <input type="email" formControlName="useremail" placeholder="E-amil cím">
   <input type="password" formControlName="userpass" placeholder="Jelszó">
-  <button type="submit" [disabled]="!regUserForm.valid">Regisztráció</button>
+  <button type="submit" *ngIf="!isLoading" [disabled]="!regUserForm.valid">Regisztráció</button>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+
 </form>

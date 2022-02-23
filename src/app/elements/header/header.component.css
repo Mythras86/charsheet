@@ -1,26 +1,21 @@
+ul {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0 auto;
+}
+
 a {
   display: block;
   color: white;
   font-size: 1.2rem;
 }
 
-.element-cont {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.navbaritem {
-  display: block;
-  text-align: center;
+li {
   flex: 1 1 auto;
+  text-align: center;
 }
 
 li :hover {
+  cursor: pointer;
   background-color: orange;
-}
-
-.logo {
-  text-align: center;
-  font-size: 2rem;
-  text-shadow: 2px 2px 2px orange;
 }

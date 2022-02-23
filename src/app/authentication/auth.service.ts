@@ -49,8 +49,7 @@ export class AuthService {
 
   loginUser (useremail: string, userpass: string) {
     const authLogin: AuthLogin = { useremail: useremail, userpass: userpass };
-    this.http
-      .post<{ token: string; expiresIn: number; userId: string }>(
+    this.http.post<{ token: string; expiresIn: number; userId: string }>(
         BACKEND_URL + "login", authLogin
       )
       .subscribe(

@@ -9,6 +9,8 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  isLoading = false;
+
   regUserForm!: FormGroup;
 
   constructor(public authService: AuthService) { }
@@ -26,6 +28,7 @@ export class RegisterComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     this.authService.registerUser(form.value.username, form.value.useremail, form.value.userpass);
   }
 

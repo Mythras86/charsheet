@@ -1,0 +1,9 @@
+<form [formGroup]="newCharForm" (ngSubmit)="createNewChar()">
+
+  <input type="text" formControlName="charName" placeholder="Karakter neve">
+  <input type="text" formControlName="charClass" placeholder="Karakter kasztja">
+  <input type="textarea" rows="4" cols="10" formControlName="charDesc" placeholder="Karakter Leírása">
+  <button type="text"  *ngIf="!isLoading" [disabled]="!newCharForm.valid">Karakter mentése</button>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+
+</form>

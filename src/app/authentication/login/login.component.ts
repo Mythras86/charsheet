@@ -9,6 +9,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  isLoading = false;
+
   loginUserForm!: FormGroup
 
   constructor(public authservice:AuthService) { }
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     this.authservice.loginUser(form.value.useremail, form.value.userpass);
   }
 
