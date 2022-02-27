@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/authentication/auth.service';
+import { CharService } from '../chars.service';
 
 @Component({
   selector: 'app-newchar',
@@ -13,7 +14,7 @@ export class NewcharComponent implements OnInit {
 
   newCharForm!: FormGroup;
 
-  constructor(public authService: AuthService) { }
+  constructor(public charService: CharService) { }
 
   ngOnInit(): void {
     this.newCharForm = new FormGroup({
@@ -29,7 +30,7 @@ export class NewcharComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this.authService.registerUser(form.value.charName, form.value.charClass, form.value.charDesc);
+    this.charService.addOneChar(form.value.charName, form.value.charClass, form.value.charDesc);
   }
 
 }

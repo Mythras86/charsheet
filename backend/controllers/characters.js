@@ -1,19 +1,18 @@
 const Char = require("../models/character");
 
 exports.createChar = (req, res, next) => {
-  const url = req.protocol + "://" + req.get("host");
-  const character = new Character({
+  const char = new Char ({
     charName: req.body.charName,
     charClass: req.body.charClass,
     charDesc: req.body.charDesc,
-    charCreator: req.userData.userId
+    creator: req.userData.userId
   });
-  character
+  char
     .save()
     .then(createdChar => {
       res.status(201).json({
         message: "Character added successfully",
-        Char: {
+        char: {
           ...createdChar,
           id: createdChar._id
         }
@@ -30,14 +29,14 @@ exports.updateChar = (req, res, next) => {
   if (req.file) {
     const url = req.protocol + "://" + req.get("host");
   }
-  const Char = new Char({
+  const char = new Char({
     _id: req.body.id,
     charName: req.body.charName,
     charClass: req.body.charClass,
     charDesc: req.body.charDesc,
-    charCreator: req.userData.userId
+    creator: req.userData.userId
   });
-  Char.updateOne({ _id: req.params.id, creator: req.userData.userId }, Char)
+  char.updateOne({ _id: req.params.id, creator: req.userData.userId }, Char)
     .then(result => {
       if (result.n > 0) {
         res.status(200).json({ message: "Update successful!" });
@@ -53,31 +52,37 @@ exports.updateChar = (req, res, next) => {
 };
 
 exports.getChars = (req, res, next) => {
-  const CharQuery = Char.find();
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const charQuery = Char.find();
   let fetchedChars;
-  CharQuery
+  if (pageSize && currentPage) {
+    charQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
+  charQuery
     .then(documents => {
       fetchedChars = documents;
       return Char.count();
     })
     .then(count => {
       res.status(200).json({
-        message: "Characters fetched successfully!",
-        Chars: fetchedChars,
+        message: "Chars fetched successfully!",
+        chars: fetchedChars,
+        maxChars: count
       });
     })
     .catch(error => {
       res.status(500).json({
-        message: "Fetching Characters failed!"
+        message: "Fetching chars failed!"
       });
     });
 };
 
 exports.getOneChar = (req, res, next) => {
-  Char.findById(req.params.id)
-    .then(Char => {
-      if (Char) {
-        res.status(200).json(Char);
+  char.findById(req.params.id)
+    .then(char => {
+      if (char) {
+        res.status(200).json(char);
       } else {
         res.status(404).json({ message: "Character not found!" });
       }
@@ -90,7 +95,7 @@ exports.getOneChar = (req, res, next) => {
 };
 
 exports.deleteChar = (req, res, next) => {
-  Char.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+  char.deleteOne({ _id: req.params.id, creator: req.userData.userId })
     .then(result => {
       console.log(result);
       if (result.n > 0) {

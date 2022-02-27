@@ -13,6 +13,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './elements/spinner/spinner.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,14 @@ import { SpinnerComponent } from './elements/spinner/spinner.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
