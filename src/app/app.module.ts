@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,13 +10,11 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { NewcharComponent } from './pages/charsheets/newchar/newchar.component';
 import { MainComponent } from './pages/main/main.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './authentication/auth-interceptor';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './elements/spinner/spinner.component';
-import { CommonModule } from '@angular/common';
+import { ListcharsComponent } from './pages/charsheets/listchars/listchars.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     MainComponent,
     LoginComponent,
     RegisterComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ListcharsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,13 @@
-<div *ngFor="let onechar of chars">
-  <div>
-    {{onechar.charName}}
-  </div>
-</div>
+<ul>
+  <li *ngFor="let char of chars">
+    <h5>
+      {{char.charName}}
+    </h5>
+    <div>
+      {{char.charClass}}
+    </div>
+    <div>
+      {{char.charDesc}}
+    </div>
+  </li>
+</ul>

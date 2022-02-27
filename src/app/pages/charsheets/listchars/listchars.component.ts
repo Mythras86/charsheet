@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
 
 import { Char } from '../char.model';
 import { CharService } from '../chars.service';
@@ -13,6 +16,11 @@ import { AuthService } from 'src/app/authentication/auth.service';
 export class ListcharsComponent implements OnInit, OnDestroy {
 
   chars: Char[] = [];
+  public companies: any[] = [
+    { "id": 0, "name": "Available" },
+    { "id": 1, "name": "Ready" },
+    { "id": 2, "name": "Started" }
+];
   isLoading = false;
   userIsAuthenticated = false;
   userId!: string;
