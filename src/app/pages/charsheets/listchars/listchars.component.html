@@ -1,5 +1,5 @@
-<ul>
-  <li *ngFor="let char of chars">
+<div class="listcont">
+  <div class="charcont" *ngFor="let char of chars">
     <h5>
       {{char.charName}}
     </h5>
@@ -9,5 +9,9 @@
     <div>
       {{char.charDesc}}
     </div>
-  </li>
-</ul>
+    <div class="buttoncont">
+      <button class="blackb">Módosítás</button>
+      <button class="orangeb" (click)="onDelete(char.id)">Törlés</button>
+    </div>
+  </div>
+</div>

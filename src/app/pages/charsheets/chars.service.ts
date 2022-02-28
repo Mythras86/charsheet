@@ -18,7 +18,7 @@ export class CharService {
 
   getChars() {
     this.http
-      .get<{ message: string; chars: any}>("http://localhost:3000/api/chars/charslist")
+      .get<{ message: string; chars: any}>(BACKEND_URL + "charslist")
       .pipe(
         map(charsData => {
           return {
@@ -60,7 +60,7 @@ export class CharService {
     const charData: newChar = {charName: charName, charClass: charClass, charDesc: charDesc};
     this.http.post<{ message: string; char: Char }>(
       BACKEND_URL + "create", charData).subscribe(responseData => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/characters"]);
       });
   }
 
@@ -76,7 +76,7 @@ export class CharService {
     this.http
       .put(BACKEND_URL + id, charData)
       .subscribe(response => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/characters"]);
       });
   }
 

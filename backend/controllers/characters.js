@@ -38,6 +38,7 @@ exports.updateChar = (req, res, next) => {
   });
   char.updateOne({ _id: req.params.id, creator: req.userData.userId }, Char)
     .then(result => {
+      console.log (result);
       if (result.n > 0) {
         res.status(200).json({ message: "Update successful!" });
       } else {
@@ -52,13 +53,8 @@ exports.updateChar = (req, res, next) => {
 };
 
 exports.getChars = (req, res, next) => {
-  const pageSize = +req.query.pagesize;
-  const currentPage = +req.query.page;
   const charQuery = Char.find();
   let fetchedChars;
-  if (pageSize && currentPage) {
-    charQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
-  }
   charQuery
     .then(documents => {
       fetchedChars = documents;
@@ -95,10 +91,10 @@ exports.getOneChar = (req, res, next) => {
 };
 
 exports.deleteChar = (req, res, next) => {
-  char.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+  Char.deleteOne({ _id: req.params.id, creator: req.userData.userId })
     .then(result => {
       console.log(result);
-      if (result.n > 0) {
+      if (result.deletedCount > 0) {
         res.status(200).json({ message: "Deletion successful!" });
       } else {
         res.status(401).json({ message: "Not authorized!" });
