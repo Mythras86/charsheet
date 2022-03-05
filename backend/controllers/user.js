@@ -45,7 +45,7 @@ exports.loginUser = (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { useremail: fetchedUser.useremail, userId: fetchedUser._id },
+        { useremail: fetchedUser.useremail, userId: fetchedUser._id, username: fetchedUser.username },
         "its_a_secret_dont_tell_anyone",
         { expiresIn: "1h" }
       );

@@ -22,13 +22,39 @@ export class CharService {
       .pipe(
         map(charsData => {
           return {
-            chars: charsData.chars.map((char: { charName: string; charClass: string; _id: string; charDesc: string; creator: string; }) => {
+            chars: charsData.chars.map((char: {
+              _id: string;
+              creator: string;
+              //details
+              charName: string;
+              charClass: string;
+              charDesc: string;
+              //attributes
+              charEro: string;
+              charRef: string;
+              charUgy: string;
+              charAll: string;
+              //eqiupment
+              charEqu: string;
+              //weapon
+              charFegyver: string;
+             }) => {
               return {
+                id: char._id,
+                creator: char.creator,
+                  //details
                 charName: char.charName,
                 charClass: char.charClass,
-                id: char._id,
                 charDesc: char.charDesc,
-                creator: char.creator
+                  //attributes
+                charEro: char.charEro,
+                charRef: char.charRef,
+                charUgy: char.charUgy,
+                charAll: char.charAll,
+                //eqiupment
+                charEqu: char.charEqu,
+                //weapon
+                charFegyver: char.charFegyver,
               };
             }),
           };
@@ -49,30 +75,95 @@ export class CharService {
   getOneChar(id: string) {
     return this.http.get<{
       _id: string;
+      creator: string;
+      //details
       charName: string;
       charClass: string;
       charDesc: string;
-      creator: string;
-    }>(BACKEND_URL + id);
+      //attributes
+      charEro: string;
+      charRef: string;
+      charUgy: string;
+      charAll: string;
+      //eqiupment
+      charEqu: string;
+      //weapon
+      charFegyver: string;
+}>(BACKEND_URL + id);
   }
 
-  addOneChar(charName: string, charClass: string, charDesc: string) {
-    const charData: newChar = {charName: charName, charClass: charClass, charDesc: charDesc};
+  addOneChar(
+    //details
+    charName: string,
+    charClass: string,
+    charDesc: string,
+    //attributes
+    charEro: string,
+    charRef: string,
+    charUgy: string,
+    charAll: string,
+    //eqiupment
+    charEqu: string,
+    //weapon
+    charFegyver: string,
+  ) {
+    const charData: newChar = {
+        //details
+      charName: charName,
+      charClass: charClass,
+      charDesc: charDesc,
+        //attributes
+      charEro: charEro,
+      charRef: charRef,
+      charUgy: charUgy,
+      charAll: charAll,
+      //eqiupment
+      charEqu: charEqu,
+      //weapon
+      charFegyver: charFegyver,
+
+    };
     this.http.post<{ message: string; char: Char }>(
       BACKEND_URL + "create", charData).subscribe(responseData => {
         this.router.navigate(["/characters"]);
       });
   }
 
-  updateOneChar(id: any, charName: any, charClass: any, charDesc: any) {
+  updateOneChar(
+    id: string,
+    creator: string,
+    //details
+    charName: string,
+    charClass: string,
+    charDesc: string,
+    //attributes
+    charEro: string,
+    charRef: string,
+    charUgy: string,
+    charAll: string,
+    //eqiupment
+    charEqu: string,
+    //weapon
+    charFegyver: string,
+  ) {
     let charData: Char;
     charData = {
-        id: id,
-        charName: charName,
-        charClass: charClass,
-        charDesc: charDesc,
-        creator: ""
-      };
+      id: id,
+      creator: creator,
+        //details
+      charName: charName,
+      charClass: charClass,
+      charDesc: charDesc,
+        //attributes
+      charEro: charEro,
+      charRef: charRef,
+      charUgy: charUgy,
+      charAll: charAll,
+      //eqiupment
+      charEqu: charEqu,
+      //weapon
+      charFegyver: charFegyver,
+};
     this.http
       .put(BACKEND_URL + id, charData)
       .subscribe(response => {

@@ -1,0 +1,10 @@
+<form [formGroup]="charForm" (ngSubmit)="createNewChar()">
+
+  <app-char-details [charForm]="charForm"></app-char-details>
+  <app-char-attributes [charForm]="charForm"></app-char-attributes>
+  <app-char-weapons [charForm]="charForm"></app-char-weapons>
+  <app-char-equipment [charForm]="charForm"></app-char-equipment>
+  <button type="text"  *ngIf="!isLoading" [disabled]="!charForm.valid">Karakter mentése</button>
+  <app-spinner *ngIf="isLoading"></app-spinner>
+
+</form>

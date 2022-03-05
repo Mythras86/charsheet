@@ -2,10 +2,17 @@ const Char = require("../models/character");
 
 exports.createChar = (req, res, next) => {
   const char = new Char ({
+    creator: req.userData.userId,
+    creatorName: req.userData.userName,
     charName: req.body.charName,
     charClass: req.body.charClass,
     charDesc: req.body.charDesc,
-    creator: req.userData.userId
+    charEro: req.body.charEro,
+    charRef: req.body.charRef,
+    charUgy: req.body.charUgy,
+    charAll: req.body.charAll,
+    charEqu: req.body.charEqu,
+    charFegyver: req.body.charFegyver,
   });
   char
     .save()
