@@ -14,12 +14,24 @@ li {list-style: none;}
   color: black;
   max-width: 1000px;
   min-height: 500px;
+  padding: 0.5rem;
 }
 
-h2 {
+.section-cont {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  display: block;
   text-align: center;
   background-color: black;
   color: white;
-  margin: 1rem auto;
-  border-radius: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
 }

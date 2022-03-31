@@ -1,7 +1,13 @@
-<h1>Karakter Jellemzők</h1>
-
-<div [formGroup]="charForm">
-  <input type="text" formControlName="charName" placeholder="Karakter neve">
-  <input type="text" formControlName="charClass" placeholder="Karakter kasztja">
-  <input type="textarea" rows="4" cols="10" formControlName="charDesc" placeholder="Karakter Leírása">
+<h1>
+    Karakter Jellemzők
+</h1>
+<div class="section-cont">
+  <div class="mainContainer" [formGroup]="detailsForm" *ngFor="let item of detailsData">
+    <div>{{item.nev}}</div>
+    <input *ngIf='item.type!=="select"' [formControlName]=item.fcname [type]=item.type [value]="getDetails(item.fcname)">
+      <select *ngIf='item.type=="select"' [formControlName]=item.fcname>
+        <option *ngFor="let race of getRaceOptions()" value={{race}}>{{race}}</option>
+      </select>
+    <div *ngIf="!hideMe">{{getDetails(item.fcname)}}</div>
+  </div>
 </div>

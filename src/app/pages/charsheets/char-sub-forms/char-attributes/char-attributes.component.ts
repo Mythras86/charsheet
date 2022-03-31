@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Fajok } from '../char-races';
 
 @Component({
   selector: 'app-char-attributes',
@@ -8,11 +9,71 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CharAttributesComponent implements OnInit {
 
-  @Input() charForm!: FormGroup;
+  @Input()
+  attributesForm!: FormGroup;
+  baseAttrData: Array<any>;
+  legendlist: Array<any>;
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor() {
+
+    this.legendlist = [
+      {type: 'Fizikai'},
+      {type: 'Asztrális'},
+      {type: 'Egyéb'},
+      {type: 'Származtatott'},
+    ]
+
+    this.baseAttrData = [
+      {nev: 'Erő', fcname:'ero', type: 'Fizikai'},
+      {nev: 'Gyorsaság', fcname:'gyo', type: 'Fizikai'},
+      {nev: 'Ügyesség', fcname:'ugy', type: 'Fizikai'},
+      {nev: 'Fizikum', fcname:'fiz', type: 'Fizikai'},
+      {nev: 'Akaraterő', fcname:'aka', type: 'Asztrális'},
+      {nev: 'Intuíció', fcname:'int', type: 'Asztrális'},
+      {nev: 'Logika', fcname:'log', type: 'Asztrális'},
+      {nev: 'Kitartás', fcname:'kit', type: 'Asztrális'},
+      {nev: 'Mágia', fcname:'mag', type: 'Egyéb'},
+      {nev: 'Karizma', fcname:'kar', type: 'Egyéb'},
+      {nev: 'Érzékelés', fcname:'erz', type: 'Egyéb'},
+      {nev: 'Karma', fcname:'kta', type: 'Egyéb'},
+    ];
+  }
+
+  ngOnInit(): void { }
+
+  increment(attrControl: string) {
+    this.attributesForm.patchValue({
+      [attrControl]: this.attributesForm.get(attrControl)!.value + 1,
+    });
+  }
+
+  decrement(attrControl: string) {
+    this.attributesForm.patchValue({
+      [attrControl]: this.attributesForm.get(attrControl)!.value - 1
+    });
+  }
+
+  getAttrValue(attrControl: string) {
+    return this.attributesForm.get(attrControl)!.value;
+  }
+
+  getAttrMin(fcname: string){
+    const attrName = fcname + 'Min';
+    const attrMin = Fajok.filter(x => x.attrName);
+    console.log(attrMin)
+    console.log(attrName)
+    return attrMin;
+  }
+
+  getAttrMax(fcname: string){
+    const attrName = fcname + 'Max';
+    const attrMax = Fajok.map(x => x.attrName);
+    return attrMax;
+  }
+
+  getAttrFilter(legend:string) {
+    return this.baseAttrData.filter(x => x.type === legend);
   }
 
 }

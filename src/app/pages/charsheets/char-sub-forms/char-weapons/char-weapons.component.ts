@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-char-weapons',
@@ -8,11 +8,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CharWeaponsComponent implements OnInit {
 
-  @Input() charForm!: FormGroup;
+  @Input() charForm = this.fb.group({
+    fegyverLista: this.fb.array([])
+  });
 
-  constructor() {}
+  fegyverLista = [];
+
+  constructor(private fb: FormBuilder) {}
+
+  addNewWeapon() {
+  }
+
+  getWeapons() {
+    return this.charForm.controls["fegyverLista"] as FormArray;
+  }
 
   ngOnInit(): void {
+    this.fegyverLista = [];
   }
 
 }

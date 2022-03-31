@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-
 
 import { Char } from '../char.model';
 import { CharService } from '../chars.service';
 import { AuthService } from 'src/app/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listchars',
@@ -27,7 +25,15 @@ export class ListcharsComponent implements OnInit, OnDestroy {
   private charsSub!: Subscription;
   private authStatusSub!: Subscription;
 
-  constructor(public charService: CharService, private authService: AuthService) {}
+  constructor(
+    public charService: CharService,
+    private authService: AuthService,
+    private router: Router,
+    ) {}
+
+  gotoNewChar() {
+    (<any>this.router).navigate(["/newchar"]);
+  }
 
   ngOnInit() {
     this.isLoading = true;
