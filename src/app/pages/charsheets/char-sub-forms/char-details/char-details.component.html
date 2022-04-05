@@ -2,12 +2,28 @@
     Karakter Jellemzők
 </h1>
 <div class="section-cont">
-  <div class="mainContainer" [formGroup]="detailsForm" *ngFor="let item of detailsData">
-    <div>{{item.nev}}</div>
-    <input *ngIf='item.type!=="select"' [formControlName]=item.fcname [type]=item.type [value]="getDetails(item.fcname)">
+  <div class="mainContainer" [formGroup]="detailsForm" *ngFor="let item of detailsData; first as isFirst">
+    <label for={{item.fcname}}>{{item.nev}}</label>
+    <!-- szöveg -->
+    <input id={{item.fcname}} *ngIf='item.type=="text"'
+    [formControlName]=item.fcname type="text" [value]="getDetails(item.fcname)"
+    placeholder={{item.megjegyz}}>
+    <!-- lista -->
       <select *ngIf='item.type=="select"' [formControlName]=item.fcname>
-        <option *ngFor="let race of getRaceOptions()" value={{race}}>{{race}}</option>
+        <option value="" selected disabled hidden>Válassz</option>
+        <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
       </select>
-    <div *ngIf="!hideMe">{{getDetails(item.fcname)}}</div>
+    <!-- szín -->
+    <input id={{item.fcname}} list="presetcolors" *ngIf='item.type=="color"' [formControlName]=item.fcname type="color">
+      <datalist id="presetcolors" *ngIf='item.type=="color"'>
+        <option>#c58c85</option>
+        <option>#ecbcb4</option>
+        <option>#d1a3a4</option>
+        <option>#a1665e</option>
+        <option>#503335</option>
+        <option>#592f2a</option>
+      </datalist>
+    <!-- szám -->
+    <input id={{item.fcname}} *ngIf='item.type=="number"' [formControlName]=item.fcname type="number">
   </div>
 </div>

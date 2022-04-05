@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Fajok } from '../char-races';
 
 @Component({
   selector: 'app-char-attributes',
@@ -56,20 +55,6 @@ export class CharAttributesComponent implements OnInit {
 
   getAttrValue(attrControl: string) {
     return this.attributesForm.get(attrControl)!.value;
-  }
-
-  getAttrMin(fcname: string){
-    const attrName = fcname + 'Min';
-    const attrMin = Fajok.filter(x => x.attrName);
-    console.log(attrMin)
-    console.log(attrName)
-    return attrMin;
-  }
-
-  getAttrMax(fcname: string){
-    const attrName = fcname + 'Max';
-    const attrMax = Fajok.map(x => x.attrName);
-    return attrMax;
   }
 
   getAttrFilter(legend:string) {

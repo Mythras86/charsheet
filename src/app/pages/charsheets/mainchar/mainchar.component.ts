@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Attributes } from '../char-sub-forms/char-attributes/char-attributes-model';
-import { CharAttributesComponent } from '../char-sub-forms/char-attributes/char-attributes.component';
 import { Details } from '../char-sub-forms/char-details/char-details-model';
-import { CharDetailsComponent } from '../char-sub-forms/char-details/char-details.component';
 import { FormGroupConfig } from '../char.fgconfing';
 import { CharService } from '../chars.service';
 
@@ -24,18 +22,31 @@ export class MainCharComponent implements OnInit {
 
     private createDetails(): FormGroup {
       const details: FormGroupConfig<Details> = {
+      // szöveges
         teljesnev: ['', {value:'', disabled: false}],
         becenev: ['', {value:'', disabled: false}],
         alnev: ['', {value:'', disabled: false}],
-        nem: ['', {value:'', disabled: false}],
-        faj: ['Ember', {value:'Ember', disabled: false}],
-        eletkor:[0, {value: 0, disabled: false}],
-        magassag: [0, {value: 0, disabled: false}],
-        testsuly: [0, {value: 0, disabled: false}],
         testalkat: ['', {value:'', disabled: false}],
-        szemszin: ['', {value:'', disabled: false}],
-        hajszin: ['', {value:'', disabled: false}],
-        borszin: ['', {value:'', disabled: false}],
+        hajstilus: ['', {value:'', disabled: false}],
+        szakall: ['', {value:'', disabled: false}],
+      // értékválasztó
+        nem: ['', {value:'', disabled: false}],
+        faj: ['', {value:'', disabled: false}],
+        eletkor:['30', {value: '30', disabled: false}],
+        magassag: ['180', {value: '180', disabled: false}],
+        testsuly: ['75', {value: '75', disabled: false}],
+      // szín
+        szemszin: ['#503335', {value:'#503335', disabled: false}],
+        hajszin: ['#503335', {value:'#503335', disabled: false}],
+        szorszin: ['#503335', {value:'#503335', disabled: false}],
+        borszin: ['#ecbcb4', {value:'#ecbcb4', disabled: false}],
+      // hosszú szöveg
+        felelem: ['', {value: '', disabled: false}],
+        osztonzo: ['', {value: '', disabled: false}],
+        gyulolet: ['', {value: '', disabled: false}],
+        kedvenc: ['', {value: '', disabled: false}],
+        irtozat: ['', {value: '', disabled: false}],
+        vonzalom: ['', {value: '', disabled: false}],
       };
       return this.fb.group(details);
     };
