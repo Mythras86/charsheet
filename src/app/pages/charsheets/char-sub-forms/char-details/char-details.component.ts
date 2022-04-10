@@ -1,21 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
-import { Fajok, Nemek } from '../char-races'
+import { Fajok, Nemek, selectRaceService } from '../char-races'
 
 @Component({
   selector: 'app-char-details',
   templateUrl: './char-details.component.html',
   styleUrls: ['./char-details.component.css']
 })
-export class CharDetailsComponent implements OnInit {
+export class CharDetailsComponent implements OnInit, OnDestroy {
 
   @Input() detailsForm!: FormGroup;
 
   detailsData: Array<any>;
   hideMe: boolean = false;
+  yourRace!: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private selectraceservice: selectRaceService
+  ) {
 
     this.detailsData = [
       {nev: 'Teljes név', fcname:'teljesnev', type: 'text', megjegyz: 'Amit a Sírodra vésnek...'},
@@ -46,10 +49,6 @@ getDetails(fcname: string) {
   return this.detailsForm.get(fcname)?.value;
 }
 
-addDetails() {
-  this.hideMe = !this.hideMe;
-}
-
 listGetter(target:string) {
   if (target == 'Fajok') {
     const list = Fajok.map(x=> x.fajnev);
@@ -67,6 +66,15 @@ listGetter(target:string) {
   return;
 }
 
-  ngOnInit(): void {
+  sendRaceData(): void {
+    this.selectraceservice.updateRace(
+      this.detailsForm.get('faj')?.value
+    );
   }
+
+  ngOnInit(): void {
+    this.selectraceservice.getRace.subscribe(yourRace => this.yourRace = yourRace);
+   }
+
+  ngOnDestroy(): void { }
 }

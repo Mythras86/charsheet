@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Attributes } from '../char-sub-forms/char-attributes/char-attributes-model';
 import { Details } from '../char-sub-forms/char-details/char-details-model';
@@ -17,7 +17,7 @@ export class MainCharComponent implements OnInit {
 
   constructor(
     public charService: CharService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
     ) { }
 
     private createDetails(): FormGroup {
@@ -53,18 +53,21 @@ export class MainCharComponent implements OnInit {
 
     private createAttributes() {
       const attributes: FormGroupConfig<Attributes> = {
-        ero: [1, {value:1, disabled: false}],
-        gyo: [1, {value:1, disabled: false}],
-        ugy: [1, {value:1, disabled: false}],
-        fiz: [1, {value:1, disabled: false}],
-        aka: [1, {value:1, disabled: false}],
-        int: [1, {value:1, disabled: false}],
-        log: [1, {value:1, disabled: false}],
-        kit: [1, {value:1, disabled: false}],
-        kar: [1, {value:1, disabled: false}],
+        //fizikai
+        ero: [0, {value:0, disabled: false}],
+        gyo: [0, {value:0, disabled: false}],
+        ugy: [0, {value:0, disabled: false}],
+        kit: [0, {value:0, disabled: false}],
+        //asztrál
+        aka: [0, {value:0, disabled: false}],
+        int: [0, {value:0, disabled: false}],
+        log: [0, {value:0, disabled: false}],
+        fegy: [0, {value:0, disabled: false}],
+        //speciális
         mag: [0, {value:0, disabled: false}],
+        ess: [0, {value:0, disabled: false}],
         kta: [0, {value:0, disabled: false}],
-        erz: [1, {value:1, disabled: false}],
+        kezd: [0, {value:0, disabled: false}],
       };
       return this.fb.group(attributes);
     };

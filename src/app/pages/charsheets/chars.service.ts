@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { newChar } from './newchar.model';
 import { Char } from './char.model';
+import { EventEmitter } from '@angular/core';
 
 const BACKEND_URL = environment.apiUrl + "/chars/";
 
@@ -13,6 +14,9 @@ const BACKEND_URL = environment.apiUrl + "/chars/";
 export class CharService {
   private chars: Char[] = [];
   private charsUpdated = new Subject<{ chars: Char[]}>();
+
+  raceStatus: any;
+  raceStatusChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient, private router: Router) {}
 

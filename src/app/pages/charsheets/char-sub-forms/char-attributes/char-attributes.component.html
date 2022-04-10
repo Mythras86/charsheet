@@ -4,24 +4,22 @@
   <fieldset *ngFor="let legend of legendlist">
     <legend>{{legend.type}}</legend>
     <div class="mainContainer" [formGroup]="attributesForm" *ngFor="let item of getAttrFilter(legend.type)">
-        <div class="subContainer">
+        <div class="subContainer cw60">
           <div class="w60">
             {{item.nev}}
           </div>
           <div class="w20">
-            {{getAttrValue(item.fcname)}}
-            <input [formControlName]=item.fcname type="hidden" readonly [value]="getAttrValue(item.fcname)">
+            {{getTotalValue(item.fcname)}}
           </div>
           <div class="w20">
-            <button type="button" [disabled]="getAttrValue(item.fcname) > item.max-1" (click)='increment(item.fcname)'>+</button>
-            <button type="button" [disabled]="getAttrValue(item.fcname) < item.min+1" (click)='decrement(item.fcname)'>-</button>
+            <button type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || item.buttonstatus == 'disabled'" (click)='increment(item.fcname)'>+</button>
+            <button type="button" [disabled]="getAttrValue(item.fcname) < 1 || item.buttonstatus == 'disabled'" (click)='decrement(item.fcname)'>-</button>
           </div>
         </div>
-        <div  class="subContainer">
-          <div>A:{{getAttrValue(item.fcname)}}</div>
-          <div>M:6</div>
-          <div>K: {{getAttrValue(item.fcname)*3}}</div>
-          <div>M: 0</div>
+        <div  class="subContainer cw40">
+          <div>m: {{getMinValue(item.fcname)}}</div>
+          <div>m: {{getMaxValue(item.fcname)}}</div>
+          <div>v: {{getAttrValue(item.fcname)}}</div>
         </div>
     </div>
   </fieldset>

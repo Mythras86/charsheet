@@ -1,17 +1,17 @@
 export interface Attributes {
-  //fizikai tulajdonságok
+  //fizikai
   ero: number,
   gyo: number,
   ugy: number,
-  fiz: number,
-  //szellemi tulajdonságok
+  kit: number,
+  //szellemi
   aka: number,
   int: number,
   log: number,
-  kit: number,
-  //egyéb tulajdonságok
-  kar: number,
+  fegy: number,
+  //speciális
+  ess: number,
   mag: number,
   kta: number,
-  erz: number,
+  kezd: number,
 };

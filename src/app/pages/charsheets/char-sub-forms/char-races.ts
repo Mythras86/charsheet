@@ -1,17 +1,20 @@
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
+
   export interface ValasztottFaj {
   fajnev: string,
-  eroMod: number,
-  gyoMod: number,
-  ugyMod: number,
-  fizMod: number,
-  akaMod: number,
-  intMod: number,
-  logMod: number,
-  kitMod: number,
-  karMod: number,
-  magMod: number,
-  ktaMod: number,
-  erzMod: number,
+  eroMax: number,
+  gyoMax: number,
+  ugyMax: number,
+  kitMax: number,
+  akaMax: number,
+  intMax: number,
+  logMax: number,
+  fegyMax: number,
+  karMax: number,
+  magMax: number,
+  ktaMax: number,
+  erzMax: number,
   defHeight: number,
   defWieght: number,
   defAge: number,
@@ -21,17 +24,13 @@
 export const Fajok: Array<any> = [
   {
     fajnev: 'Ember',
-    eroMod: 0, gyoMod: 0, ugyMod: 0, fizMod: 0,
-    akaMod: 0, intMod: 0, logMod: 0, kitMod: 0,
-    karMod: 0, magMod: 0, ktaMod: 3, erzMod: 0,
+    ktaMin: 3, ktaMax: 3,
     defHeight: 180, defWieght: 75, defAge: 30,
     defKepessegek: [{kepesseg: '+3 Karmatartalék'}],
   },
   {
     fajnev: 'Tünde',
-    eroMod: 0, gyoMod: 1, ugyMod: 0, fizMod: 0,
-    akaMod: 0, intMod: 0, logMod: 0, kitMod: 0,
-    karMod: 2, magMod: 0, ktaMod: 0, erzMod: 0,
+    gyoMax: 1, intMax: 2,
     defHeight: 180, defWieght: 70, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Éjszakai látás'},
@@ -41,9 +40,8 @@ export const Fajok: Array<any> = [
   },
   {
     fajnev: 'Törpe',
-    eroMod: 2, gyoMod: -1, ugyMod: 0, fizMod: 1,
-    akaMod: 1, intMod: 0, logMod: 0, kitMod: 0,
-    karMod: 0, magMod: 0, ktaMod: 0, erzMod: 0,
+    eroMax: 2, gyoMax: -1,
+    kitMax: 1, akaMax: 1,
     defHeight: 140, defWieght: 60, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Hőlátás'},
@@ -52,9 +50,8 @@ export const Fajok: Array<any> = [
   },
   {
     fajnev: 'Ork',
-    eroMod: 2, gyoMod: 0, ugyMod: 0, fizMod: 3,
-    akaMod: 0, intMod: 0, logMod: -1, kitMod: 0,
-    karMod: -1, magMod: 0, ktaMod: 0, erzMod: 0,
+    eroMax: 2, kitMax: 3,
+    logMax: -1, intMax: -1,
     defHeight: 190, defWieght: 95, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Éjszakai látás'},
@@ -64,9 +61,9 @@ export const Fajok: Array<any> = [
   },
   {
     fajnev: 'Troll',
-    eroMod: 4, gyoMod: -1, ugyMod: 0, fizMod: 4,
-    akaMod: 0, intMod: 0, logMod: -2, kitMod: 0,
-    karMod: -2, magMod: 0, ktaMod: 0, erzMod: 0,
+    eroMax: 4, gyoMax: -1,
+    kitMax: 4, logMax: -2,
+    intMax: -2,
     defHeight: 280, defWieght: 220, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Hőlátás'},
@@ -83,3 +80,14 @@ export const Nemek: Array<any> = [
   {nem: 'Egyiksem'},
   {nem: 'Egyéb'},
 ];
+
+@Injectable ({ providedIn: "root" })
+export class selectRaceService {
+  private selectedrace = new BehaviorSubject('');
+
+  getRace = this.selectedrace.asObservable();
+
+  updateRace(yourRace: string): void {
+    this.selectedrace.next(yourRace);
+  }
+}

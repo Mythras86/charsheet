@@ -11,12 +11,19 @@
   flex: 1 1 auto;
   text-align: center;
   border: 1px black solid;
-  max-width: 50%;
+}
+
+.cw60 {
+  max-width: 60%;
+}
+
+.cw40 {
+  max-width: 40%;
 }
 
 button {
-  height: 1rem;
-  width: 1rem;
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
 .w60 {
