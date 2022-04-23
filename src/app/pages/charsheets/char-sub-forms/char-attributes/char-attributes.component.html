@@ -1,9 +1,10 @@
-<h1>Tulajdonságok</h1>
+<div [formGroup]="attributesForm" class="section-cont">
 
-<div class="section-cont">
-  <fieldset *ngFor="let legend of legendlist">
-    <legend>{{legend.type}}</legend>
-    <div class="mainContainer" [formGroup]="attributesForm" *ngFor="let item of getAttrFilter(legend.type)">
+  <h1>Tulajdonságok</h1>
+
+  <fieldset *ngFor='let legend of charSubs.getLegends(getAttributes(), "csoport")'>
+    <legend>{{legend}}</legend>
+    <div class="mainContainer" *ngFor="let item of charSubs.getGroups(getAttributes(), legend)">
         <div class="subContainer cw60">
           <div class="w60">
             {{item.nev}}
@@ -12,14 +13,16 @@
             {{getTotalValue(item.fcname)}}
           </div>
           <div class="w20">
-            <button type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || item.buttonstatus == 'disabled'" (click)='increment(item.fcname)'>+</button>
-            <button type="button" [disabled]="getAttrValue(item.fcname) < 1 || item.buttonstatus == 'disabled'" (click)='decrement(item.fcname)'>-</button>
+            <button type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || item.buttonstatus == 'disabled'"
+              (click)='charSubs.increment(item.fcname, attributesForm)'>+</button>
+            <button type="button" [disabled]="charSubs.getFromContValue(item.fcname, attributesForm) < 1 || item.buttonstatus == 'disabled'"
+            (click)='charSubs.decrement(item.fcname, attributesForm)'>-</button>
           </div>
         </div>
         <div  class="subContainer cw40">
           <div>m: {{getMinValue(item.fcname)}}</div>
           <div>m: {{getMaxValue(item.fcname)}}</div>
-          <div>v: {{getAttrValue(item.fcname)}}</div>
+          <div>v: {{charSubs.getFromContValue(item.fcname, attributesForm)}}</div>
         </div>
     </div>
   </fieldset>

@@ -39,18 +39,3 @@ button {
   background-color: orange;
   color: white;
 }
-
-fieldset {
-  display: block;
-  width: 100%;
-  background-color: lightgray;
-  padding: 0.5rem 0.1rem;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-legend {
-  background-color: black;
-  color: white;
-  width: 70%;
-  }

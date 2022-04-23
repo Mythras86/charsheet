@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Attributes } from '../char-sub-forms/char-attributes/char-attributes-model';
-import { Details } from '../char-sub-forms/char-details/char-details-model';
+import { Attributes } from '../char-sub-forms/char-attributes/model-for-attributes';
+import { Details } from '../char-sub-forms/char-details/model-for-details';
+import { Resources } from '../char-sub-forms/char-resources/model-for-resources';
+import { Skills } from '../char-sub-forms/char-skills/model-for-skills';
 import { FormGroupConfig } from '../char.fgconfing';
 import { CharService } from '../chars.service';
 
@@ -32,6 +34,8 @@ export class MainCharComponent implements OnInit {
       // értékválasztó
         nem: ['', {value:'', disabled: false}],
         faj: ['', {value:'', disabled: false}],
+        magikus: ['', {value:'', disabled: false}],
+        spec: ['', {value:'', disabled: false}],
         eletkor:['30', {value: '30', disabled: false}],
         magassag: ['180', {value: '180', disabled: false}],
         testsuly: ['75', {value: '75', disabled: false}],
@@ -72,10 +76,42 @@ export class MainCharComponent implements OnInit {
       return this.fb.group(attributes);
     };
 
+    private createResourcesForm() {
+      const resources: FormGroupConfig<Resources> = {
+        basekarma: [250, {value:250, disabled: false}],
+        gainedkarma: [0, {value:0, disabled: false}],
+        karmaonattr: [0, {value:0, disabled: false}],
+        karmaonskills: [0, {value:0, disabled: false}],
+        karmaonmoney: [0, {value:0, disabled: false}],
+        karmaonmagic: [0, {value:0, disabled: false}],
+        spells: [0, {value:0, disabled: false}],
+        spirits: [0, {value:0, disabled: false}],
+        magictools: [0, {value:0, disabled: false}],
+        moneyonwapons: [0, {value:0, disabled: false}],
+        moneyontools: [0, {value:0, disabled: false}],
+        moneyoncyber: [0, {value:0, disabled: false}],
+        moneyonsoftware: [0, {value:0, disabled: false}],
+        moneyonrides: [0, {value:0, disabled: false}],
+        moneyonmagic: [0, {value:0, disabled: false}],
+      };
+      return this.fb.group(resources);
+    };
+
+    private createSkillsForm() {
+      const skillsForm: FormGroupConfig<Skills> = {
+          skillName: ['', {value:'', disabled: false}],
+          skillLevel: [0, {value:0, disabled: false}],
+          skillDesc: ['', {value:'', disabled: false}],
+      };
+      return this.fb.group(skillsForm);
+    };
+
   ngOnInit(): void {
     this.mainCharForm = this.fb.group({
       detailsForm: this.createDetails(),
-      attributesForm: this.createAttributes()
+      attributesForm: this.createAttributes(),
+      resourcesForm: this.createResourcesForm(),
+      skillsForm: this.createSkillsForm()
     });
   }
 
@@ -108,5 +144,10 @@ export class MainCharComponent implements OnInit {
   public get attributesForm(): FormGroup {
     return this.mainCharForm.get('attributesForm') as FormGroup;
   }
-
+  public get resourcesForm(): FormGroup {
+    return this.mainCharForm.get('resourcesForm') as FormGroup;
+  }
+  public get skillsForm(): FormGroup {
+    return this.mainCharForm.get('skillsForm') as FormGroup;
+  }
 }

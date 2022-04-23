@@ -1,0 +1,36 @@
+export interface Resources {
+  basekarma: number,
+  gainedkarma: number,
+  karmaonattr: number,
+  karmaonskills: number,
+  karmaonmoney: number,
+  karmaonmagic: number,
+  spells: number,
+  spirits: number,
+  magictools: number,
+  moneyonwapons: number,
+  moneyontools: number,
+  moneyoncyber: number,
+  moneyonsoftware: number,
+  moneyonrides: number,
+  moneyonmagic: number,
+}
+
+export const resources: Array<any> = [
+  {nev: 'Induló Karma', csoport: 'Karma', fcname: 'basekarma'},
+  {nev: 'Kapott Karma', csoport: 'Karma', fcname: 'gainedkarma'},
+  {nev: 'Tulajdonságpontok', csoport: 'Karma', fcname: 'karmaonattr', minKarma:3},
+  {nev: 'Szakértelempontok', csoport: 'Karma', fcname: 'karmaonskills', minKarma:2},
+  {nev: 'Erőforrások', csoport: 'Karma', fcname: 'karmaonmoney'},
+  {nev: 'Varázslat pontok', csoport: 'Karma', fcname: 'karmaonmagic'},
+  {nev: 'Varázslatok', csoport: 'Mágia', fcname: 'spells'},
+  {nev: 'Szellemek', csoport: 'Mágia', fcname: 'spirits'},
+  {nev: 'Mágikus eszközök', csoport: 'Mágia', fcname: 'magictools'},
+  {nev: 'Fegyverek', csoport: 'Erőforrások', fcname: 'moneyonwapons'},
+  {nev: 'Felszerelések', csoport: 'Erőforrások', fcname: 'moneyontools'},
+  {nev: 'Kiberverek', csoport: 'Erőforrások', fcname: 'moneyoncyber'},
+  {nev: 'Programok', csoport: 'Erőforrások', fcname: 'moneyonsoftware'},
+  {nev: 'Járművek', csoport: 'Erőforrások', fcname: 'moneyonrides'},
+  {nev: 'Mágikus eszközök', csoport: 'Erőforrások', fcname: 'moneyonmagic'},
+
+];

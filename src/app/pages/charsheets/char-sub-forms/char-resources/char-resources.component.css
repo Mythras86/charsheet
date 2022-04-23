@@ -1,0 +1,15 @@
+.w60 {
+  width: 60%;
+  display: inline-block;
+  padding: 0.2rem 1rem;
+}
+
+.goright {
+  text-align: right;
+}
+
+.w20 {
+  width: 20%;
+  display: inline-block;
+  padding: 0.2rem 1rem;
+}

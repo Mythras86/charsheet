@@ -1,6 +1,6 @@
+<div class="section-cont" [formGroup]="charForm">
 <h1>Fegyverek</h1>
 
-<div [formGroup]="charForm">
   <div formArrayName="fegyverLista">
     <div *ngFor="let fegyver of fegyverLista; let i = index">
       <input type="text" formControlName="charFegyver" placeholder="Fegyver neve">

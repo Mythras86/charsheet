@@ -19,6 +19,8 @@ import { CharDetailsComponent } from './pages/charsheets/char-sub-forms/char-det
 import { CharAttributesComponent } from './pages/charsheets/char-sub-forms/char-attributes/char-attributes.component';
 import { CharWeaponsComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.component';
 import { CharEquipmentComponent } from './pages/charsheets/char-sub-forms/char-equipment/char-equipment.component';
+import { CharResourcesComponent } from './pages/charsheets/char-sub-forms/char-resources/char-resources.component';
+import { CharSkillsComponent } from './pages/charsheets/char-sub-forms/char-skills/char-skills.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CharEquipmentComponent } from './pages/charsheets/char-sub-forms/char-e
     CharDetailsComponent,
     CharAttributesComponent,
     CharWeaponsComponent,
-    CharEquipmentComponent
+    CharEquipmentComponent,
+    CharResourcesComponent,
+    CharSkillsComponent
   ],
   imports: [
     BrowserModule,

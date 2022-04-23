@@ -1,8 +1,8 @@
-<h1>
-    Karakter Jellemzők
-</h1>
-<div class="section-cont">
-  <div class="mainContainer" [formGroup]="detailsForm" *ngFor="let item of detailsData; first as isFirst">
+<div class="section-cont" [formGroup]="detailsForm">
+
+  <h1>Karakter Jellemzők</h1>
+
+  <div class="mainContainer" *ngFor="let item of getDetailsData(); first as isFirst">
     <label for={{item.fcname}}>{{item.nev}}</label>
     <!-- szöveg -->
     <input id={{item.fcname}} *ngIf='item.type=="text"'

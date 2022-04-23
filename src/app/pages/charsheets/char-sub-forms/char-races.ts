@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
   export interface ValasztottFaj {
   fajnev: string,
@@ -74,11 +74,52 @@ export const Fajok: Array<any> = [
 ];
 
 export const Nemek: Array<any> = [
-  {nem: 'Férfi'},
-  {nem: 'Nő'},
-  {nem: 'Mindkettő'},
-  {nem: 'Egyiksem'},
-  {nem: 'Egyéb'},
+  'Férfi',
+  'Nő',
+  'Mindkettő',
+  'Egyiksem',
+  'Egyéb',
+];
+
+export const Hagyomanyok: Array<any> = [
+  {text:'Inaktív', list:'inaktiv'},
+  {text:'Hermetikus', list:'hermetikus'},
+  {text:'Hermetikus-Idéző', list:'hermetikus'},
+  {text:'Hermetikus-Igéző', list:'hermetikus'},
+  {text:'Elementalista', list:'elementalista'},
+  {text:'Sámán', list:'saman'},
+  {text:'Sámánista', list:'saman'},
+  {text:'Sámán-Idéző', list:'saman'},
+  {text:'Sámán-Igéző', list:'saman'},
+  {text: 'Adeptus', list:'adeptus'},
+];
+
+export const HagyomanyLista: Array<any> = [
+  {list: 'inaktiv', text: 'Inaktív'},
+  {list: 'hermetikus', text: 'Összes'},
+  {list: 'elementalista', text: 'Tűz'},
+  {list: 'elementalista', text: 'Víz'},
+  {list: 'elementalista', text: 'Levegő'},
+  {list: 'elementalista', text: 'Föld'},
+  {list: 'saman', text: 'Aligátor'},
+  {list: 'saman', text: 'Bagoly'},
+  {list: 'saman', text: 'Medve'},
+  {list: 'saman', text: 'Bölény'},
+  {list: 'saman', text: 'Cápa'},
+  {list: 'saman', text: 'Delfin'},
+  {list: 'saman', text: 'Egér'},
+  {list: 'saman', text: 'Farkas'},
+  {list: 'saman', text: 'Holló'},
+  {list: 'saman', text: 'Kígyó'},
+  {list: 'saman', text: 'Kutya'},
+  {list: 'saman', text: 'Macska'},
+  {list: 'saman', text: 'Mosómedve'},
+  {list: 'saman', text: 'Oroszlán'},
+  {list: 'saman', text: 'Patkány'},
+  {list: 'saman', text: 'Prérifarkas'},
+  {list: 'saman', text: 'Sas'},
+  {list: 'adeptus', text: 'Fizikai'},
+  {list: 'adeptus', text: 'Misztikus'},
 ];
 
 @Injectable ({ providedIn: "root" })

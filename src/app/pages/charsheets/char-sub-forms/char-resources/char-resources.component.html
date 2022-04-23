@@ -1,0 +1,30 @@
+<div class="section-cont" [formGroup]="resourcesForm">
+
+<h1>Pontelosztás</h1>
+
+<fieldset *ngFor='let legend of charSubs.getLegends(getResources(), "csoport")'>
+<legend>
+  <div>{{legend}}</div>
+  <div *ngIf="legend == 'Karma'">{{getRemainingKarma()}}</div>
+  <div *ngIf="legend == 'Mágia'">{{getRemainingMagic()}}</div>
+  <div *ngIf="legend == 'Erőforrások'">{{getRemainingCash()}}</div>
+</legend>
+
+<div *ngFor='let res of charSubs.getGroups(getResources(), legend)'>
+
+<div class="w60">{{res.nev}}</div>
+<div class="w20 goright">
+  {{getTotalValue(res.fcname)}}
+</div>
+<div class="w20">
+<button type="button" (click)="charSubs.increment(res.fcname, resourcesForm)"
+*ngIf="getRemainingKarma()>=getMinKarma(res.fcname)">+</button>
+<button type="button" (click)="charSubs.decrement(res.fcname, resourcesForm)"
+*ngIf="getTotalValue(res.fcname)>0">-</button>
+</div>
+
+</div>
+
+</fieldset>
+
+</div>

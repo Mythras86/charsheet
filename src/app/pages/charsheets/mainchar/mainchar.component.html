@@ -1,7 +1,9 @@
 <form [formGroup]="mainCharForm" (ngSubmit)="createNewChar()">
 
   <app-char-details [detailsForm]="detailsForm"></app-char-details>
+  <app-char-resources [resourcesForm]="resourcesForm"></app-char-resources>
   <app-char-attributes [attributesForm]="attributesForm"></app-char-attributes>
+  <app-char-skills [skillsForm]="skillsForm"></app-char-skills>
 
   <button type="text"  *ngIf="!isLoading" [disabled]="!mainCharForm.valid">Karakter mentése</button>
   <app-spinner *ngIf="isLoading"></app-spinner>
