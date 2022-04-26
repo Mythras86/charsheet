@@ -1,35 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, Input} from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-char-skills',
   templateUrl: './char-skills.component.html',
   styleUrls: ['./char-skills.component.css']
 })
-export class CharSkillsComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) { }
+export class CharSkillsComponent {
 
   @Input() skillsForm!: FormGroup;
-  skills!: FormArray;
 
-  addSkills() {
-    this.skills.push(this.newSkill());
- }
+  constructor(
+    private fb: FormBuilder
+  ) { }
 
-  getSkills() {
-    return this.skillsForm.get("skills") as FormArray;
+  public get skills(): FormArray | null {
+    if(!this.skillsForm) {
+      return null;
+    }
+    return this.skillsForm.controls.skills as FormArray;
   }
 
-  newSkill(): FormGroup {
-    return this.fb.group({
-      skillName: ['', {value:'', disabled: false}],
-      skillLevel: [0, {value:0, disabled: false}],
-      skillDesc: ['', {value:'', disabled: false}],
-    })
- }
+  addSkill(): void {
+    const skillsForm = this.fb.group({
+      skillName: ['', {value: '', disabled: false}],
+      skillLevel: [0, {value: 0, disabled: false}],
+      skillDesc: ['', {value: '', disabled: false}],
+    });
+    this.skills?.push(skillsForm);
+  }
 
-  ngOnInit(): void {
+  removeSkill(i:number): void {
+    this.skills?.removeAt(i);
   }
 
 }

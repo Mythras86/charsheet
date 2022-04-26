@@ -38,7 +38,7 @@ import { CharSkillsComponent } from './pages/charsheets/char-sub-forms/char-skil
     CharWeaponsComponent,
     CharEquipmentComponent,
     CharResourcesComponent,
-    CharSkillsComponent
+    CharSkillsComponent,
   ],
   imports: [
     BrowserModule,

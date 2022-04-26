@@ -1,0 +1,17 @@
+export interface Resources {
+  basekarma: number,
+  gainedkarma: number,
+  karmaonattr: number,
+  karmaonskills: number,
+  karmaonmoney: number,
+  karmaonmagic: number,
+  magiconspells: number,
+  magiconspirits: number,
+  magiconartifacts: number,
+  moneyonwapons: number,
+  moneyontools: number,
+  moneyoncyber: number,
+  moneyonsoftware: number,
+  moneyonrides: number,
+  moneyonartifacts: number,
+}

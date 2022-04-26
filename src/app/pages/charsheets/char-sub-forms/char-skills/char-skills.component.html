@@ -1,10 +1,19 @@
-<div class="section-cont" [formGroup]="skillsForm">
+<div class="section-cont" *ngIf="skills" [formGroup]="skillsForm">
 
   <h1>Szakértelmek</h1>
 
   <div formArrayName="skills">
+    <div *ngFor="let skill of skills.controls; let i = index">
+      <div [formGroupName]="i">
+        <input type="text" formControlName="skillName">
+        <input type="number" formControlName="skillLevel">
+        <input type="text" formControlName="skillDesc">
+        <button type="button" (click)="removeSkill(i)">Törlés</button>
+      </div>
+    </div>
 
   </div>
 
+  <button type="button" (click)="addSkill()">Új skill</button>
 
 </div>
