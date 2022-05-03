@@ -4,11 +4,6 @@ html {background-color: gray}
 a {text-decoration: none;}
 li {list-style: none;}
 
-.element-cont {
-  background-color: black;
-  color: white;
-}
-
 .main-cont {
   background-color: white;
   color: black;
@@ -22,6 +17,16 @@ li {list-style: none;}
   justify-content: space-evenly;
   align-content: flex-start;
   margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.bl-wh {
+  background-color: black;
+  color: white;
+}
+
+.or-bl {
+  background-color: orange;
+  color: black;
 }
 
 h1 {
@@ -46,9 +51,36 @@ fieldset {
 }
 
 legend {
+  display: flex;
+  flex-flow: row nowrap;
   background-color: black;
   color: white;
   width: 70%;
   font-size: 1.1rem;
   padding: 0.2rem;
+  text-align: center;
   }
+
+legend div {
+  flex: 1 1 auto;
+}
+
+.levelBtnCont {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 3rem;
+  height: 1.5rem;
+}
+
+.levelBtnCont button {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.levelBtnCont button:disabled {
+  background-color: white;
+  color: grey;
+}

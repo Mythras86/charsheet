@@ -1,40 +1,22 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormGroupConfig } from '../../char.fgconfing';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CharSubServices } from '../services-for-subforms';
-import { Resources } from './resources.model';
+import { resources } from './resources.model';
 
 @Component({
   selector: 'app-char-resources',
   templateUrl: './char-resources.component.html',
   styleUrls: ['./char-resources.component.css']
 })
-export class CharResourcesComponent {
+export class CharResourcesComponent implements OnInit {
 
   @Input() resourcesForm!: FormGroup;
 
   constructor(
     public charSubs: CharSubServices,
-    private fb: FormBuilder
   ) {}
 
-  resources: Array<any> = [
-    {nev: 'Induló Karma', csoport: 'Karma', fcname: 'basekarma'},
-    {nev: 'Kapott Karma', csoport: 'Karma', fcname: 'gainedkarma'},
-    {nev: 'Tulajdonságpontok', csoport: 'Karma', fcname: 'karmaonattr', minKarma:3},
-    {nev: 'Szakértelempontok', csoport: 'Karma', fcname: 'karmaonskills', minKarma:2},
-    {nev: 'Erőforrások', csoport: 'Karma', fcname: 'karmaonmoney'},
-    {nev: 'Varázslat pontok', csoport: 'Karma', fcname: 'karmaonmagic'},
-    {nev: 'Varázslatok', csoport: 'Mágia', fcname: 'magiconspells'},
-    {nev: 'Szellemek', csoport: 'Mágia', fcname: 'magiconspirits'},
-    {nev: 'Mágikus eszközök', csoport: 'Mágia', fcname: 'magiconartifacts'},
-    {nev: 'Fegyverek', csoport: 'Erőforrások', fcname: 'moneyonwapons'},
-    {nev: 'Felszerelések', csoport: 'Erőforrások', fcname: 'moneyontools'},
-    {nev: 'Kiberverek', csoport: 'Erőforrások', fcname: 'moneyoncyber'},
-    {nev: 'Programok', csoport: 'Erőforrások', fcname: 'moneyonsoftware'},
-    {nev: 'Járművek', csoport: 'Erőforrások', fcname: 'moneyonrides'},
-    {nev: 'Mágikus eszközök', csoport: 'Erőforrások', fcname: 'moneyonartifacts'},
-  ];
+  nopoints:boolean = false;
 
   getRemainingKarma(): number {
     const basekarma = this.resourcesForm.get('basekarma')?.value;
@@ -44,7 +26,15 @@ export class CharResourcesComponent {
     const karmaonmoney = this.resourcesForm.get('karmaonmoney')?.value;
     const karmaonmagic = this.resourcesForm.get('karmaonmagic')?.value;
 
-    return basekarma+gainedkarma-3*karmaonattr-2*karmaonskills-karmaonmoney-karmaonmagic;
+    const remainingKarma = basekarma+gainedkarma-3*karmaonattr-2*karmaonskills-karmaonmoney-2*karmaonmagic;
+
+    if(remainingKarma > 0) {
+      this.nopoints = false;
+      return remainingKarma;
+    } else {
+      this.nopoints = true;
+      return remainingKarma;
+    }
   }
 
   getRemainingMagic(): number {
@@ -65,20 +55,24 @@ export class CharResourcesComponent {
     const moneyonrides = this.resourcesForm.get('moneyonrides')?.value;
     const moneyonartifacts = this.resourcesForm.get('moneyonartifacts')?.value;
 
-    return karmaonmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonwapons;
+    return 6000*karmaonmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonwapons;
   }
 
   getMinKarma(fcname: string):number {
-    const minkarma:any = this.resources.filter(x=>x.fcname == fcname).map(x=>x.minKarma);
+    const minkarma:any = resources.filter(x=>x.fcname == fcname).map(x=>x.minKarma);
     return minkarma;
   }
 
   getResources() {
-    return this.resources;
+    return resources;
   }
 
-  getTotalValue(fcname: string):any {
+  getTotalValue(fcname: string):number {
     return this.charSubs.getFromContValue(fcname, this.resourcesForm);
+  }
+
+  ngOnInit() {
+
   }
 
 }

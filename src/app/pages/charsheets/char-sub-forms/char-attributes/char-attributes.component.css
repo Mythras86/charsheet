@@ -1,41 +1,13 @@
-.mainContainer {
+.flexcont {
   display: flex;
   flex-flow: row nowrap;
-  min-width: 100%;
+  justify-content: space-evenly;
 }
 
-.subContainer {
-  display: flex;
-  flex-flow: row nowrap;
-
-  flex: 1 1 auto;
-  text-align: center;
-  border: 1px black solid;
+.elemertek {
+  flex: 1 2 15%;
 }
 
-.cw60 {
-  max-width: 60%;
-}
-
-.cw40 {
-  max-width: 40%;
-}
-
-button {
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.w60 {
-  flex: 6 6 60%;
-  text-align: center;
-  background-color: black;
-  color: white;
-}
-
-.w20 {
-  flex: 2 2 20%;
-  text-align: center;
-  background-color: orange;
-  color: white;
+.elemnev {
+  flex: 2 1 35%;
 }

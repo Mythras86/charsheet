@@ -24,6 +24,7 @@ export class DetailsService {
     // értékválasztó
       nem: ['', {value:'', disabled: false}],
       faj: ['', {value:'', disabled: false}],
+      anyanyelv: ['', {value:'', disabled: false}],
       magikus: ['', {value:'', disabled: false}],
       spec: ['', {value:'', disabled: false}],
       eletkor:['30', {value: '30', disabled: false}],

@@ -1,37 +1,23 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 
-  export interface ValasztottFaj {
-  fajnev: string,
-  eroMax: number,
-  gyoMax: number,
-  ugyMax: number,
-  kitMax: number,
-  akaMax: number,
-  intMax: number,
-  logMax: number,
-  fegyMax: number,
-  karMax: number,
-  magMax: number,
-  ktaMax: number,
-  erzMax: number,
-  defHeight: number,
-  defWieght: number,
-  defAge: number,
-  defKepessegek: [{kepesseg: string}],
-}
-
 export const Fajok: Array<any> = [
   {
     fajnev: 'Ember',
-    ktaMin: 3, ktaMax: 3,
-    defHeight: 180, defWieght: 75, defAge: 30,
+    karKockatartalekMin: 3,
+    karKockatartalekMax: 3,
+    defHeight: 180,
+    defWieght: 75,
+    defAge: 30,
     defKepessegek: [{kepesseg: '+3 Karmatartalék'}],
   },
   {
     fajnev: 'Tünde',
-    gyoMax: 1, intMax: 2,
-    defHeight: 180, defWieght: 70, defAge: 30,
+    karFizGyoMax: 1,
+    karAsztAllMax: 2,
+    defHeight: 180,
+    defWieght: 70,
+    defAge: 30,
     defKepessegek: [
       {kepesseg: 'Éjszakai látás'},
       {kepesseg: '1,2x jobb látás'},
@@ -40,8 +26,9 @@ export const Fajok: Array<any> = [
   },
   {
     fajnev: 'Törpe',
-    eroMax: 2, gyoMax: -1,
-    kitMax: 1, akaMax: 1,
+    karFizEroMax: 2,
+    karFizAll: 1,
+    karAsztEroMax: 1,
     defHeight: 140, defWieght: 60, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Hőlátás'},
@@ -50,8 +37,10 @@ export const Fajok: Array<any> = [
   },
   {
     fajnev: 'Ork',
-    eroMax: 2, kitMax: 3,
-    logMax: -1, intMax: -1,
+    karFizEroMax: 2,
+    karFizAllMax: 3,
+    karAsztAllMax: -1,
+    karAsztUgyMax: -1,
     defHeight: 190, defWieght: 95, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Éjszakai látás'},
@@ -61,9 +50,11 @@ export const Fajok: Array<any> = [
   },
   {
     fajnev: 'Troll',
-    eroMax: 4, gyoMax: -1,
-    kitMax: 4, logMax: -2,
-    intMax: -2,
+    karFizEroMax: 4,
+    karFizGyoMax: -1,
+    karFizAllMax: 4,
+    karAsztAllMax: -2,
+    karAsztUgyMax: -2,
     defHeight: 280, defWieght: 220, defAge: 30,
     defKepessegek: [
       {kepesseg: 'Hőlátás'},
@@ -79,6 +70,16 @@ export const Nemek: Array<any> = [
   'Mindkettő',
   'Egyiksem',
   'Egyéb',
+];
+
+export const Nyelvek: Array<any> = [
+  'magyar',
+  'angol',
+  'francia',
+  'orosz',
+  'japán',
+  'kínai',
+  'indiai',
 ];
 
 export const Hagyomanyok: Array<any> = [

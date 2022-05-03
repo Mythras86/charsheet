@@ -1,15 +1,13 @@
-.w60 {
-  width: 60%;
-  display: inline-block;
-  padding: 0.2rem 1rem;
+.flexcont {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
 }
 
-.goright {
-  text-align: right;
+.elemertek {
+  flex: 1 2 15%;
 }
 
-.w20 {
-  width: 20%;
-  display: inline-block;
-  padding: 0.2rem 1rem;
+.elemnev {
+  flex: 2 1 70%;
 }

@@ -26,9 +26,7 @@ export class AttributesService {
       karAsztAll: [0, {value:0, disabled: false}],
       //speciális
       karMagia: [0, {value:0, disabled: false}],
-      karEsszencia: [0, {value:0, disabled: false}],
       karKockatartalek: [0, {value:0, disabled: false}],
-      karKezdemenyezes: [0, {value:0, disabled: false}],
     };
     return this.fb.group(attributes);
   };

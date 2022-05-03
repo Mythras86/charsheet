@@ -3,17 +3,37 @@
   <h1>Szakértelmek</h1>
 
   <div formArrayName="skills">
-    <div *ngFor="let skill of skills.controls; let i = index">
+    <div class="skillcont" *ngFor="let skill of skills.controls; let i = index">
       <div [formGroupName]="i">
-        <input type="text" formControlName="skillName">
-        <input type="number" formControlName="skillLevel">
-        <input type="text" formControlName="skillDesc">
-        <button type="button" (click)="removeSkill(i)">Törlés</button>
+        <!-- név -->
+        <div class="skillelement">
+          <select class="skillname" formControlName="skillName">
+            <option value="" selected disabled hidden>Válassz</option>
+            <optgroup *ngFor="let item of charSubs.getLegends(getSkills(), 'csoport')" label={{item}}>
+              <option *ngFor="let listitem of charSubs.getGroups(getSkills(), item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
+            </optgroup>
+          </select>
+        </div>
+        <!-- tulajdonság -->
+        <div  class="skillelement">{{getAttrNames(i)}}</div>
+        <!-- megjegyzések -->
+        <div class="skillelement">
+          <input type="text" formControlName="skillDesc">
+        </div>
+        <!-- érték -->
+        <div class="skillelement">{{getSkillLevel(i)}}</div>
+        <div class="levelBtnCont">
+          <button class="bl-wh" type="button" (click)="increment(i)">+</button>
+          <button class="or-bl" type="button" (click)="decrement(i)">-</button>
+        </div>
+        <button class="or-bl skillelement" type="button" (click)="removeSkill(i)">Törlés</button>
       </div>
     </div>
 
   </div>
 
-  <button type="button" (click)="addSkill()">Új skill</button>
+  <div>
+    <button type="button" (click)="addSkill()">Új skill</button>
+  </div>
 
 </div>

@@ -3,27 +3,29 @@
   <h1>Tulajdonságok</h1>
 
   <fieldset *ngFor='let legend of charSubs.getLegends(getAttributes(), "csoport")'>
-    <legend>{{legend}}</legend>
-    <div class="mainContainer" *ngFor="let item of charSubs.getGroups(getAttributes(), legend)">
-        <div class="subContainer cw60">
-          <div class="w60">
-            {{item.nev}}
-          </div>
-          <div class="w20">
-            {{getTotalValue(item.fcname)}}
-          </div>
-          <div class="w20">
-            <button type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || item.buttonstatus == 'disabled'"
-              (click)='charSubs.increment(item.fcname, attributesForm)'>+</button>
-            <button type="button" [disabled]="charSubs.getFromContValue(item.fcname, attributesForm) < 1 || item.buttonstatus == 'disabled'"
-            (click)='charSubs.decrement(item.fcname, attributesForm)'>-</button>
-          </div>
-        </div>
-        <div  class="subContainer cw40">
-          <div>m: {{getMinValue(item.fcname)}}</div>
-          <div>m: {{getMaxValue(item.fcname)}}</div>
-          <div>v: {{charSubs.getFromContValue(item.fcname, attributesForm)}}</div>
-        </div>
+    <legend>
+      <div>
+        {{legend}}
+      </div>
+    </legend>
+    <div class="flexcont" *ngFor="let item of charSubs.getGroups(getAttributes(), legend)">
+      <div class="bl-wh elemnev">
+        {{item.nev}}
+      </div>
+      <div class="or-bl elemertek">
+       {{getTotalValue(item.fcname)}}
+      </div>
+      <div class="levelBtnCont">
+        <button class="bl-wh" type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || item.buttonstatus == 'disabled'"
+          (click)='charSubs.increment(item.fcname, attributesForm)'>+</button>
+        <button class="or-bl" type="button" [disabled]="charSubs.getFromContValue(item.fcname, attributesForm) < 1 || item.buttonstatus == 'disabled'"
+        (click)='charSubs.decrement(item.fcname, attributesForm)'>-</button>
+      </div>
+      <div  class="elemnev">
+        m: {{getMinValue(item.fcname)}}
+        m: {{getMaxValue(item.fcname)}}
+        v: {{charSubs.getFromContValue(item.fcname, attributesForm)}}
+      </div>
     </div>
   </fieldset>
 </div>

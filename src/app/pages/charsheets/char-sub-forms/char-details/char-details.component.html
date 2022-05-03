@@ -9,10 +9,18 @@
     [formControlName]=item.fcname type="text" [value]="getDetails(item.fcname)"
     placeholder={{item.megjegyz}}>
     <!-- lista -->
-      <select *ngIf='item.type=="select"' [formControlName]=item.fcname (ngModelChange)="sendRaceData()">
+
+    <input *ngIf='item.type=="select"' [attr.list]=item.listname [formControlName]=item.fcname (ngModelChange)="sendRaceData()">
+    <datalist *ngIf='item.type=="select"' id={{item.listname}}>
+      <option value="" selected disabled hidden>Válassz</option>
+      <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
+    </datalist>
+
+    <!-- <select *ngIf='item.type=="select"' [formControlName]=item.fcname (ngModelChange)="sendRaceData()">
         <option value="" selected disabled hidden>Válassz</option>
         <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
-      </select>
+      </select> -->
+
     <!-- szín -->
     <input id={{item.fcname}} list="presetcolors" *ngIf='item.type=="color"' [formControlName]=item.fcname type="color">
       <datalist id="presetcolors" *ngIf='item.type=="color"'>

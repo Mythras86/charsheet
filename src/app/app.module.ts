@@ -51,5 +51,6 @@ import { CharSkillsComponent } from './pages/charsheets/char-sub-forms/char-skil
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule { }
