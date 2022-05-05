@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Fajok, selectRaceService } from '../char-races';
+import { ResourcesService } from '../char-resources/resources.service';
 import { CharSubServices } from '../services-for-subforms';
 import { attributes } from './attributes.model';
 
@@ -12,14 +13,18 @@ import { attributes } from './attributes.model';
 export class CharAttributesComponent implements OnInit, OnDestroy {
 
   @Input() attributesForm!: FormGroup;
-  public yourRace!: string;
 
   constructor(
     private selectraceservice: selectRaceService,
     public charSubs: CharSubServices,
-  ) { }
+    public resServ: ResourcesService
+    ) { }
 
-    getAttributes() {
+  public yourRace!: string;
+  public nopoints:boolean = false;
+  public yourAttrs:number = 0;
+
+  getAttributes() {
     return attributes;
   }
 
@@ -38,9 +43,24 @@ export class CharAttributesComponent implements OnInit, OnDestroy {
     return this.getMinValue(attrInput) + this.charSubs.getFromContValue(attrInput, this.attributesForm);
   }
 
+  getSum():number {
+    const attrObj: Object = this.attributesForm.value;
+    const attrArray = Object.values(attrObj);
+    const sumAttr: number = attrArray.reduce((prev, next ) => prev + next, 0);
+     if (this.yourAttrs-sumAttr <= 0) {
+       this.nopoints = true;
+       return this.yourAttrs-sumAttr;
+     } else {
+       this.nopoints = false;
+       return this.yourAttrs-sumAttr;
+     }
+  }
+
   ngOnInit(): void {
     this.selectraceservice.getRace.subscribe(yourRace => this.yourRace = yourRace);
+    this.resServ.getAttrPoints.subscribe(yourAttrs => this.yourAttrs = yourAttrs);
   }
 
   ngOnDestroy(): void { }
+
 }

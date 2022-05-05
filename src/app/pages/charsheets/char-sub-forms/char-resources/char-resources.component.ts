@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CharSubServices } from '../services-for-subforms';
 import { resources } from './resources.model';
+import { ResourcesService } from './resources.service';
 
 @Component({
   selector: 'app-char-resources',
@@ -14,9 +15,30 @@ export class CharResourcesComponent implements OnInit {
 
   constructor(
     public charSubs: CharSubServices,
+    private resServ: ResourcesService
   ) {}
 
-  nopoints:boolean = false;
+  public nopoints:boolean = false;
+  public yourMoney:number = 0;
+  public yourSkills:number = 0;
+  public yourAttrs:number = 0;
+
+  sendResData(fcname: string):void {
+    if(fcname == 'karmaonskills') {
+      const points = this.resourcesForm.get('karmaonskills')?.value;
+      this.resServ.updateSkills(points);
+    }
+    if(fcname == 'karmaonmoney' || 'gainedmoney') {
+      const karmaonmoney = this.resourcesForm.get('karmaonmoney')?.value;
+      const gainedmoney = this.resourcesForm.get('gainedmoney')?.value;
+      this.resServ.updateMoney(karmaonmoney*6000+gainedmoney);
+    }
+    if(fcname == 'karmaonattr') {
+      const points = this.resourcesForm.get('karmaonattr')?.value;
+      this.resServ.updateAttrs(points);
+    }
+    return;
+  }
 
   getRemainingKarma(): number {
     const basekarma = this.resourcesForm.get('basekarma')?.value;
@@ -27,7 +49,6 @@ export class CharResourcesComponent implements OnInit {
     const karmaonmagic = this.resourcesForm.get('karmaonmagic')?.value;
 
     const remainingKarma = basekarma+gainedkarma-3*karmaonattr-2*karmaonskills-karmaonmoney-2*karmaonmagic;
-
     if(remainingKarma > 0) {
       this.nopoints = false;
       return remainingKarma;
@@ -48,6 +69,7 @@ export class CharResourcesComponent implements OnInit {
 
   getRemainingCash():number {
     const karmaonmoney = this.resourcesForm.get('karmaonmoney')?.value;
+    const gainedmoney = this.resourcesForm.get('gainedmoney')?.value;
     const moneyonwapons = this.resourcesForm.get('moneyonwapons')?.value;
     const moneyontools = this.resourcesForm.get('moneyontools')?.value;
     const moneyoncyber = this.resourcesForm.get('moneyoncyber')?.value;
@@ -55,7 +77,7 @@ export class CharResourcesComponent implements OnInit {
     const moneyonrides = this.resourcesForm.get('moneyonrides')?.value;
     const moneyonartifacts = this.resourcesForm.get('moneyonartifacts')?.value;
 
-    return 6000*karmaonmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonwapons;
+    return 6000*karmaonmoney+gainedmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonwapons;
   }
 
   getMinKarma(fcname: string):number {
@@ -68,11 +90,14 @@ export class CharResourcesComponent implements OnInit {
   }
 
   getTotalValue(fcname: string):number {
+    this.sendResData(fcname);
     return this.charSubs.getFromContValue(fcname, this.resourcesForm);
   }
 
   ngOnInit() {
-
+    this.resServ.getMoneyFlow.subscribe(yourMoney => this.yourMoney = yourMoney);
+    this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
+    this.resServ.getAttrPoints.subscribe(yourAttrs => this.yourAttrs = yourAttrs);
   }
 
 }

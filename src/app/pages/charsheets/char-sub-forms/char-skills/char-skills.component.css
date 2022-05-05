@@ -1,0 +1,19 @@
+.flexcont {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.w40 {
+  flex: 1 1 0;
+  max-width: 40%;
+}
+.w20 {
+  flex: 1 1 0;
+  max-width: 20%;
+}
+.w10 {
+  flex: 1 1 0;
+  max-width: 10%;
+}

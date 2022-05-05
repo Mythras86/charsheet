@@ -1,6 +1,6 @@
-<div [formGroup]="attributesForm" class="section-cont">
+<div [formGroup]="attributesForm" class="section-cont" *ngIf="attributesForm">
 
-  <h1>Tulajdonságok</h1>
+  <h1>Tulajdonságok {{getSum()}}</h1>
 
   <fieldset *ngFor='let legend of charSubs.getLegends(getAttributes(), "csoport")'>
     <legend>
@@ -16,9 +16,9 @@
        {{getTotalValue(item.fcname)}}
       </div>
       <div class="levelBtnCont">
-        <button class="bl-wh" type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || item.buttonstatus == 'disabled'"
+        <button class="bl-wh" type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || nopoints"
           (click)='charSubs.increment(item.fcname, attributesForm)'>+</button>
-        <button class="or-bl" type="button" [disabled]="charSubs.getFromContValue(item.fcname, attributesForm) < 1 || item.buttonstatus == 'disabled'"
+        <button class="or-bl" type="button" [disabled]="charSubs.getFromContValue(item.fcname, attributesForm) < 1"
         (click)='charSubs.decrement(item.fcname, attributesForm)'>-</button>
       </div>
       <div  class="elemnev">

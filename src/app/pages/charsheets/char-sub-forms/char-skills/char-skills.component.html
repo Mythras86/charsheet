@@ -1,39 +1,34 @@
-<div class="section-cont" *ngIf="skills" [formGroup]="skillsForm">
+<div class="section-cont" *ngIf="skills" [formGroup]='skillsForm'>
 
-  <h1>Szakértelmek</h1>
+  <h1>Szakértelmek {{getSum()}}</h1>
 
-  <div formArrayName="skills">
-    <div class="skillcont" *ngFor="let skill of skills.controls; let i = index">
-      <div [formGroupName]="i">
-        <!-- név -->
-        <div class="skillelement">
-          <select class="skillname" formControlName="skillName">
-            <option value="" selected disabled hidden>Válassz</option>
-            <optgroup *ngFor="let item of charSubs.getLegends(getSkills(), 'csoport')" label={{item}}>
-              <option *ngFor="let listitem of charSubs.getGroups(getSkills(), item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
-            </optgroup>
-          </select>
-        </div>
-        <!-- tulajdonság -->
-        <div  class="skillelement">{{getAttrNames(i)}}</div>
-        <!-- megjegyzések -->
-        <div class="skillelement">
-          <input type="text" formControlName="skillDesc">
-        </div>
-        <!-- érték -->
-        <div class="skillelement">{{getSkillLevel(i)}}</div>
-        <div class="levelBtnCont">
-          <button class="bl-wh" type="button" (click)="increment(i)">+</button>
-          <button class="or-bl" type="button" (click)="decrement(i)">-</button>
-        </div>
-        <button class="or-bl skillelement" type="button" (click)="removeSkill(i)">Törlés</button>
+  <div class="arraycont" formArrayName="skills">
+    <div class="flexcont" [formGroupName]='i' *ngFor="let skill of skills.controls; let i = index">
+      <!-- név -->
+      <select class="w40 bl-wh" formControlName="skillName">
+        <option value="" selected disabled hidden>Válassz</option>
+        <optgroup *ngFor="let item of charSubs.getLegends(getSkills(), 'csoport')" label={{item}}>
+          <option *ngFor="let listitem of charSubs.getGroups(getSkills(), item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
+        </optgroup>
+      </select>
+      <!-- tulajdonság -->
+      <div  class="w10 bl-wh">{{getAttrNames(i)}}</div>
+      <!-- megjegyzések -->
+      <input class="w20" type="text" formControlName="skillDesc">
+      <!-- érték -->
+      <div class="w10 or-bl">{{getSkillLevel(i)}}</div>
+      <div class="levelBtnCont">
+        <button class="bl-wh" type="button" (click)="increment(i)"
+        [disabled]="nopoints">+</button>
+        <button class="or-bl" type="button" (click)="decrement(i)"
+        [disabled]="getSkillLevel(i)<1">-</button>
+        <button type="button" (click)="removeSkill(i)">X</button>
       </div>
     </div>
-
   </div>
 
   <div>
-    <button type="button" (click)="addSkill()">Új skill</button>
+    <button [disabled]="nopoints" type="button" (click)="addSkill()">Új skill</button>
   </div>
 
 </div>

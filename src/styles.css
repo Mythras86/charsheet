@@ -1,15 +1,16 @@
 * {box-sizing: border-box; padding: 0; margin: 0 auto;}
 
 html {background-color: gray}
-a {text-decoration: none;}
-li {list-style: none;}
 
-.main-cont {
+body {
   background-color: white;
-  color: black;
-  max-width: 1000px;
-  min-height: 500px;
+  min-height: 700px;
+  width: 100%;
 }
+
+a {text-decoration: none;}
+
+li {list-style: none;}
 
 .section-cont {
   display: flex;
@@ -56,7 +57,7 @@ legend {
   background-color: black;
   color: white;
   width: 70%;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   padding: 0.2rem;
   text-align: center;
   }
@@ -68,16 +69,15 @@ legend div {
 .levelBtnCont {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
-  width: 3rem;
-  height: 1.5rem;
 }
 
 .levelBtnCont button {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .levelBtnCont button:disabled {

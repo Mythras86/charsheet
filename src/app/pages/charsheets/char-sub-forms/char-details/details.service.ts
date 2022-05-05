@@ -45,4 +45,6 @@ export class DetailsService {
     };
     return this.fb.group(details);
   };
+
+
 }

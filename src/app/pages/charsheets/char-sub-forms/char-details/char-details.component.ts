@@ -20,8 +20,6 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
     private selectraceservice: selectRaceService,
   ) {  }
 
-
-
   getDetailsData() {
     return details;
   }
@@ -68,5 +66,7 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
     this.selectraceservice.getRace.subscribe(yourRace => this.yourRace = yourRace);
    }
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {
+
+  }
 }

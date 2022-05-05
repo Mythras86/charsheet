@@ -12,7 +12,7 @@ export class SkillsService {
 
   createSkills(): FormGroup {
     const skillsForm = {
-      skills: this.fb.array([])
+      skills: this.fb.array([]),
     };
     return this.fb.group(skillsForm);
   }

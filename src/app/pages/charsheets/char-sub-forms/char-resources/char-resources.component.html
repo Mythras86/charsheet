@@ -1,4 +1,4 @@
-<div class="section-cont" [formGroup]="resourcesForm">
+<div class="section-cont" [formGroup]="resourcesForm" *ngIf="resourcesForm">
 
   <h1>Pontelosztás</h1>
 
@@ -14,10 +14,11 @@
       <div class="bl-wh elemnev">
         {{res.nev}}
       </div>
-      <div class="or-bl elemertek">
+      <div *ngIf="!res.inputfield" class="or-bl elemertek">
         {{getTotalValue(res.fcname)}}
       </div>
-      <div *ngIf='res.csoport=="Karma"' class="levelBtnCont">
+      <input [formControlName]='res.fcname' *ngIf="res.inputfield" type="number" class="elemertek" readonly>
+      <div *ngIf='res.csoport=="Karma" && !res.inputfield' class="levelBtnCont">
         <button class="bl-wh" type="button" (click)="charSubs.increment(res.fcname, resourcesForm)"
         [disabled]="res.maxValue<=getTotalValue(res.fcname) || nopoints || getRemainingKarma()<0+res.lepes">+</button>
         <button class="or-bl" type="button" (click)="charSubs.decrement(res.fcname, resourcesForm)"

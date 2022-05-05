@@ -1,6 +1,7 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { attributes } from '../char-attributes/attributes.model';
+import { ResourcesService } from '../char-resources/resources.service';
 import { CharSubServices } from '../services-for-subforms';
 import { charSkills } from './skills.util';
 
@@ -9,14 +10,19 @@ import { charSkills } from './skills.util';
   templateUrl: './char-skills.component.html',
   styleUrls: ['./char-skills.component.css']
 })
-export class CharSkillsComponent {
+export class CharSkillsComponent implements OnInit {
 
   @Input() skillsForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    public charSubs: CharSubServices
+    public charSubs: CharSubServices,
+    public resServ: ResourcesService
   ) { }
+
+  public nopoints:boolean = false;
+  public yourSkills:number = 0;
+
 
   public get skills(): FormArray | null {
     if(!this.skillsForm) {
@@ -70,4 +76,22 @@ export class CharSkillsComponent {
     return skillFgroup;
   }
 
+  get skillValues():any {
+    return this.skillsForm.get('skills') as FormArray;
+  }
+
+  getSum():number | null {
+    const sumSkills = this.skillValues.value.reduce((prev: number, next: { skillLevel: number; }) => prev + +next.skillLevel, 0);
+    if (this.yourSkills-sumSkills <= 0) {
+      this.nopoints = true;
+      return this.yourSkills-sumSkills;
+    } else {
+      this.nopoints = false;
+      return this.yourSkills-sumSkills;
+    }
+  }
+
+  ngOnInit(): void {
+    this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
+  }
 }

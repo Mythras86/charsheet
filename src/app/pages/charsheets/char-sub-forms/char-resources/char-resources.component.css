@@ -4,6 +4,12 @@
   justify-content: space-evenly;
 }
 
+input {
+  display: block;
+  max-width: 30%;
+  text-align: right;
+}
+
 .elemertek {
   flex: 1 2 15%;
 }
