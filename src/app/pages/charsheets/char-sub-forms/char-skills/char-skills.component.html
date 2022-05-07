@@ -19,7 +19,7 @@
       <div class="w10 or-bl">{{getSkillLevel(i)}}</div>
       <div class="levelBtnCont">
         <button class="bl-wh" type="button" (click)="increment(i)"
-        [disabled]="nopoints">+</button>
+        [disabled]="nopoints || getSkillLevel(i)>=6">+</button>
         <button class="or-bl" type="button" (click)="decrement(i)"
         [disabled]="getSkillLevel(i)<1">-</button>
         <button type="button" (click)="removeSkill(i)">X</button>
@@ -28,7 +28,7 @@
   </div>
 
   <div>
-    <button [disabled]="nopoints" type="button" (click)="addSkill()">Új skill</button>
+    <button [disabled]="nopoints" type="button" (click)="addSkill()">Új Szakértelem</button>
   </div>
 
 </div>

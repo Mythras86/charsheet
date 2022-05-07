@@ -1,6 +1,6 @@
 ul {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
 a {

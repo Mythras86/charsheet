@@ -1,10 +1,20 @@
-<div class="section-cont" [formGroup]="charForm">
-<h1>Fegyverek</h1>
+<div class="section-cont" *ngIf="weapons" [formGroup]='weaponsForm'>
 
-  <div formArrayName="fegyverLista">
-    <div *ngFor="let fegyver of fegyverLista; let i = index">
-      <input type="text" formControlName="charFegyver" placeholder="Fegyver neve">
+  <h1>Fegyverek</h1>
+
+  <div class="arraycont" formArrayName="weapons">
+    <div class="flexcont" [formGroupName]='i' *ngFor="let weapon of weapons?.controls; let i = index">
+      <select class="bl-wh" formControlName="weaponName">
+        <option value="" selected disabled hidden>Válassz</option>
+        <option *ngFor="let listitem of weapServ.weaponslist" value={{listitem.weaponName}}>{{listitem.weaponName}}</option>
+      </select>
+      <div class="levelBtnCont">
+        <button type="button" (click)="removeWeapon(i)">X</button>
+      </div>
     </div>
   </div>
-  <button (click)="addNewWeapon()">+ Új fegyver</button>
+
+  <div>
+    <button type="button" (click)="addWeapon()">Fegyver Beszerzése</button>
+  </div>
 </div>

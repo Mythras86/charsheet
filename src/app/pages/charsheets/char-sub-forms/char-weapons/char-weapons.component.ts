@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { CharSubServices } from '../services-for-subforms';
+import { WeaponsService } from './weapons.service';
 
 @Component({
   selector: 'app-char-weapons',
@@ -8,23 +10,44 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CharWeaponsComponent implements OnInit {
 
-  @Input() charForm = this.fb.group({
-    fegyverLista: this.fb.array([])
-  });
+  @Input() weaponsForm!: FormGroup
 
-  fegyverLista = [];
+  constructor(
+    private fb: FormBuilder,
+    public charSubs: CharSubServices,
+    public weapServ: WeaponsService
+    ) {}
 
-  constructor(private fb: FormBuilder) {}
+  public nomoney:boolean = false;
+  public weaponForge:boolean = false;
 
-  addNewWeapon() {
+  public get weapons(): FormArray | null {
+    if(!this.weaponsForm) {
+      return null;
+    }
+    return this.weaponsForm.controls.weapons as FormArray;
   }
 
-  getWeapons() {
-    return this.charForm.controls["fegyverLista"] as FormArray;
+  addWeapon(): void {
+    const weaponsForm = this.fb.group({
+      weaponName: ['', {value: '', disabled: false}],
+      weaponType: ['', {value: '', disabled: false}],
+      weaponRange: [0, {value: 0, disabled: false}],
+      weaponPower: [0, {value: 0, disabled: false}],
+      weaponDamage: [0, {value: 0, disabled: false}],
+      weaponWeight: [0, {value: 0, disabled: false}],
+      weaponPrice: [0, {value: 0, disabled: false}],
+      weaponDesc: ['', {value: '', disabled: false}],
+    });
+    this.weapons?.push(weaponsForm);
+  }
+
+  removeWeapon(i:number): void {
+    this.weapons?.removeAt(i);
   }
 
   ngOnInit(): void {
-    this.fegyverLista = [];
+    this.weapServ.getWeapons();
   }
 
 }

@@ -14,11 +14,6 @@ import { Router } from '@angular/router';
 export class ListcharsComponent implements OnInit, OnDestroy {
 
   chars: Char[] = [];
-  public companies: any[] = [
-    { "id": 0, "name": "Available" },
-    { "id": 1, "name": "Ready" },
-    { "id": 2, "name": "Started" }
-];
   isLoading = false;
   userIsAuthenticated = false;
   userId!: string;

@@ -19,6 +19,9 @@
       <li *ngIf="userIsAuthenticated">
         <a routerLink="/characters">Karakterek</a>
       </li>
+      <li *ngIf="userIsAuthenticated">
+        <a routerLink="/newweapon">Új Fegyver</a>
+      </li>
       <li *ngIf="!userIsAuthenticated">
         <a routerLink="/login">Belépés</a>
       </li>

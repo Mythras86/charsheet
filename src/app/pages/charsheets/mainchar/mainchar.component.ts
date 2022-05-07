@@ -4,6 +4,7 @@ import { AttributesService } from '../char-sub-forms/char-attributes/attributes.
 import { DetailsService } from '../char-sub-forms/char-details/details.service';
 import { ResourcesService } from '../char-sub-forms/char-resources/resources.service';
 import { SkillsService } from '../char-sub-forms/char-skills/skills.service';
+import { WeaponsService } from '../char-sub-forms/char-weapons/weapons.service';
 import { CharService } from '../chars.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class MainCharComponent implements OnInit {
     private attributesServ: AttributesService,
     private resourcesServ: ResourcesService,
     private skillsServ: SkillsService,
+    private weaponsServ: WeaponsService
     ) { }
 
 
@@ -31,7 +33,8 @@ export class MainCharComponent implements OnInit {
       detailsForm: this.detailsServ.createDetails(),
       attributesForm: this.attributesServ.createAttributes(),
       resourcesForm: this.resourcesServ.createResources(),
-      skillsForm: this.skillsServ.createSkills()
+      skillsForm: this.skillsServ.createSkills(),
+      weaponsForm: this.weaponsServ.createWeapons()
     });
   }
 
@@ -58,6 +61,7 @@ export class MainCharComponent implements OnInit {
       form.value.charFegyver
       );
   }
+
   public get detailsForm(): FormGroup {
     return this.mainCharForm.get('detailsForm') as FormGroup;
   }
@@ -69,5 +73,8 @@ export class MainCharComponent implements OnInit {
   }
   public get skillsForm(): FormGroup {
     return this.mainCharForm.get('skillsForm') as FormGroup;
+  }
+  public get weaponsForm(): FormGroup {
+    return this.mainCharForm.get('weaponsForm') as FormGroup;
   }
 }
