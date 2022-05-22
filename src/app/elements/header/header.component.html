@@ -14,13 +14,10 @@
         <a routerLink="/">Főoldal</a>
       </li>
       <li *ngIf="userIsAuthenticated">
-        <a routerLink="/newchar">Új Karakter</a>
-      </li>
-      <li *ngIf="userIsAuthenticated">
         <a routerLink="/characters">Karakterek</a>
       </li>
       <li *ngIf="userIsAuthenticated">
-        <a routerLink="/newweapon">Új Fegyver</a>
+        <a routerLink="/equipments">Felszerelések</a>
       </li>
       <li *ngIf="!userIsAuthenticated">
         <a routerLink="/login">Belépés</a>

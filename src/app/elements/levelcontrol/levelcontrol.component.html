@@ -1,0 +1,11 @@
+<div class="levelBtnCont">
+  <button class="or-bl" type="button"
+  [disabled]="getFromContValue(controlName, formName, baseValue) < 1 + baseValue "
+  (click)='decrement(controlName, formName)'>-</button>
+
+  <div>{{getFromContValue(controlName, formName, baseValue)}}</div>
+
+  <button class="bl-wh" type="button" [disabled]="disableIncrement"
+    (click)='increment(controlName, formName)'>+</button>
+
+</div>

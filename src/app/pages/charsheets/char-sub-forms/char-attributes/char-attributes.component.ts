@@ -34,12 +34,12 @@ export class CharAttributesComponent implements OnInit, OnDestroy {
     return minvalue*1 + attrBase*1;
   }
 
-  getMaxValue(fcname: string) {
+  getMaxValue(fcname: string): number {
     const maxvalue:any = Fajok.filter(x => x.fajnev == this.yourRace).map(x => x[fcname + "Max"]);
     return maxvalue*1+6;
   }
 
-  getTotalValue(attrInput: string) {
+  getTotalValue(attrInput: string): number {
     return this.getMinValue(attrInput) + this.charSubs.getFromContValue(attrInput, this.attributesForm);
   }
 

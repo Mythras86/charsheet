@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { CharSubServices } from '../services-for-subforms';
+import { Weapons } from './weapons.model';
 import { WeaponsService } from './weapons.service';
 
 @Component({
@@ -44,6 +45,12 @@ export class CharWeaponsComponent implements OnInit {
 
   removeWeapon(i:number): void {
     this.weapons?.removeAt(i);
+  }
+
+  getDetails(i: number, fckey: keyof Weapons):Array<any> {
+    const selectedWeapon = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('weaponName')?.value;
+    const detail = this.weapServ.weaponslist.filter(x=>x.weaponName == selectedWeapon).map(x=>x[fckey]);
+    return detail;
   }
 
   ngOnInit(): void {

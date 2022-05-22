@@ -26,12 +26,12 @@ export class ResourcesService {
     this.remainingMoney.next(credit);
   }
 
-  public updateSkills(ponts: number):void {
-    this.remainingSkills.next(ponts);
+  public updateSkills(points: number):void {
+    this.remainingSkills.next(points);
   }
 
-  public updateAttrs(ponts: number):void {
-    this.remainingAttrs.next(ponts);
+  public updateAttrs(points: number):void {
+    this.remainingAttrs.next(points);
   }
 
   createResources(): FormGroup {

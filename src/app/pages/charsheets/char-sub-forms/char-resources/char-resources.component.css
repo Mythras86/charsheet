@@ -5,8 +5,7 @@
 }
 
 input {
-  display: block;
-  max-width: 30%;
+  width: 6rem;
   text-align: right;
 }
 

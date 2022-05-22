@@ -1,0 +1,9 @@
+.levelBtnCont {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 6rem;
+}
+
+.levelBtnCont * {
+  flex: 1 1 0;
+}

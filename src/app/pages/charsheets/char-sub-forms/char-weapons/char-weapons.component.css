@@ -1,0 +1,26 @@
+div {
+  border: 1px solid green;
+}
+
+select {
+  min-width: none;
+  width: 100%;
+}
+
+.arraycont {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+.flexcont {
+  flex: 1 1 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flexcont * {
+  flex: 1 1 30%;
+  min-width: 33%;
+}

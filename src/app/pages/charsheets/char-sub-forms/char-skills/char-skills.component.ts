@@ -48,7 +48,7 @@ export class CharSkillsComponent implements OnInit {
     return charSkills;
   }
 
-  getAttrNames(i:number): Array<any> | null {
+  getAttrNames(i:number): Array<any> {
     const selectedSkill = ((this.skillsForm.get('skills') as FormArray).at(i) as FormGroup).get('skillName')?.value;
     const fcname = charSkills.filter(x=>x.szakertelem == selectedSkill).map(x=>x.fcname);
     const attrname = attributes.filter(x=>x.fcname == fcname).map(x=>x.rovidnev);

@@ -12,19 +12,16 @@
       <div class="bl-wh elemnev">
         {{item.nev}}
       </div>
-      <div class="or-bl elemertek">
-       {{getTotalValue(item.fcname)}}
-      </div>
-      <div class="levelBtnCont">
-        <button class="bl-wh" type="button" [disabled]="getTotalValue(item.fcname) >= getMaxValue(item.fcname) || nopoints"
-          (click)='charSubs.increment(item.fcname, attributesForm)'>+</button>
-        <button class="or-bl" type="button" [disabled]="charSubs.getFromContValue(item.fcname, attributesForm) < 1"
-        (click)='charSubs.decrement(item.fcname, attributesForm)'>-</button>
-      </div>
+      <app-levelcontrol
+        [baseValue]="getMinValue(item.fcname)"
+        [controlName]="item.fcname"
+        [formName]="attributesForm"
+        [disableIncrement]="nopoints || getMaxValue(item.fcname) == getTotalValue(item.fcname) "></app-levelcontrol>
       <div  class="elemnev">
         m: {{getMinValue(item.fcname)}}
         m: {{getMaxValue(item.fcname)}}
         v: {{charSubs.getFromContValue(item.fcname, attributesForm)}}
+        t: {{getTotalValue(item.fcname)}}
       </div>
     </div>
   </fieldset>

@@ -1,20 +1,8 @@
 import { Injectable } from "@angular/core";
-import { FormArray, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 
 @Injectable({ providedIn: "root" })
 export class CharSubServices {
-
-  increment(controlName: string, formname: FormGroup) {
-    formname.patchValue({
-      [controlName]: formname.get(controlName)!.value*1 + 1,
-    });
-  }
-
-  decrement(controlName: string, formname: FormGroup) {
-    formname.patchValue({
-      [controlName]: formname.get(controlName)!.value*1 - 1,
-    });
-  }
 
   getFromContValue(fcname: string, formname: FormGroup) {
     return formname.get(fcname)?.value;

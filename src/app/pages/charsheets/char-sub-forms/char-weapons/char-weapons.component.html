@@ -8,12 +8,18 @@
         <option value="" selected disabled hidden>Válassz</option>
         <option *ngFor="let listitem of weapServ.weaponslist" value={{listitem.weaponName}}>{{listitem.weaponName}}</option>
       </select>
+      <div>{{getDetails(i, 'weaponType')}}</div>
+      <div>{{getDetails(i, 'weaponRange')}}</div>
+      <div>{{getDetails(i, 'weaponPower')}}</div>
+      <div>{{getDetails(i, 'weaponDamage')}}</div>
+      <div>{{getDetails(i, 'weaponWeight')}}</div>
+      <div>{{getDetails(i, 'weaponPrice')}}</div>
+      <div>{{getDetails(i, 'weaponDesc')}}</div>
       <div class="levelBtnCont">
         <button type="button" (click)="removeWeapon(i)">X</button>
       </div>
     </div>
   </div>
-
   <div>
     <button type="button" (click)="addWeapon()">Fegyver Beszerzése</button>
   </div>

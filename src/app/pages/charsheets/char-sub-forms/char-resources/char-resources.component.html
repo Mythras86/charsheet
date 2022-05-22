@@ -14,16 +14,15 @@
       <div class="bl-wh elemnev">
         {{res.nev}}
       </div>
-      <div *ngIf="!res.inputfield" class="or-bl elemertek">
-        {{getTotalValue(res.fcname)}}
-      </div>
       <input [formControlName]='res.fcname' *ngIf="res.inputfield" type="number" class="elemertek" readonly>
-      <div *ngIf='res.csoport=="Karma" && !res.inputfield' class="levelBtnCont">
-        <button class="bl-wh" type="button" (click)="charSubs.increment(res.fcname, resourcesForm)"
-        [disabled]="res.maxValue<=getTotalValue(res.fcname) || nopoints || getRemainingKarma()<0+res.lepes">+</button>
-        <button class="or-bl" type="button" (click)="charSubs.decrement(res.fcname, resourcesForm)"
-        [disabled]="getTotalValue(res.fcname)<=0">-</button>
-      </div>
+      <app-levelcontrol
+        *ngIf='res.csoport=="Karma" && !res.inputfield'
+        [baseValue]="0"
+        [controlName]="res.fcname"
+        [formName]="resourcesForm"
+        [disableIncrement]="nopoints">{{sendResData(res.fcname)}}
+      </app-levelcontrol>
+
     </div>
 
   </fieldset>

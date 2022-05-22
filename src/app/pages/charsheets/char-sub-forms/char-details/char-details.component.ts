@@ -20,6 +20,14 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
     private selectraceservice: selectRaceService,
   ) {  }
 
+  hasMagic():boolean {
+    let magic = this.detailsForm.get('magikus')?.value;
+    if (magic == 'inaktiv') {
+      return false;
+    }
+    return true;
+  }
+
   getDetailsData() {
     return details;
   }

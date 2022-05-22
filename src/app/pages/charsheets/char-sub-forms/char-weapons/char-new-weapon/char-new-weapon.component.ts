@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormGroupConfig } from '../../../char.fgconfing';
 import { Weapons } from '../weapons.model';
 import { WeaponsService } from '../weapons.service';
@@ -15,7 +16,8 @@ export class CharNewWeaponComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public weapServ: WeaponsService
+    public weapServ: WeaponsService,
+    private router: Router
   ) { }
 
   createNewWeapon() {

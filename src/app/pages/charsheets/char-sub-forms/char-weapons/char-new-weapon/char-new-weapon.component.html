@@ -1,11 +1,15 @@
 <form class="section-cont" [formGroup]="newWeaponForm" (ngSubmit)="onSubmit()">
   <label class="bl-wh" for="weaponName">Név</label>
   <input class="" id="weaponName" type="text" formControlName="weaponName">
-  <label class="bl-wh" for="weaponType">Típus</label>
+  <label class="bl-wh" for="weaponType">Kategória</label>
+  <input class="" id="weaponCategory" type="text" formControlName="weaponCategory">
+  <label class="bl-wh" for="weaponCategory">Típus</label>
   <input class="" id="weaponType" type="text" formControlName="weaponType">
   <label class="bl-wh" for="weaponRange">Hatótáv</label>
   <input class="" id="weaponRange" type="number" formControlName="weaponRange">
-  <label class="bl-wh" for="weaponPower">Erő</label>
+  <label class="bl-wh" for="weaponPower">Támadási módok</label>
+  <input class="" id="weaponMods" type="number" formControlName="weaponMods">
+  <label class="bl-wh" for="weaponMods">Erő</label>
   <input class="" id="weaponPower" type="number" formControlName="weaponPower">
   <label class="bl-wh" for="weaponDamage">Sebzés</label>
   <input class="" id="weaponDamage" type="number" formControlName="weaponDamage">

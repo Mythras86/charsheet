@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Weapons } from './weapons.model';
@@ -107,7 +107,7 @@ export class WeaponsService {
     };
     this.http.post<{ message: string; weapon: Weapons }>(
       BACKEND_URL + "create", weaponData).subscribe(responseData => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/equipments"]);
       });
   }
 

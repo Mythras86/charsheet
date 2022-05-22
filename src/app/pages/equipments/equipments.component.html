@@ -1,0 +1,14 @@
+<h1>Fegyverek</h1>
+
+<div *ngFor="let item of weapons" class="flexcont">
+  <div>{{item.weaponName}}</div>
+  <div>{{item.weaponType}}</div>
+  <div>{{item.weaponDesc}}</div>
+  <div>Táv: {{item.weaponRange}}</div>
+  <div>Sebzés: {{item.weaponPower}} ({{item.weaponDamage}})</div>
+  <div></div>
+  <div>{{item.weaponPrice}} cred</div>
+  <div>{{item.weaponWeight}} Kg</div>
+</div>
+
+<button type="button" (click)="gotoNewWeapon()">Új Fegyver Rögzítése</button>

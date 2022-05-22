@@ -1,0 +1,11 @@
+.flexcont {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1rem;
+}
+
+.flexcont * {
+  border: 1px solid green;
+  flex: 1 1 30%;
+  min-width: 33%;
+}
