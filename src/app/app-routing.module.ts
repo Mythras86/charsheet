@@ -18,6 +18,7 @@ const routes: Routes = [
 
   { path: "newchar", component: MainCharComponent},
   { path: "newweapon", component: CharNewWeaponComponent},
+  { path: "edit/:weaponId", component: CharNewWeaponComponent},
 
 ];
 

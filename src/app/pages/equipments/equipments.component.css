@@ -1,11 +1,38 @@
+.weaponcont {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  background-color: lightgrey;
+  margin-bottom: 0.5rem;
+  border: 1px solid black;
+}
+
 .flexcont {
   display: flex;
   flex-flow: row wrap;
-  margin: 1rem;
+  text-align: center;
 }
 
-.flexcont * {
-  border: 1px solid green;
-  flex: 1 1 30%;
-  min-width: 33%;
+.w50 {
+  flex: 5 1 50%;
+  min-width: 50%;
+  border: 1px solid black;
+}
+
+.w20 {
+  flex: 2 1 20%;
+  min-width: 20%;
+  border: 1px solid black;
+}
+
+.w30 {
+  flex: 3 1 30%;
+  min-width: 30%;
+  border: 1px solid black;
+}
+
+button {
+  padding: 1px;
 }

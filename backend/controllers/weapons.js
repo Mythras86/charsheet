@@ -3,7 +3,10 @@ const Weapon = require("../models/weapon");
 exports.createWeapon = (req, res, next) => {
   const weapon = new Weapon ({
     weaponName:req.body.weaponName,
+    weaponCategory:req.body.weaponCategory,
     weaponType:req.body.weaponType,
+    weaponClip:req.body.weaponClip,
+    weaponMods:req.body.weaponMods,
     weaponRange:req.body.weaponRange,
     weaponPower:req.body.weaponPower,
     weaponDamage:req.body.weaponDamage,
@@ -30,12 +33,13 @@ exports.createWeapon = (req, res, next) => {
 };
 
 exports.updateWeapon = (req, res, next) => {
-  if (req.file) {
-    const url = req.protocol + "://" + req.get("host");
-  }
   const weapon = new Weapon({
+    _id: req.body.id,
     weaponName:req.body.weaponName,
+    weaponCategory:req.body.weaponCategory,
     weaponType:req.body.weaponType,
+    weaponClip:req.body.weaponClip,
+    weaponMods:req.body.weaponMods,
     weaponRange:req.body.weaponRange,
     weaponPower:req.body.weaponPower,
     weaponDamage:req.body.weaponDamage,
@@ -43,18 +47,18 @@ exports.updateWeapon = (req, res, next) => {
     weaponPrice:req.body.weaponPrice,
     weaponDesc:req.body.weaponDesc
   });
-  weapon.updateOne({ _id: req.params.id, creator: req.userData.userId }, Weapon)
+  Weapon.updateOne({_id: req.params.id}, weapon)
     .then(result => {
       console.log (result);
-      if (result.n > 0) {
+      if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Update successful!" });
       } else {
-        res.status(401).json({ message: "Not authorized!" });
+        res.status(401).json({ message: "Not authorized, no kidding!" });
       }
     })
     .catch(error => {
       res.status(500).json({
-        message: "Couldn't udpate Character!"
+        message: "Couldn't udpate Weapon!"
       });
     });
 };
@@ -82,7 +86,7 @@ exports.getWeapons = (req, res, next) => {
 };
 
 exports.getOneWeapon = (req, res, next) => {
-  weapon.findById(req.params.id)
+  Weapon.findById(req.params.id)
     .then(weapon => {
       if (weapon) {
         res.status(200).json(weapon);
@@ -98,18 +102,18 @@ exports.getOneWeapon = (req, res, next) => {
 };
 
 exports.deleteWeapon = (req, res, next) => {
-  Weapon.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+  Weapon.deleteOne({ _id: req.params.id})
     .then(result => {
       console.log(result);
       if (result.deletedCount > 0) {
         res.status(200).json({ message: "Deletion successful!" });
       } else {
-        res.status(401).json({ message: "Not authorized!" });
+        res.status(401).json({ message: "Deletion failed" });
       }
     })
     .catch(error => {
       res.status(500).json({
-        message: "Deleting Weapon failed!"
+        message: "Deleting failed!"
       });
     });
 };

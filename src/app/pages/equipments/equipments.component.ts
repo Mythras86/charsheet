@@ -14,12 +14,28 @@ export class EquipmentsComponent implements OnInit {
     private router: Router,
   ) { }
 
-  get weapons(): Array<any> | null {
-    return this.weaponsServ.weaponslist;
+  public weaponId!:string;
+
+  getWeapons(type: string): Array<any> | null {
+    return this.weaponsServ.weaponslist.filter(x => x.weaponType == type);
   }
 
   gotoNewWeapon() {
     (<any>this.router).navigate(["/newweapon"]);
+  }
+
+  gotoUpdate(id:string) {
+    (<any>this.router).navigate(["/edit/"+id]);
+  }
+
+  getWeaponCats():Array<any> | null {
+    const categs = [...new Set(this.weaponsServ.weaponslist.map(x => x.weaponCategory))];
+    return categs;
+  }
+
+  getWeaponTypes():Array<any> | null {
+    const types = [...new Set(this.weaponsServ.weaponslist.map(x => x.weaponType))];
+    return types;
   }
 
   ngOnInit():void {

@@ -16,11 +16,10 @@ export class CharWeaponsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public charSubs: CharSubServices,
-    public weapServ: WeaponsService
+    public weapServ: WeaponsService,
     ) {}
 
   public nomoney:boolean = false;
-  public weaponForge:boolean = false;
 
   public get weapons(): FormArray | null {
     if(!this.weaponsForm) {
@@ -31,8 +30,11 @@ export class CharWeaponsComponent implements OnInit {
 
   addWeapon(): void {
     const weaponsForm = this.fb.group({
+      id: ['', {value: '', disabled: false}],
       weaponName: ['', {value: '', disabled: false}],
+      weaponCategory: ['', {value: '', disabled: false}],
       weaponType: ['', {value: '', disabled: false}],
+      weaponMods: ['', {value: '', disabled: false}],
       weaponRange: [0, {value: 0, disabled: false}],
       weaponPower: [0, {value: 0, disabled: false}],
       weaponDamage: [0, {value: 0, disabled: false}],

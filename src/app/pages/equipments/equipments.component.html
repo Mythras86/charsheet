@@ -1,14 +1,27 @@
-<h1>Fegyverek</h1>
+<div class="section-cont">
+  <div *ngFor="let categ of getWeaponCats()">
 
-<div *ngFor="let item of weapons" class="flexcont">
-  <div>{{item.weaponName}}</div>
-  <div>{{item.weaponType}}</div>
-  <div>{{item.weaponDesc}}</div>
-  <div>Táv: {{item.weaponRange}}</div>
-  <div>Sebzés: {{item.weaponPower}} ({{item.weaponDamage}})</div>
-  <div></div>
-  <div>{{item.weaponPrice}} cred</div>
-  <div>{{item.weaponWeight}} Kg</div>
+    <h1>{{categ}}</h1>
+
+    <div *ngFor="let type of getWeaponTypes()">
+
+      <h2>{{type}}</h2>
+
+      <div class="weaponcont" *ngFor="let item of getWeapons(type)">
+        <div class="flexcont" (click)="gotoUpdate(item.id)">
+          <div class="w50 bl-wh">{{item.weaponName}}</div>
+          <div class="w20">Táv: {{item.weaponRange}}</div>
+          <div class="w30 bl-wh">{{item.weaponPrice}} cred</div>
+          <div class="w50">{{item.weaponMods}} || {{item.weaponClip}}</div>
+          <div class="w20">{{item.weaponWeight}} Kg</div>
+          <div class="w30 or-bl">S: {{item.weaponPower}} ({{item.weaponDamage}})</div>
+        </div>
+        <button class="or-bl delete" type="button" (click)="weaponsServ.deleteOneWeapon(item.id)">Törlés</button>
+      </div>
+    </div>
+  </div>
+
+
+  <button type="button" (click)="gotoNewWeapon()">Új Fegyver Rögzítése</button>
 </div>
 
-<button type="button" (click)="gotoNewWeapon()">Új Fegyver Rögzítése</button>
