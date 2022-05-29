@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormGroupConfig } from '../../../char.fgconfing';
 import { Weapons } from '../weapons.model';
 import { WeaponsService } from '../weapons.service';
@@ -16,6 +16,7 @@ export class CharNewWeaponComponent implements OnInit {
     private fb: FormBuilder,
     public weapServ: WeaponsService,
     public route: ActivatedRoute,
+    public router: Router
     ) { }
 
   public newWeaponForm!: FormGroup;
@@ -140,6 +141,10 @@ export class CharNewWeaponComponent implements OnInit {
       }
     });
 
+  }
+
+  backToList() {
+    this.router.navigate(["/equipments"]);
   }
 
 }

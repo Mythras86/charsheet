@@ -1,0 +1,26 @@
+<form class="section-cont" [formGroup]="addonForm" (ngSubmit)="onSubmit()">
+
+  <label class="bl-wh" for="addonName">Név</label>
+  <input class="" id="addonName" type="text" formControlName="addonName">
+
+  <label class="bl-wh" for="addonCategory">Kategória</label>
+  <input class="" id="addonCategory" type="text" formControlName="addonCategory">
+
+  <label class="bl-wh" for="addonPlace">Elhelyezés</label>
+  <input class="" id="addonPlace" type="text" formControlName="addonPlace">
+
+  <label class="bl-wh" for="addonWeight">Súly</label>
+  <input class="" id="addonWeight" type="number" formControlName="addonWeight">
+
+  <label class="bl-wh" for="addonPrice">Ár</label>
+  <input class="" id="addonPrice" type="number" formControlName="addonPrice">
+
+  <label class="bl-wh" for="addonDesc">Megjegyzések</label>
+  <input class="" id="addonDesc" type="text" formControlName="addonDesc">
+
+  <div>
+    <button type="submit">Mentés</button>
+    <button type="button" (click)="backToList()">Vissza</button>
+  </div>
+
+</form>

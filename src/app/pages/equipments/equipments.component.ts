@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AddonsService } from '../charsheets/char-sub-forms/char-weapons/char-weapon-addons/weapon-addons.service';
 import { WeaponsService } from '../charsheets/char-sub-forms/char-weapons/weapons.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class EquipmentsComponent implements OnInit {
 
   constructor(
     public weaponsServ: WeaponsService,
+    public addonServ: AddonsService,
     private router: Router,
   ) { }
 
@@ -22,6 +24,14 @@ export class EquipmentsComponent implements OnInit {
 
   gotoNewWeapon() {
     (<any>this.router).navigate(["/newweapon"]);
+  }
+
+  getAddons(): Array<any> | null {
+    return this.addonServ.addonslist;
+  }
+
+  gotoNewAddon() {
+    (<any>this.router).navigate(["/newaddon"]);
   }
 
   gotoUpdate(id:string) {
@@ -40,6 +50,7 @@ export class EquipmentsComponent implements OnInit {
 
   ngOnInit():void {
     this.weaponsServ.getWeapons();
+    this.addonServ.getAddons();
   }
 
 }

@@ -21,7 +21,20 @@
     </div>
   </div>
 
-
   <button type="button" (click)="gotoNewWeapon()">Új Fegyver Rögzítése</button>
+
+  <h1>Fegyver kiegészítők</h1>
+
+  <div *ngFor="let item of getAddons()">
+    <div>
+      <div>{{item.addonName}}</div>
+      <div>{{item.addonCategory}}</div>
+      <div>{{item.addonDesc}}</div>
+      <button class="or-bl delete" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="gotoNewAddon()">Új Kiegészítő Rögzítése</button>
+
 </div>
 

@@ -24,6 +24,7 @@ import { CharSkillsComponent } from './pages/charsheets/char-sub-forms/char-skil
 import { CharNewWeaponComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-new-weapon/char-new-weapon.component';
 import { LevelcontrolComponent } from './elements/levelcontrol/levelcontrol.component';
 import { EquipmentsComponent } from './pages/equipments/equipments.component';
+import { CharWeaponAddonsComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-weapon-addons/char-weapon-addons.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { EquipmentsComponent } from './pages/equipments/equipments.component';
     CharNewWeaponComponent,
     LevelcontrolComponent,
     EquipmentsComponent,
+    CharWeaponAddonsComponent,
   ],
   imports: [
     BrowserModule,

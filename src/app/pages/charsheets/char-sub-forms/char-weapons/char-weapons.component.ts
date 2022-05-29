@@ -30,7 +30,6 @@ export class CharWeaponsComponent implements OnInit {
 
   addWeapon(): void {
     const weaponsForm = this.fb.group({
-      id: ['', {value: '', disabled: false}],
       weaponName: ['', {value: '', disabled: false}],
       weaponCategory: ['', {value: '', disabled: false}],
       weaponType: ['', {value: '', disabled: false}],
@@ -41,6 +40,7 @@ export class CharWeaponsComponent implements OnInit {
       weaponWeight: [0, {value: 0, disabled: false}],
       weaponPrice: [0, {value: 0, disabled: false}],
       weaponDesc: ['', {value: '', disabled: false}],
+      weaponOver: ['', {value: '', disabled: false}],
     });
     this.weapons?.push(weaponsForm);
   }
@@ -49,10 +49,11 @@ export class CharWeaponsComponent implements OnInit {
     this.weapons?.removeAt(i);
   }
 
-  getDetails(i: number, fckey: keyof Weapons):Array<any> {
-    const selectedWeapon = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('weaponName')?.value;
-    const detail = this.weapServ.weaponslist.filter(x=>x.weaponName == selectedWeapon).map(x=>x[fckey]);
-    return detail;
+  getDetails(i: number, fckey: keyof Weapons) {
+    let selectedWeapon = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('weaponName')?.value;
+    let detail = this.weapServ.weaponslist.filter(x=>x.weaponName == selectedWeapon).map(x=>x[fckey]);
+    let other = <FormArray>this.weaponsForm.controls['weapons'];
+    return other.controls[i].patchValue({[fckey]: detail});
   }
 
   ngOnInit(): void {

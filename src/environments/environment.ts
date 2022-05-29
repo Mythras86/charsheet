@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost:3000/api",
-  JWT_KEY: "its_a_secret_dont_tell_anyone"
 };
 
 /*

@@ -5,12 +5,13 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const charRoutes = require("./routes/character");
 const weaponRoutes = require("./routes/weapon");
+const addonRoutes = require("./routes/weaponAddon");
 
 const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://Mythras:Sineas8689Daneya@mydevdb.igiaj.mongodb.net/charsheet&w=majority"
+    process.env.DB_CONNECT
   )
   .then(() => {
     console.log("Connected to database!");
@@ -39,5 +40,6 @@ app.use((req, res, next) => {
 app.use ("/api/user", userRoutes);
 app.use ("/api/chars", charRoutes);
 app.use ("/api/weapons", weaponRoutes);
+app.use ("/api/addons", addonRoutes);
 
 module.exports = app;

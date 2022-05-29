@@ -6,7 +6,7 @@
     <div class="flexcont" [formGroupName]='i' *ngFor="let weapon of weapons?.controls; let i = index">
       <select class="bl-wh" formControlName="weaponName">
         <option value="" selected disabled hidden>Válassz</option>
-        <option *ngFor="let listitem of weapServ.weaponslist" value={{listitem.weaponName}}>{{listitem.weaponName}}</option>
+        <option *ngFor="let listitem of weapServ.weaponslist" value={{listitem.weaponName}}>{{listitem.weaponName}} {{listitem.weaponType}} {{listitem.weaponPrice}}</option>
       </select>
       <div>{{getDetails(i, 'weaponType')}}</div>
       <div>{{getDetails(i, 'weaponRange')}}</div>
@@ -15,6 +15,19 @@
       <div>{{getDetails(i, 'weaponWeight')}}</div>
       <div>{{getDetails(i, 'weaponPrice')}}</div>
       <div>{{getDetails(i, 'weaponDesc')}}</div>
+      <select formControlName="weaponOver">
+        <option value="" selected disabled hidden>Válassz</option>
+      </select>
+      <select formControlName="weaponBelow">
+        <option value="" selected disabled hidden>Válassz</option>
+      </select>
+      <select formControlName="weaponBarrel">
+        <option value="" selected disabled hidden>Válassz</option>
+      </select>
+      <div>
+        <label for='{{"weaponConnect" + i}}'></label>
+        <input type="checkbox" formControlName="weaponConnect" id='{{"weaponConnect" + i}}'>
+      </div>
       <div class="levelBtnCont">
         <button type="button" (click)="removeWeapon(i)">X</button>
       </div>
