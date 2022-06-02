@@ -7,7 +7,7 @@ exports.createAddon = (req, res, next) => {
     addonPlace:req.body.addonPlace,
     addonWeight:req.body.addonWeight,
     addonPrice:req.body.addonPrice,
-    addonDesc:req.body.addonDesc,
+    addonDesc:req.body.addonDesc
   });
   addon
     .save()
@@ -22,7 +22,7 @@ exports.createAddon = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Creating a Addon failed!"
+        message: "Creating an Addon failed!"
       });
     });
 };

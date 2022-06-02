@@ -1,0 +1,17 @@
+<div class="section-cont">
+
+  <h1>Fegyver kiegészítők</h1>
+
+  <div *ngFor="let item of getAddons()">
+    <div>
+      <div>{{item.addonName}}</div>
+      <div>{{item.addonCategory}}</div>
+      <div>{{item.addonDesc}}</div>
+      <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+      <button class="or-bl delete" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="gotoNewAddon()">Új Kiegészítő Rögzítése</button>
+
+</div>

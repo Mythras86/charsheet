@@ -5,25 +5,24 @@ import { MainComponent } from "./pages/main/main.component";
 import { LoginComponent } from "./authentication/login/login.component";
 import { RegisterComponent } from "./authentication/register/register.component";
 import { ListcharsComponent } from "./pages/charsheets/listchars/listchars.component";
-import { EquipmentsComponent } from "./pages/equipments/equipments.component";
 import { MainCharComponent } from "./pages/charsheets/mainchar/mainchar.component";
-import { CharNewWeaponComponent } from "./pages/charsheets/char-sub-forms/char-weapons/char-new-weapon/char-new-weapon.component";
-import { CharWeaponAddonsComponent } from "./pages/charsheets/char-sub-forms/char-weapons/char-weapon-addons/char-weapon-addons.component";
+import { WeaponsComponent } from "./pages/Armory/Weapons/weapons/weapons.component";
+import { WeaponAddonsComponent } from "./pages/Armory/Weapons/weapon-addons/weapon-addons.component";
+import { WeaponsListComponent } from "./pages/Armory/Weapons/weaponslist/weaponslist.component";
 
 const routes: Routes = [
   { path: "", component: MainComponent },
   { path: "characters", component: ListcharsComponent },
-  { path: "equipments", component: EquipmentsComponent},
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent},
 
   { path: "newchar", component: MainCharComponent},
 
-  { path: "newweapon", component: CharNewWeaponComponent},
-  { path: "edit/:weaponId", component: CharNewWeaponComponent},
-
-  { path: "newaddon", component: CharWeaponAddonsComponent},
-  { path: "edit/:addonId", component: CharWeaponAddonsComponent},
+  { path: "weaponslist", component: WeaponsListComponent},
+  { path: "newweapon", component: WeaponsComponent},
+  { path: "edit/:weaponId", component: WeaponsComponent},
+  { path: "newaddon", component: WeaponAddonsComponent},
+  { path: "edit/:addonId", component: WeaponAddonsComponent},
 
 ];
 

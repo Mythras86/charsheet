@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { FormGroupConfig } from '../../../char.fgconfing';
+import { FormGroupConfig } from 'src/app/pages/charsheets/char.fgconfing';
 import { Addons } from './weapon-addons.model';
 import { AddonsService } from './weapon-addons.service';
 
 @Component({
-  selector: 'app-char-addon-addons',
-  templateUrl: './char-weapon-addons.component.html',
-  styleUrls: ['./char-weapon-addons.component.css']
+  selector: 'app-weapon-addons',
+  templateUrl: './weapon-addons.component.html',
+  styleUrls: ['./weapon-addons.component.css']
 })
-export class CharWeaponAddonsComponent implements OnInit {
+export class WeaponAddonsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
@@ -53,7 +53,7 @@ export class CharWeaponAddonsComponent implements OnInit {
   }
 
   onSubmit() {
-     var form = this.addonForm;
+    var form = this.addonForm;
      if (form.invalid) {
        return;
      }
@@ -78,6 +78,10 @@ export class CharWeaponAddonsComponent implements OnInit {
          );
      }
      this.addonForm.reset();
+  }
+
+  backToList() {
+    this.router.navigate(["/equipments"]);
   }
 
   ngOnInit(): void {
@@ -110,12 +114,6 @@ export class CharWeaponAddonsComponent implements OnInit {
         this.addonId = '';
       }
     });
-
   }
-
-  backToList() {
-    this.router.navigate(["/equipments"]);
-  }
-
 
 }

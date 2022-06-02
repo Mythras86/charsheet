@@ -1,33 +1,35 @@
+
 <div class="section-cont" *ngIf="weapons" [formGroup]='weaponsForm'>
 
-  <h1>Fegyverek</h1>
 
-  <div class="arraycont" formArrayName="weapons">
+  <h1>Fegyverek {{getSum()}}</h1>
+
+  <div formArrayName="weapons">
     <div class="flexcont" [formGroupName]='i' *ngFor="let weapon of weapons?.controls; let i = index">
-      <select class="bl-wh" formControlName="weaponName">
+      <select class="bl-wh w50" formControlName="weaponName">
         <option value="" selected disabled hidden>Válassz</option>
         <option *ngFor="let listitem of weapServ.weaponslist" value={{listitem.weaponName}}>{{listitem.weaponName}} {{listitem.weaponType}} {{listitem.weaponPrice}}</option>
       </select>
-      <div>{{getDetails(i, 'weaponType')}}</div>
-      <div>{{getDetails(i, 'weaponRange')}}</div>
-      <div>{{getDetails(i, 'weaponPower')}}</div>
-      <div>{{getDetails(i, 'weaponDamage')}}</div>
-      <div>{{getDetails(i, 'weaponWeight')}}</div>
-      <div>{{getDetails(i, 'weaponPrice')}}</div>
-      <div>{{getDetails(i, 'weaponDesc')}}</div>
-      <select formControlName="weaponOver">
-        <option value="" selected disabled hidden>Válassz</option>
-      </select>
-      <select formControlName="weaponBelow">
-        <option value="" selected disabled hidden>Válassz</option>
-      </select>
-      <select formControlName="weaponBarrel">
-        <option value="" selected disabled hidden>Válassz</option>
-      </select>
-      <div>
-        <label for='{{"weaponConnect" + i}}'></label>
-        <input type="checkbox" formControlName="weaponConnect" id='{{"weaponConnect" + i}}'>
+      <div class="or-bl w30">{{getDetails(i, 'weaponPrice')}}cred</div>
+      <div class="w20">{{getDetails(i, 'weaponType')}}</div>
+      <div class="w50">{{getDetails(i, 'weaponRange')}}/
+        {{getDetails(i, 'weaponRange')*2}}/
+        {{getDetails(i, 'weaponRange')*4}}/
+        {{getDetails(i, 'weaponRange')*8}}</div>
+      <div class="w30">{{getDetails(i, 'weaponPower')}} ({{getDetails(i, 'weaponDamage')}})</div>
+      <div class="w20">{{getDetails(i, 'weaponWeight')}}kg</div>
+      <input type="text" class="w100" formControlName="weaponDesc">
+
+      <div class="w100">
+        <select class="" formControlName="over">
+          <option value="" selected disabled hidden>Felülre</option>
+          <option *ngFor="let addon of getAddonsByPlace('Felülre')" value="{{addon.addonName}}">{{addon.addonName}}</option>
+        </select>
+        <div>{{getAddonDetails("over", i, 'addonPrice')}}</div>
+        <div>{{getAddonDetails("over", i, 'addonWeight')}}</div>
+        <div>{{getAddonDetails("over", i, 'addonDesc')}}</div>
       </div>
+
       <div class="levelBtnCont">
         <button type="button" (click)="removeWeapon(i)">X</button>
       </div>

@@ -7,7 +7,12 @@
   <input class="" id="addonCategory" type="text" formControlName="addonCategory">
 
   <label class="bl-wh" for="addonPlace">Elhelyezés</label>
-  <input class="" id="addonPlace" type="text" formControlName="addonPlace">
+  <select formControlName="addonPlace" id="addonPlace">
+    <option value="" selected disabled hidden>Válassz</option>
+    <option value="Felülre">Felülre</option>
+    <option value="Alulra">Alulra</option>
+    <option value="Csőre">Csőre</option>
+  </select>
 
   <label class="bl-wh" for="addonWeight">Súly</label>
   <input class="" id="addonWeight" type="number" formControlName="addonWeight">

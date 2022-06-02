@@ -3,6 +3,12 @@
   margin-bottom: 0.5rem;
 }
 
+h2 {
+  background-color: lightgrey;
+  margin-bottom: 0.5rem;
+  border: 1px solid black;
+}
+
 .flexcont {
   display: flex;
   flex-flow: row wrap;
@@ -31,4 +37,8 @@
   min-width: 100%;
   border: 1px solid black;
   text-align: left;
+}
+
+button {
+  padding: 1px;
 }

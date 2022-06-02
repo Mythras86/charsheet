@@ -4,7 +4,7 @@ import { AttributesService } from '../char-sub-forms/char-attributes/attributes.
 import { DetailsService } from '../char-sub-forms/char-details/details.service';
 import { ResourcesService } from '../char-sub-forms/char-resources/resources.service';
 import { SkillsService } from '../char-sub-forms/char-skills/skills.service';
-import { WeaponsService } from '../char-sub-forms/char-weapons/weapons.service';
+import { CharWeaponsService } from '../char-sub-forms/char-weapons/char-weapons.service';
 import { CharService } from '../chars.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class MainCharComponent implements OnInit {
     private attributesServ: AttributesService,
     private resourcesServ: ResourcesService,
     private skillsServ: SkillsService,
-    private weaponsServ: WeaponsService
+    private weaponsServ: CharWeaponsService
     ) { }
 
 

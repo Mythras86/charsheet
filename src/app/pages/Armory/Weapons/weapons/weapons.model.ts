@@ -1,4 +1,5 @@
 export interface Weapons {
+  [x: string]: any;
   id: string,
   weaponName: string,
   weaponCategory: string,

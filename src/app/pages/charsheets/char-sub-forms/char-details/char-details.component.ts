@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { Fajok, HagyomanyLista, Hagyomanyok, Nemek, Nyelvek, selectRaceService } from '../char-races'
+import { Fajok, HagyomanyLista, Hagyomanyok, Nemek, Nyelvek, selectRaceService } from '../char-utility'
 import { details } from './details.model';
 
 @Component({

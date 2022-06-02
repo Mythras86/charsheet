@@ -17,14 +17,15 @@ import { ListcharsComponent } from './pages/charsheets/listchars/listchars.compo
 import { MainCharComponent } from './pages/charsheets/mainchar/mainchar.component';
 import { CharDetailsComponent } from './pages/charsheets/char-sub-forms/char-details/char-details.component';
 import { CharAttributesComponent } from './pages/charsheets/char-sub-forms/char-attributes/char-attributes.component';
-import { CharWeaponsComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.component';
 import { CharEquipmentComponent } from './pages/charsheets/char-sub-forms/char-equipment/char-equipment.component';
 import { CharResourcesComponent } from './pages/charsheets/char-sub-forms/char-resources/char-resources.component';
 import { CharSkillsComponent } from './pages/charsheets/char-sub-forms/char-skills/char-skills.component';
-import { CharNewWeaponComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-new-weapon/char-new-weapon.component';
 import { LevelcontrolComponent } from './elements/levelcontrol/levelcontrol.component';
-import { EquipmentsComponent } from './pages/equipments/equipments.component';
-import { CharWeaponAddonsComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-weapon-addons/char-weapon-addons.component';
+import { CharWeaponsComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.component';
+import { WeaponsComponent } from './pages/Armory/Weapons/weapons/weapons.component';
+import { WeaponAddonsComponent } from './pages/Armory/Weapons/weapon-addons/weapon-addons.component';
+import { WeaponsListComponent } from './pages/Armory/Weapons/weaponslist/weaponslist.component';
+import { WeaponAddonslistComponent } from './pages/Armory/Weapons/weapon-addonslist/weapon-addonslist.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +40,15 @@ import { CharWeaponAddonsComponent } from './pages/charsheets/char-sub-forms/cha
     ListcharsComponent,
     CharDetailsComponent,
     CharAttributesComponent,
-    CharWeaponsComponent,
     CharEquipmentComponent,
     CharResourcesComponent,
     CharSkillsComponent,
-    CharNewWeaponComponent,
     LevelcontrolComponent,
-    EquipmentsComponent,
-    CharWeaponAddonsComponent,
+    CharWeaponsComponent,
+    WeaponsComponent,
+    WeaponAddonsComponent,
+    WeaponsListComponent,
+    WeaponAddonslistComponent
   ],
   imports: [
     BrowserModule,

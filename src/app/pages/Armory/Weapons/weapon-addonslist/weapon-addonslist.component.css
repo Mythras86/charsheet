@@ -32,6 +32,12 @@ h2 {
   min-width: 30%;
   border: 1px solid black;
 }
+.w100 {
+  flex: 10 1 100%;
+  min-width: 100%;
+  border: 1px solid black;
+  text-align: left;
+}
 
 button {
   padding: 1px;

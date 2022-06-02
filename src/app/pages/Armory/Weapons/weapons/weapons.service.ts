@@ -22,13 +22,6 @@ export class WeaponsService {
   public weaponslist: Weapons[] = [];
   private weaponsUpdated = new Subject<{ weapons: Weapons[]}>();
 
-  createWeapons(): FormGroup {
-    const weaponsForm = {
-      weapons: this.fb.array([]),
-    };
-    return this.fb.group(weaponsForm);
-  }
-
   getWeapons() {
     this.http
       .get<{ message: string; weapons: any}>(BACKEND_URL + "weaponslist")
@@ -124,7 +117,7 @@ export class WeaponsService {
     };
     this.http.post<{ message: string; weapon: Weapons }>(
       BACKEND_URL + "create", weaponData).subscribe(response => {
-        this.router.navigate(["/equipments"]);
+        this.router.navigate(["/weaponslist"]);
       });
   }
 
@@ -160,13 +153,13 @@ export class WeaponsService {
     this.http
       .patch(BACKEND_URL + id, weaponData)
       .subscribe(response => {
-        this.router.navigate(["/equipments"]);
+        this.router.navigate(["/weaponslist"]);
       });
   }
 
   deleteOneWeapon(id: string) {
     return this.http.delete(BACKEND_URL + id).subscribe(response => {
-      this.router.navigate(["/equipments"]);
+      this.router.navigate(["/weaponslist "]);
     });
   }
 }

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { FormGroupConfig } from '../../../char.fgconfing';
-import { Weapons } from '../weapons.model';
-import { WeaponsService } from '../weapons.service';
+import { FormGroupConfig } from '../../../charsheets/char.fgconfing';
+import { Weapons } from './weapons.model';
+import { WeaponsService } from './weapons.service';
 
 @Component({
-  selector: 'app-char-new-weapon',
-  templateUrl: './char-new-weapon.component.html',
-  styleUrls: ['./char-new-weapon.component.css']
+  selector: 'app-weapons',
+  templateUrl: './weapons.component.html',
+  styleUrls: ['./weapons.component.css']
 })
-export class CharNewWeaponComponent implements OnInit {
+export class WeaponsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
@@ -97,7 +97,7 @@ export class CharNewWeaponComponent implements OnInit {
         form.value.weaponDesc
       );
     }
-    this.newWeaponForm.reset();
+    this.router.navigate(["/weaponslist"]);
   }
 
   ngOnInit(): void {

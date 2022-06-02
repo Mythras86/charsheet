@@ -82,25 +82,25 @@ export class AddonsService {
 
   addOneAddon(
     addonName: string,
+    addonCategory: string,
     addonPlace: string,
     addonWeight: number,
     addonPrice: number,
     addonDesc: string,
-    addonCategory: string,
 ) {
     const addonData: Addons = {
       id:'',
       addonName: addonName,
+      addonCategory: addonCategory,
       addonPlace: addonPlace,
       addonWeight: addonWeight,
       addonPrice: addonPrice,
       addonDesc: addonDesc,
-      addonCategory: addonCategory,
-      };
+    };
     this.http.post<{ message: string; addon: Addons }>(
       BACKEND_URL + "create", addonData).subscribe(response => {
-        this.router.navigate(["/equipments"]);
-      });
+      this.router.navigate(["/equipments"]);
+    });
   }
 
   updateOneAddon(

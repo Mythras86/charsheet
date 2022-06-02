@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Fajok, selectRaceService } from '../char-races';
+import { Fajok, selectRaceService } from '../char-utility';
 import { ResourcesService } from '../char-resources/resources.service';
 import { CharSubServices } from '../services-for-subforms';
 import { attributes } from './attributes.model';
