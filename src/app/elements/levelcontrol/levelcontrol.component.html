@@ -1,11 +1,11 @@
 <div class="levelBtnCont">
-  <button class="or-bl" type="button"
-  [disabled]="getFromContValue(controlName, formName, baseValue) < 1 + baseValue "
-  (click)='decrement(controlName, formName)'>-</button>
+  <button class="decBtn" type="button"
+  [disabled]="getFcValue()<1+baseValue"
+  (click)='decrement()'>-</button>
 
-  <div>{{getFromContValue(controlName, formName, baseValue)}}</div>
+  <div class="fcvalue">{{getFcValue()}}</div>
 
-  <button class="bl-wh" type="button" [disabled]="disableIncrement"
-    (click)='increment(controlName, formName)'>+</button>
+  <button class="incBtn" type="button" [disabled]="disableIncrement"
+    (click)='increment()'>+</button>
 
 </div>

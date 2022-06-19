@@ -1,5 +1,4 @@
 export interface Weapons {
-  [x: string]: any;
   id: string,
   weaponName: string,
   weaponCategory: string,
@@ -9,7 +8,12 @@ export interface Weapons {
   weaponRange: number,
   weaponPower: number,
   weaponDamage: number,
+  weaponDmgType: string,
   weaponWeight: number,
   weaponPrice: number,
   weaponDesc: string,
 };
+
+export interface WeaponsDataInterface {
+  weapons: Weapons[];
+}

@@ -35,6 +35,7 @@ export class WeaponsComponent implements OnInit {
       weaponRange: [0, {value: 0, disabled: false}],
       weaponPower: [0, {value: 0, disabled: false}],
       weaponDamage: [0, {value: 0, disabled: false}],
+      weaponDmgType: ['', {value: '', disabled: false}],
       weaponWeight: [0, {value: 0, disabled: false}],
       weaponPrice: [0, {value: 0, disabled: false}],
       weaponDesc: ['', {value: '', disabled: false}],
@@ -56,6 +57,7 @@ export class WeaponsComponent implements OnInit {
       form.value.weaponRange,
       form.value.weaponPower,
       form.value.weaponDamage,
+      form.value.weaponDmgType,
       form.value.weaponWeight,
       form.value.weaponPrice,
       form.value.weaponDesc
@@ -77,6 +79,7 @@ export class WeaponsComponent implements OnInit {
         form.value.weaponRange,
         form.value.weaponPower,
         form.value.weaponDamage,
+        form.value.weaponDmgType,
         form.value.weaponWeight,
         form.value.weaponPrice,
         form.value.weaponDesc
@@ -92,6 +95,7 @@ export class WeaponsComponent implements OnInit {
         form.value.weaponRange,
         form.value.weaponPower,
         form.value.weaponDamage,
+        form.value.weaponDmgType,
         form.value.weaponWeight,
         form.value.weaponPrice,
         form.value.weaponDesc
@@ -117,6 +121,7 @@ export class WeaponsComponent implements OnInit {
             weaponRange: weaponData.weaponRange,
             weaponPower: weaponData.weaponPower,
             weaponDamage: weaponData.weaponDamage,
+            weaponDmgType: weaponData.weaponDmgType,
             weaponWeight: weaponData.weaponWeight,
             weaponPrice: weaponData.weaponPrice,
             weaponDesc: weaponData.weaponDesc,
@@ -130,6 +135,7 @@ export class WeaponsComponent implements OnInit {
             weaponRange:  this.newWeaponForm.get('weaponRange')?.value,
             weaponPower: this.newWeaponForm.get('weaponPower')?.value,
             weaponDamage: this.newWeaponForm.get('weaponDamage')?.value,
+            weaponDmgType: this.newWeaponForm.get('weaponDmgType')?.value,
             weaponWeight: this.newWeaponForm.get('weaponWeight')?.value,
             weaponPrice: this.newWeaponForm.get('weaponPrice')?.value,
             weaponDesc: this.newWeaponForm.get('weaponDesc')?.value,
@@ -144,7 +150,7 @@ export class WeaponsComponent implements OnInit {
   }
 
   backToList() {
-    this.router.navigate(["/equipments"]);
+    this.router.navigate(["/weaponslist"]);
   }
 
 }

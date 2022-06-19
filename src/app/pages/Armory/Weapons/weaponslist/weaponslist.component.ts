@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeaponsService } from '../weapons/weapons.service';
 
@@ -14,10 +14,43 @@ export class WeaponsListComponent implements OnInit {
     private router: Router,
   ) { }
 
-  public weaponId!:string;
+  @Output() onWeaponSelected = new EventEmitter<string>();
+
+  public sortMeFilter: string = 'none';
+
+  public weaponId:string = '';
+
+  sortMeBy(categ: string):void {
+    this.sortMeFilter = categ;
+  }
 
   getWeapons(type: string): Array<any> | null {
-    return this.weaponsServ.weaponslist.filter((x: { weaponType: string; }) => x.weaponType == type);
+    return this.weaponsServ.weaponsList.filter(x => x.weaponType == type);
+  }
+
+  getWeaponCats(): Array<any> | null {
+    const categs = [...new Set(this.weaponsServ.weaponsList.map(x=> x.weaponCategory))];
+    return categs;
+  }
+
+  getWeaponCatsFiltered(): Array<any> | null {
+    if(this.sortMeFilter == 'none') {
+      let categs = [...new Set(this.weaponsServ.weaponsList.map(x=> x.weaponCategory))];
+      return categs;
+    }
+    let categs = [...new Set(
+      this.weaponsServ.weaponsList.filter(x=>x.weaponCategory == this.sortMeFilter).map(x=>x.weaponCategory)
+      )];
+      return categs;
+  }
+
+  getWeaponTypes(categs: string):Array<any> {
+    const types = [...new Set(this.weaponsServ.weaponsList.filter(x => x.weaponCategory == categs).map(x=> x.weaponType))];
+    return types;
+  }
+
+  sendWeaponID(id: string) {
+    this.onWeaponSelected.next(id);
   }
 
   gotoNewWeapon() {
@@ -28,18 +61,12 @@ export class WeaponsListComponent implements OnInit {
     (<any>this.router).navigate(["/edit/"+id]);
   }
 
-  getWeaponCats():Array<any> | null {
-    const categs = [...new Set(this.weaponsServ.weaponslist.map((x: { weaponCategory: string; }) => x.weaponCategory))];
-    return categs;
-  }
-
-  getWeaponTypes(categs: string):Array<any> | null {
-    const types = [...new Set(this.weaponsServ.weaponslist.filter((x: { weaponCategory: string; }) => x.weaponCategory == categs).map((x: { weaponType: any; }) => x.weaponType))];
-    return types;
-  }
-
   ngOnInit():void {
-    this.weaponsServ.getWeapons();
+    this.weaponsServ.getWeapons().subscribe({
+      next: (w) => {
+        this.weaponsServ.weaponsList = w;
+      }
+    });
   }
 
 }

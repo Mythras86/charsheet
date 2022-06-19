@@ -7,3 +7,20 @@
 .levelBtnCont * {
   flex: 1 1 0;
 }
+
+.fcvalue {
+  background-color: orange;
+  color: black;
+  border: 1px solid black;
+  font-weight: bold;
+}
+
+.incBtn {
+  background-color: green;
+  color: white;
+}
+
+.decBtn {
+  background-color: red;
+  color: white;
+}

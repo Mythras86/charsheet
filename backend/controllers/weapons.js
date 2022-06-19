@@ -10,6 +10,7 @@ exports.createWeapon = (req, res, next) => {
     weaponRange:req.body.weaponRange,
     weaponPower:req.body.weaponPower,
     weaponDamage:req.body.weaponDamage,
+    weaponDmgType:req.body.weaponDmgType,
     weaponWeight:req.body.weaponWeight,
     weaponPrice:req.body.weaponPrice,
     weaponDesc:req.body.weaponDesc
@@ -43,6 +44,7 @@ exports.updateWeapon = (req, res, next) => {
     weaponRange:req.body.weaponRange,
     weaponPower:req.body.weaponPower,
     weaponDamage:req.body.weaponDamage,
+    weaponDmgType:req.body.weaponDmgType,
     weaponWeight:req.body.weaponWeight,
     weaponPrice:req.body.weaponPrice,
     weaponDesc:req.body.weaponDesc

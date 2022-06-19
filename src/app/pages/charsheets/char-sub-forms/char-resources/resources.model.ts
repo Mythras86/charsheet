@@ -18,13 +18,13 @@ export interface Resources {
 }
 
 export const resources: Array<any> = [
-  {nev: 'Induló Karma', csoport: 'Karma', fcname: 'basekarma', maxValue: 250, inputfield: true},
-  {nev: 'Kapott Karma', csoport: 'Karma', fcname: 'gainedkarma', maxValue: 50, inputfield: true},
-  {nev: 'Tulajdonságok (3karma/1pont)', csoport: 'Karma', fcname: 'karmaonattr', lepes:3, maxValue: 50},
-  {nev: 'Szakértelmek (2karma/1pont)', csoport: 'Karma', fcname: 'karmaonskills', lepes:2, maxValue: 60},
-  {nev: 'Erőforrások (1karma/6000cred)', csoport: 'Karma', fcname: 'karmaonmoney', maxValue: 150},
-  {nev: 'Szerzett erőforrások', csoport: 'Karma', fcname: 'gainedmoney', inputfield: true},
-  {nev: 'Mágia pontok (2karma/1pont)', csoport: 'Karma', fcname: 'karmaonmagic', lepes:2, maxValue: 60},
+  {nev: 'Induló Karma', csoport: 'Karma', fcname: 'basekarma', maxValue: 250},
+  {nev: 'Kapott Karma', csoport: 'Karma', fcname: 'gainedkarma', maxValue: 50},
+  {nev: 'Tulajdonságok (3karma/1pont)', csoport: 'Karma', fcname: 'karmaonattr', lepes:3, maxValue: 40, hide: true},
+  {nev: 'Szakértelmek (2karma/1pont)', csoport: 'Karma', fcname: 'karmaonskills', lepes:2, maxValue: 60, hide: true},
+  {nev: 'Erőforrások (1karma/6000cred)', csoport: 'Karma', fcname: 'karmaonmoney', maxValue: 150, hide: true},
+  {nev: 'Szerzett erőforrások', csoport: 'Karma', fcname: 'gainedmoney'},
+  {nev: 'Mágia pontok (2karma/1pont)', csoport: 'Karma', fcname: 'karmaonmagic', lepes:2, maxValue: 60, hide: true},
   {nev: 'Varázslatok', csoport: 'Mágia', fcname: 'magiconspells'},
   {nev: 'Szellemek', csoport: 'Mágia', fcname: 'magiconspirits'},
   {nev: 'Mágikus eszközök', csoport: 'Mágia', fcname: 'magiconartifacts'},

@@ -1,74 +1,60 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Weapons } from './weapons.model';
+import { Weapons, WeaponsDataInterface } from './weapons.model';
 
 const BACKEND_URL = environment.apiUrl + "/weapons/";
 
 @Injectable({providedIn: 'root'})
-
 export class WeaponsService {
 
   constructor(
-    private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
-  ) { }
+    ) {
+      this.weaponsList = null;
+    }
 
-  public weaponslist: Weapons[] = [];
-  private weaponsUpdated = new Subject<{ weapons: Weapons[]}>();
+  public weaponsList: Weapons[];
 
-  getWeapons() {
-    this.http
-      .get<{ message: string; weapons: any}>(BACKEND_URL + "weaponslist")
-      .pipe(map(weaponsData => {
-          return {
-            weapons: weaponsData.weapons.map((weapon: {
-              _id: string;
-              weaponName: string,
-              weaponCategory: string,
-              weaponType: string,
-              weaponClip: string,
-              weaponMods: string,
-              weaponRange: number,
-              weaponPower: number,
-              weaponDamage: number,
-              weaponWeight: number,
-              weaponPrice: number,
-              weaponDesc: string,
-                     }) => {
-              return {
-                id: weapon._id,
-                weaponName: weapon.weaponName,
-                weaponCategory: weapon.weaponCategory,
-                weaponType: weapon.weaponType,
-                weaponClip: weapon.weaponClip,
-                weaponMods: weapon.weaponMods,
-                weaponRange: weapon.weaponRange,
-                weaponPower: weapon.weaponPower,
-                weaponDamage: weapon.weaponDamage,
-                weaponWeight: weapon.weaponWeight,
-                weaponPrice: weapon.weaponPrice,
-                weaponDesc: weapon.weaponDesc,
-              };
-            }),
-          };
-        })
-      )
-      .subscribe(transformedWeaponsData => {
-        this.weaponslist = transformedWeaponsData.weapons;
-        this.weaponsUpdated.next({
-          weapons: [...this.weaponslist],
-        });
-      });
+  private processWeaponsData(weaponsData: WeaponsDataInterface) {
+    return weaponsData.weapons.map((w) => {
+      return {
+        id: (w as any)._id,
+        weaponName: w.weaponName,
+        weaponCategory: w.weaponCategory,
+        weaponType: w.weaponType,
+        weaponClip: w.weaponClip,
+        weaponMods: w.weaponMods,
+        weaponRange: w.weaponRange,
+        weaponPower: w.weaponPower,
+        weaponDamage: w.weaponDamage,
+        weaponDmgType: w.weaponDmgType,
+        weaponWeight: w.weaponWeight,
+        weaponPrice: w.weaponPrice,
+        weaponDesc: w.weaponDesc,
+      } as Weapons
+    });
   }
 
-  getWeaponsUpdateListener() {
-    return this.weaponsUpdated.asObservable();
+  private setWeaponsList(weaponsList: Weapons[]) {
+    this.weaponsList = weaponsList;
+  }
+
+  getWeapons(): Observable<Weapons[]> {
+    if (this.weaponsList !== null) {
+      return of(this.weaponsList)
+    }
+
+    return this.http
+      .get<{ message: string; weapons: any}>(BACKEND_URL + "weaponslist")
+      .pipe(
+        map(this.processWeaponsData),
+        tap(this.setWeaponsList.bind(this))
+      )
   }
 
   getOneWeapon(id: string) {
@@ -82,6 +68,7 @@ export class WeaponsService {
       weaponRange: number,
       weaponPower: number,
       weaponDamage: number,
+      weaponDmgType: string,
       weaponWeight: number,
       weaponPrice: number,
       weaponDesc: string,
@@ -97,6 +84,7 @@ export class WeaponsService {
     weaponRange: number,
     weaponPower: number,
     weaponDamage: number,
+    weaponDmgType: string,
     weaponWeight: number,
     weaponPrice: number,
     weaponDesc: string,
@@ -111,6 +99,7 @@ export class WeaponsService {
       weaponRange: weaponRange,
       weaponPower: weaponPower,
       weaponDamage: weaponDamage,
+      weaponDmgType: weaponDmgType,
       weaponWeight: weaponWeight,
       weaponPrice: weaponPrice,
       weaponDesc: weaponDesc,
@@ -119,6 +108,7 @@ export class WeaponsService {
       BACKEND_URL + "create", weaponData).subscribe(response => {
         this.router.navigate(["/weaponslist"]);
       });
+    this.getWeapons();
   }
 
   updateOneWeapon(
@@ -131,6 +121,7 @@ export class WeaponsService {
     weaponRange: number,
     weaponPower: number,
     weaponDamage: number,
+    weaponDmgType: string,
     weaponWeight: number,
     weaponPrice: number,
     weaponDesc: string,
@@ -146,6 +137,7 @@ export class WeaponsService {
       weaponRange: weaponRange,
       weaponPower: weaponPower,
       weaponDamage: weaponDamage,
+      weaponDmgType: weaponDmgType,
       weaponWeight: weaponWeight,
       weaponPrice: weaponPrice,
       weaponDesc: weaponDesc,
@@ -155,6 +147,7 @@ export class WeaponsService {
       .subscribe(response => {
         this.router.navigate(["/weaponslist"]);
       });
+    this.getWeapons();
   }
 
   deleteOneWeapon(id: string) {
@@ -163,3 +156,4 @@ export class WeaponsService {
     });
   }
 }
+

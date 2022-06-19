@@ -26,6 +26,19 @@ import { WeaponsComponent } from './pages/Armory/Weapons/weapons/weapons.compone
 import { WeaponAddonsComponent } from './pages/Armory/Weapons/weapon-addons/weapon-addons.component';
 import { WeaponsListComponent } from './pages/Armory/Weapons/weaponslist/weaponslist.component';
 import { WeaponAddonslistComponent } from './pages/Armory/Weapons/weapon-addonslist/weapon-addonslist.component';
+import { ArmorsComponent } from './pages/Armory/Armors/armors/armors.component';
+import { ArmorslistComponent } from './pages/Armory/Armors/armorslist/armorslist.component';
+import { WeaponslistModalComponent } from './modals/weaponslist-modal/weaponslist-modal.component';
+import { ModalWrapperComponent } from './modals/modal-wrapper.component';
+import { ModalService } from './modals/modal.service';
+import { WeaponsService } from './pages/Armory/Weapons/weapons/weapons.service';
+import { CharWeaponsService } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.service';
+import { AddonslistModalComponent } from './modals/addonslist-modal/addonslist-modal.component';
+import { ResourcesService } from './pages/charsheets/char-sub-forms/char-resources/resources.service';
+import { SkillsService } from './pages/charsheets/char-sub-forms/char-skills/skills.service';
+import { AddonsService } from './pages/Armory/Weapons/weapon-addons/weapon-addons.service';
+import { AttributesService } from './pages/charsheets/char-sub-forms/char-attributes/attributes.service';
+import { DetailsService } from './pages/charsheets/char-sub-forms/char-details/details.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +61,12 @@ import { WeaponAddonslistComponent } from './pages/Armory/Weapons/weapon-addonsl
     WeaponsComponent,
     WeaponAddonsComponent,
     WeaponsListComponent,
-    WeaponAddonslistComponent
+    WeaponAddonslistComponent,
+    ArmorsComponent,
+    ArmorslistComponent,
+    WeaponslistModalComponent,
+    ModalWrapperComponent,
+    AddonslistModalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +77,16 @@ import { WeaponAddonslistComponent } from './pages/Armory/Weapons/weapon-addonsl
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ModalService,
+    WeaponsService,
+    CharWeaponsService,
+    ResourcesService,
+    SkillsService,
+    AddonsService,
+    AttributesService,
+    DetailsService,
+    AddonsService,
+    WeaponsService
   ],
   bootstrap: [AppComponent],
   exports: [],

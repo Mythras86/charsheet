@@ -9,6 +9,7 @@ import { MainCharComponent } from "./pages/charsheets/mainchar/mainchar.componen
 import { WeaponsComponent } from "./pages/Armory/Weapons/weapons/weapons.component";
 import { WeaponAddonsComponent } from "./pages/Armory/Weapons/weapon-addons/weapon-addons.component";
 import { WeaponsListComponent } from "./pages/Armory/Weapons/weaponslist/weaponslist.component";
+import { WeaponAddonslistComponent } from "./pages/Armory/Weapons/weapon-addonslist/weapon-addonslist.component";
 
 const routes: Routes = [
   { path: "", component: MainComponent },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: "weaponslist", component: WeaponsListComponent},
   { path: "newweapon", component: WeaponsComponent},
   { path: "edit/:weaponId", component: WeaponsComponent},
+
+  { path: "weaponaddonslist", component: WeaponAddonslistComponent},
   { path: "newaddon", component: WeaponAddonsComponent},
   { path: "edit/:addonId", component: WeaponAddonsComponent},
 

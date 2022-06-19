@@ -61,7 +61,7 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
       return utak;
     }
 
-    return;
+    return null;
   }
 
   sendRaceData(): void {

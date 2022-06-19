@@ -14,9 +14,9 @@
       </div>
       <app-levelcontrol
         [baseValue]="getMinValue(item.fcname)"
-        [controlName]="item.fcname"
-        [formName]="attributesForm"
-        [disableIncrement]="nopoints || getMaxValue(item.fcname) == getTotalValue(item.fcname) "></app-levelcontrol>
+        [fcName]='getFormcontrol(item.fcname)'
+        [disableIncrement]="nopoints || getMaxValue(item.fcname) == getTotalValue(item.fcname) ">
+      </app-levelcontrol>
       <div  class="elemnev">
         m: {{getMinValue(item.fcname)}}
         m: {{getMaxValue(item.fcname)}}

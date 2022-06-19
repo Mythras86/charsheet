@@ -7,3 +7,7 @@ export interface Addons {
   addonPrice: number,
   addonDesc: string,
 }
+
+export interface AddonsDataInterface {
+  addons: Addons[];
+}

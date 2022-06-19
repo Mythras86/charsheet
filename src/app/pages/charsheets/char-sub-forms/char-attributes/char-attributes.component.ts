@@ -24,6 +24,11 @@ export class CharAttributesComponent implements OnInit, OnDestroy {
   public nopoints:boolean = false;
   public yourAttrs:number = 0;
 
+  getFormcontrol(fcname: string):any {
+    let fc = this.attributesForm.get(fcname);
+    return fc;
+  }
+
   getAttributes() {
     return attributes;
   }

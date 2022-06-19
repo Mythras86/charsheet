@@ -1,15 +1,12 @@
-.weaponcont {
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
-
 h2 {
   background-color: lightgrey;
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   border: 1px solid black;
 }
 
 .flexcont {
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
   text-align: center;
@@ -40,5 +37,6 @@ h2 {
 }
 
 button {
-  padding: 1px;
+  padding: 2px;
+  margin-bottom: 0.5rem;
 }

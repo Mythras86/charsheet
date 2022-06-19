@@ -81,7 +81,7 @@ export class WeaponAddonsComponent implements OnInit {
   }
 
   backToList() {
-    this.router.navigate(["/equipments"]);
+    this.router.navigate(["/weaponaddonslist"]);
   }
 
   ngOnInit(): void {

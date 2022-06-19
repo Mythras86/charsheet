@@ -1,6 +1,14 @@
 <div class="section-cont">
 
-  <div *ngFor="let categ of getWeaponCats()">
+  <div class="flexcont">
+    <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
+    <div class="w30 bl-wh"
+    *ngFor="let categ of getWeaponCats()" (click)="sortMeBy(categ)">
+      {{categ}}
+    </div>
+  </div>
+
+  <div *ngFor="let categ of getWeaponCatsFiltered()">
 
     <h1>{{categ}}</h1>
 
@@ -8,14 +16,14 @@
 
       <h2>{{type}}</h2>
 
-      <div class="weaponcont" *ngFor="let item of getWeapons(type)">
-        <div class="flexcont">
+      <div *ngFor="let item of getWeapons(type)">
+        <div class="flexcont" (click)="sendWeaponID(item.id)">
           <div class="w50 bl-wh">{{item.weaponName}}</div>
           <div class="w20">Táv: {{item.weaponRange}}</div>
           <div class="w30 bl-wh">{{item.weaponPrice}} cred</div>
           <div class="w50">{{item.weaponMods}} || {{item.weaponClip}}</div>
           <div class="w20">{{item.weaponWeight}} Kg</div>
-          <div class="w30 or-bl">S: {{item.weaponPower}} ({{item.weaponDamage}})</div>
+          <div class="w30 or-bl">{{item.weaponPower}} ({{item.weaponDamage}}) {{item.weaponDmgType}}</div>
           <div class="w100">Megj.: {{item.weaponDesc}}</div>
         </div>
         <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>

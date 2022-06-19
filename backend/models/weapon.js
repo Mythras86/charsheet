@@ -9,6 +9,7 @@ const weaponSchema = mongoose.Schema({
   weaponRange:{type: Number, required: true},
   weaponPower:{type: Number, required: true},
   weaponDamage:{type: Number, required: true},
+  weaponDmgType:{type: String, required: true},
   weaponWeight:{type: Number, required: true},
   weaponPrice:{type: Number, required: true},
   weaponDesc:{type: String, required: false},

@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Addons } from './weapon-addons.model';
+import { Addons, AddonsDataInterface } from './weapon-addons.model';
 
 const BACKEND_URL = environment.apiUrl + "/addons/";
 
@@ -17,10 +17,11 @@ export class AddonsService {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+    this.addonsList = null;
+   }
 
-  public addonslist: Addons[] = [];
-  private addonsUpdated = new Subject<{ addons: Addons[]}>();
+  public addonsList: Addons[] = [];
 
   createAddons(): FormGroup {
     const addonsForm = {
@@ -29,43 +30,34 @@ export class AddonsService {
     return this.fb.group(addonsForm);
   }
 
-  getAddons() {
-    this.http
-      .get<{ message: string; addons: any}>(BACKEND_URL + "addonslist")
-      .pipe(map(addonsData => {
-        return {
-          addons: addonsData.addons.map((addon: {
-            _id: string;
-            addonName: string,
-            addonPlace: string,
-            addonWeight: number,
-            addonPrice: number,
-            addonDesc: string,
-            addonCategory: string,
-          }) => {
-            return {
-              id: addon._id,
-              addonName: addon.addonName,
-              addonPlace: addon.addonPlace,
-              addonWeight: addon.addonWeight,
-              addonPrice: addon.addonPrice,
-              addonDesc: addon.addonDesc,
-              addonCategory: addon.addonCategory,
-              };
-            }),
-          };
-        })
-      )
-      .subscribe(transformedAddonsData => {
-        this.addonslist = transformedAddonsData.addons;
-        this.addonsUpdated.next({
-        addons: [...this.addonslist],
-        });
-      });
+  private processAddonData(addonsData: AddonsDataInterface) {
+    return addonsData.addons.map((w) => {
+      return {
+        id: (w as any)._id,
+        addonName: w.addonName,
+        addonCategory: w.addonCategory,
+        addonPlace: w.addonPlace,
+        addonWeight: w.addonWeight,
+        addonPrice: w.addonPrice,
+        addonDesc: w.addonDesc,
+      } as Addons
+    });
   }
 
-  getAddonsUpdateListener() {
-    return this.addonsUpdated.asObservable();
+  private setAddonsList (addonsList: Addons[]) {
+    this.addonsList = addonsList;
+  }
+
+  getAddons(): Observable<Addons[]> {
+    if (this.addonsList !== null) {
+      return of(this.addonsList)
+    }
+    return this.http
+      .get<{ message: string; addons: any}>(BACKEND_URL + "addonslist")
+      .pipe(
+        map(this.processAddonData),
+        tap(this.setAddonsList.bind(this))
+      )
   }
 
   getOneAddon(id: string) {
@@ -99,8 +91,10 @@ export class AddonsService {
     };
     this.http.post<{ message: string; addon: Addons }>(
       BACKEND_URL + "create", addonData).subscribe(response => {
-      this.router.navigate(["/equipments"]);
+      this.router.navigate(["/weaponaddonslist"]);
     });
+    this.addonsList= null;
+    this.getAddons();
   }
 
   updateOneAddon(
@@ -122,16 +116,17 @@ export class AddonsService {
       addonDesc: addonDesc,
       addonCategory: addonCategory,
     };
+    this.getAddons();
     this.http
       .patch(BACKEND_URL + id, addonData)
       .subscribe(response => {
-        this.router.navigate(["/equipments"]);
+        this.router.navigate(["/weaponaddonslist"]);
       });
   }
 
   deleteOneAddon(id: string) {
     return this.http.delete(BACKEND_URL + id).subscribe(response => {
-      this.router.navigate(["/equipments"]);
+      this.router.navigate(["/weaponaddonslist"]);
     });
   }
 }

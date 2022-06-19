@@ -16,15 +16,13 @@
       <!-- megjegyzések -->
       <input class="w20" type="text" formControlName="skillDesc">
       <!-- érték -->
-      <div class="w10 or-bl">{{getSkillLevel(i)}}</div>
-      <div class="levelBtnCont">
-        <button class="bl-wh" type="button" (click)="increment(i)"
-        [disabled]="nopoints || getSkillLevel(i)>=6">+</button>
-        <button class="or-bl" type="button" (click)="decrement(i)"
-        [disabled]="getSkillLevel(i)<1">-</button>
-        <button type="button" (click)="removeSkill(i)">X</button>
-      </div>
-    </div>
+      <app-levelcontrol
+        [baseValue]=0
+        [fcName]='getFormcontrol(i)'
+        [disableIncrement]='nopoints || getSkillLevel(i)==6'
+      >
+      </app-levelcontrol>
+      <button type="button" (click)="removeSkill(i)">X</button>
   </div>
 
   <div>

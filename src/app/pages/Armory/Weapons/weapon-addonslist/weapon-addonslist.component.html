@@ -1,17 +1,38 @@
 <div class="section-cont">
 
-  <h1>Fegyver kiegészítők</h1>
-
-  <div *ngFor="let item of getAddons()">
-    <div>
-      <div>{{item.addonName}}</div>
-      <div>{{item.addonCategory}}</div>
-      <div>{{item.addonDesc}}</div>
-      <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
-      <button class="or-bl delete" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
+  <div class="flexcont">
+    <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
+    <div class="w30 bl-wh"
+    *ngFor="let categ of getAddonCats()" (click)="sortMeBy(categ)">
+      {{categ}}
     </div>
   </div>
 
-  <button type="button" (click)="gotoNewAddon()">Új Kiegészítő Rögzítése</button>
+  <div *ngFor="let categ of getAddonCatsFiltered()">
+
+    <h1>{{categ}}</h1>
+
+    <div *ngFor="let type of getAddonPlace(categ)">
+
+      <h2>{{type}}</h2>
+
+      <div *ngFor="let item of getAddons(type, categ)">
+        <div class="flexcont" (click)="sendAddonID(item.id)">
+          <div class="bl-wh w50">{{item.addonName}}</div>
+          <div class="or-bl w30">{{item.addonPrice}} cred</div>
+          <div class="w20">{{item.addonWeight}} Kg</div>
+          <div class="w100"> Megj.: {{item.addonDesc}}</div>
+          <div class="w50"> {{item.addonPlace}}</div>
+          <div class="w50"> {{item.addonCategory}}</div>
+        </div>
+        <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+        <button class="or-bl delete" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" (click)="gotoNewAddon()">Új Kiegészítő Rögzítése</button>
+  </div>
 
 </div>

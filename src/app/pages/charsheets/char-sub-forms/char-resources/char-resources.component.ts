@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CharWeaponsService } from '../char-weapons/char-weapons.service';
 import { CharSubServices } from '../services-for-subforms';
 import { resources } from './resources.model';
 import { ResourcesService } from './resources.service';
@@ -15,7 +16,8 @@ export class CharResourcesComponent implements OnInit {
 
   constructor(
     public charSubs: CharSubServices,
-    private resServ: ResourcesService
+    private resServ: ResourcesService,
+    public charWeapServ: CharWeaponsService,
   ) {}
 
   public nopoints:boolean = false;
@@ -70,14 +72,14 @@ export class CharResourcesComponent implements OnInit {
   getRemainingCash():number {
     const karmaonmoney = this.resourcesForm.get('karmaonmoney')?.value;
     const gainedmoney = this.resourcesForm.get('gainedmoney')?.value;
-    const moneyonwapons = this.resourcesForm.get('moneyonwapons')?.value;
+    const moneyonweapons = this.charWeapServ.spentMoneyOnWeapons;
     const moneyontools = this.resourcesForm.get('moneyontools')?.value;
     const moneyoncyber = this.resourcesForm.get('moneyoncyber')?.value;
     const moneyonsoftware = this.resourcesForm.get('moneyonsoftware')?.value;
     const moneyonrides = this.resourcesForm.get('moneyonrides')?.value;
     const moneyonartifacts = this.resourcesForm.get('moneyonartifacts')?.value;
 
-    return 6000*karmaonmoney+gainedmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonwapons;
+    return 6000*karmaonmoney+gainedmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonweapons;
   }
 
   getMinKarma(fcname: string):number {
@@ -87,6 +89,11 @@ export class CharResourcesComponent implements OnInit {
 
   getResources() {
     return resources;
+  }
+
+  getFormcontrol(fcname: string)  {
+    let fc = this.resourcesForm.get(fcname);
+    return fc;
   }
 
   getTotalValue(fcname: string):number {
