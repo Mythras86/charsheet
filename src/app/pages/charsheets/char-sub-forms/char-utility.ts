@@ -122,14 +122,3 @@ export const HagyomanyLista: Array<any> = [
   {list: 'adeptus', text: 'Fizikai'},
   {list: 'adeptus', text: 'Misztikus'},
 ];
-
-@Injectable ({ providedIn: "root" })
-export class selectRaceService {
-  private selectedrace = new BehaviorSubject('');
-
-  getRace = this.selectedrace.asObservable();
-
-  updateRace(yourRace: string): void {
-    this.selectedrace.next(yourRace);
-  }
-}

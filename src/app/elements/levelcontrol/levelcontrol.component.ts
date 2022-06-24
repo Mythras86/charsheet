@@ -11,6 +11,7 @@ export class LevelcontrolComponent implements OnInit {
   @Input() fcName: any;
   @Input() baseValue: number = 0;
   @Input() disableIncrement: boolean = false;
+  @Input() disableDecrement: boolean = false;
 
   constructor() { }
 

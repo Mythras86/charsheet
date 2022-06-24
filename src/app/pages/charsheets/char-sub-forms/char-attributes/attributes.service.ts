@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { FormGroupConfig } from '../../char.fgconfing';
 import { Attributes } from './attributes.model';
 

@@ -24,3 +24,8 @@
   background-color: red;
   color: white;
 }
+
+button:disabled {
+  background-color: white;
+  color: gray;
+}

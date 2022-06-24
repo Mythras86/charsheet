@@ -1,3 +1,35 @@
-<div class="element-cont">
-  this is the footer
+<div class="footercont">
+
+  <div class="linkcont">
+    <h3>Profil</h3>
+    <a routerLink="/">Főoldal</a>
+    <a routerLink="/characters">Karakterek</a>
+    <a *ngIf="!userIsAuthenticated" routerLink="/login">Belépés</a>
+    <a *ngIf="!userIsAuthenticated" routerLink="/register">Regisztráció</a>
+    <a *ngIf="userIsAuthenticated" (click)="onLogout()">Kilépés</a>
+
+  </div>
+
+  <div class="linkcont" *ngIf="userIsAuthenticated">
+    <h3>Felszerelések</h3>
+    <a routerLink="/weaponslist">Fegyverek</a>
+    <a routerLink="/weaponaddonslist">Fegyver Kiegek</a>
+    <a routerLink="/armorslist">Páncélok</a>
+    <a routerLink="/armoraddonslist">Páncél Kiegek</a>
+  </div>
+
+  <div class="linkcont" *ngIf="userIsAuthenticated">
+    <h3>Mágia</h3>
+    <a routerLink="/spellslist">Varázslatok</a>
+    <a routerLink="/spiritslist">Szellemek</a>
+    <a routerLink="/armorslist">Varázstárgyak</a>
+  </div>
+
+  <div class="linkcont" *ngIf="userIsAuthenticated">
+    <h3>Kibervilág</h3>
+    <a routerLink="/cyberslist">Kiberverek</a>
+    <a routerLink="/softwareslist">Programok</a>
+    <a routerLink="/driveslist">Járművek</a>
+  </div>
+
 </div>

@@ -1,6 +1,6 @@
 <div class="levelBtnCont">
   <button class="decBtn" type="button"
-  [disabled]="getFcValue()<1+baseValue"
+  [disabled]="getFcValue()<1+baseValue || disableDecrement"
   (click)='decrement()'>-</button>
 
   <div class="fcvalue">{{getFcValue()}}</div>

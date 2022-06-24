@@ -1,1 +1,27 @@
-<p>armorslist works!</p>
+<div class="sectioncont">
+
+  <h1>Ruházat és Páncélzat</h1>
+
+  <div>
+    <button type="button" (click)="gotoNewArmor()">Új Páncél Rögzítése</button>
+  </div>
+
+  <div class="div100" *ngFor="let categ of getArmorCats()">
+
+    <h2>{{categ}}</h2>
+
+    <div *ngFor="let item of getArmors(categ)">
+      <div class="flexcont" (click)="sendArmorID(item.id)">
+        <div class="w50 bl-wh">{{item.armorName}}</div>
+        <div class="w20 or-bl">{{item.armorRating}}</div>
+        <div class="w30 bl-wh">{{item.armorPrice}} cred</div>
+        <div class="w70">Megj.: {{item.armorDesc}}</div>
+        <div class="w30">{{item.armorWeight}} Kg</div>
+      </div>
+      <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+      <button class="or-bl" type="button" (click)="armorsServ.deleteOneArmor(item.id)">Törlés</button>
+    </div>
+  </div>
+
+
+</div>

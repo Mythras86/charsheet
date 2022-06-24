@@ -13,26 +13,26 @@ export class ResourcesService {
     private fb: FormBuilder
     ) { }
 
-  private remainingMoney = new BehaviorSubject<number>(0);
-  getMoneyFlow = this.remainingMoney.asObservable();
+    private remainingAttrs = new BehaviorSubject<number>(0);
+    getAttrPoints = this.remainingAttrs.asObservable();
 
-  private remainingSkills = new BehaviorSubject<number>(0);
-  getSkillPoints = this.remainingSkills.asObservable();
+    public updateAttrs(points: number):void {
+      this.remainingAttrs.next(points);
+    }
 
-  private remainingAttrs = new BehaviorSubject<number>(0);
-  getAttrPoints = this.remainingAttrs.asObservable();
+    private remainingSkills = new BehaviorSubject<number>(0);
+    getSkillPoints = this.remainingSkills.asObservable();
 
-  public updateMoney(credit: number):void {
-    this.remainingMoney.next(credit);
-  }
+    public updateSkills(points: number):void {
+      this.remainingSkills.next(points);
+    }
 
-  public updateSkills(points: number):void {
-    this.remainingSkills.next(points);
-  }
+    private remainingMoney = new BehaviorSubject<number>(0);
+    getMoneyFlow = this.remainingMoney.asObservable();
 
-  public updateAttrs(points: number):void {
-    this.remainingAttrs.next(points);
-  }
+    public updateMoney(credit: number):void {
+      this.remainingMoney.next(credit);
+    }
 
   createResources(): FormGroup {
     const resources: FormGroupConfig<Resources> = {

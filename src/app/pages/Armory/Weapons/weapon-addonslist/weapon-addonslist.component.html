@@ -1,11 +1,15 @@
-<div class="section-cont">
+<div class="sectioncont">
 
-  <div class="flexcont">
-    <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
+  <div class="flexcont" *ngIf="this.kiegFilter ==''">
+    <div class="w30 bl-wh" (click)="sortMeBy('')">Összes</div>
     <div class="w30 bl-wh"
     *ngFor="let categ of getAddonCats()" (click)="sortMeBy(categ)">
       {{categ}}
     </div>
+  </div>
+
+  <div>
+    <button type="button" (click)="gotoNewAddon()">Új Kiegészítő Rögzítése</button>
   </div>
 
   <div *ngFor="let categ of getAddonCatsFiltered()">
@@ -29,10 +33,6 @@
         <button class="or-bl delete" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
       </div>
     </div>
-  </div>
-
-  <div>
-    <button type="button" (click)="gotoNewAddon()">Új Kiegészítő Rögzítése</button>
   </div>
 
 </div>

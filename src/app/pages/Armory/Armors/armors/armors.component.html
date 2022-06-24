@@ -1,1 +1,24 @@
-<p>armors works!</p>
+<form class="sectioncont" [formGroup]="newArmorForm" (ngSubmit)="onSubmit()">
+
+  <label class="bl-wh" for="armorName">Név</label>
+  <input class="" id="armorName" type="text" formControlName="armorName">
+
+  <label class="bl-wh" for="armorCategory">Kategória</label>
+  <input class="" id="armorCategory" type="text" formControlName="armorCategory">
+
+  <label class="bl-wh" for="armorRating">Páncélérték</label>
+  <input class="" id="armorRating" type="number" formControlName="armorRating">
+
+  <label class="bl-wh" for="armorWeight">Súly</label>
+  <input class="" id="armorWeight" type="number" formControlName="armorWeight">
+
+  <label class="bl-wh" for="armorPrice">Ár</label>
+  <input class="" id="armorPrice" type="number" formControlName="armorPrice">
+
+  <label class="bl-wh" for="armorDesc">Megjegyzések</label>
+  <input class="" id="armorDesc" type="text" formControlName="armorDesc">
+  <div>
+    <button type="submit">Mentés</button>
+    <button type="button" (click)="backToList()">Vissza</button>
+  </div>
+</form>

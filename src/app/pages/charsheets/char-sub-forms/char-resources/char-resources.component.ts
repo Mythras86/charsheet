@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { DetailsService } from '../char-details/details.service';
 import { CharWeaponsService } from '../char-weapons/char-weapons.service';
-import { CharSubServices } from '../services-for-subforms';
 import { resources } from './resources.model';
 import { ResourcesService } from './resources.service';
 
@@ -15,29 +15,46 @@ export class CharResourcesComponent implements OnInit {
   @Input() resourcesForm!: FormGroup;
 
   constructor(
-    public charSubs: CharSubServices,
-    private resServ: ResourcesService,
     public charWeapServ: CharWeaponsService,
+    public resServ: ResourcesService,
+    public detailsServ: DetailsService,
   ) {}
 
   public nopoints:boolean = false;
-  public yourMoney:number = 0;
-  public yourSkills:number = 0;
+
+  public yourMagic:string = '';
+
   public yourAttrs:number = 0;
+  public yourSkills:number = 0;
+  public yourMoney:number = 0;
+
+  disableDec(fcname: string):number {
+    if(fcname == 'karmaonattr') {
+      return this.yourAttrs;
+    }
+    if(fcname == 'karmaonskills') {
+      return this.yourSkills;
+    }
+    if(fcname == 'karmaonmoney') {
+      return this.yourMoney;
+    }
+    return 0;
+  }
 
   sendResData(fcname: string):void {
+    if(fcname == 'karmaonattr') {
+      const points:number = this.resourcesForm.get('karmaonattr')?.value;
+      this.resServ.updateAttrs(points);
+    }
     if(fcname == 'karmaonskills') {
-      const points = this.resourcesForm.get('karmaonskills')?.value;
+      const points:number = this.resourcesForm.get('karmaonskills')?.value;
       this.resServ.updateSkills(points);
     }
     if(fcname == 'karmaonmoney' || 'gainedmoney') {
-      const karmaonmoney = this.resourcesForm.get('karmaonmoney')?.value;
-      const gainedmoney = this.resourcesForm.get('gainedmoney')?.value;
-      this.resServ.updateMoney(karmaonmoney*6000+gainedmoney);
-    }
-    if(fcname == 'karmaonattr') {
-      const points = this.resourcesForm.get('karmaonattr')?.value;
-      this.resServ.updateAttrs(points);
+      const karmaonmoney:number = this.resourcesForm.get('karmaonmoney')?.value*6000;
+      const gainedmoney:number = this.resourcesForm.get('gainedmoney')?.value;
+      const money:number = karmaonmoney + gainedmoney;
+      this.resServ.updateMoney(money);
     }
     return;
   }
@@ -60,28 +77,6 @@ export class CharResourcesComponent implements OnInit {
     }
   }
 
-  getRemainingMagic(): number {
-    const karmaonmagic = this.resourcesForm.get('karmaonmagic')?.value;
-    const spells = this.resourcesForm.get('magiconspells')?.value;
-    const spirits = this.resourcesForm.get('magiconspirits')?.value;
-    const magiconartifacts = this.resourcesForm.get('magiconartifacts')?.value;
-
-    return karmaonmagic-spells-spirits-magiconartifacts;
-  }
-
-  getRemainingCash():number {
-    const karmaonmoney = this.resourcesForm.get('karmaonmoney')?.value;
-    const gainedmoney = this.resourcesForm.get('gainedmoney')?.value;
-    const moneyonweapons = this.charWeapServ.spentMoneyOnWeapons;
-    const moneyontools = this.resourcesForm.get('moneyontools')?.value;
-    const moneyoncyber = this.resourcesForm.get('moneyoncyber')?.value;
-    const moneyonsoftware = this.resourcesForm.get('moneyonsoftware')?.value;
-    const moneyonrides = this.resourcesForm.get('moneyonrides')?.value;
-    const moneyonartifacts = this.resourcesForm.get('moneyonartifacts')?.value;
-
-    return 6000*karmaonmoney+gainedmoney-moneyoncyber-moneyonartifacts-moneyonrides-moneyonsoftware-moneyontools-moneyonweapons;
-  }
-
   getMinKarma(fcname: string):number {
     const minkarma:any = resources.filter(x=>x.fcname == fcname).map(x=>x.minKarma);
     return minkarma;
@@ -97,14 +92,15 @@ export class CharResourcesComponent implements OnInit {
   }
 
   getTotalValue(fcname: string):number {
-    this.sendResData(fcname);
-    return this.charSubs.getFromContValue(fcname, this.resourcesForm);
+    return this.getFormcontrol(fcname).value;
   }
 
   ngOnInit() {
-    this.resServ.getMoneyFlow.subscribe(yourMoney => this.yourMoney = yourMoney);
-    this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
+    this.detailsServ.getMagic.subscribe(yourMagic => this.yourMagic = yourMagic);
+
     this.resServ.getAttrPoints.subscribe(yourAttrs => this.yourAttrs = yourAttrs);
+    this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
+    this.resServ.getMoneyFlow.subscribe(yourMoney => this.yourMoney = yourMoney);
   }
 
 }

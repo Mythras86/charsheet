@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { FormGroupConfig } from '../../char.fgconfing';
 import { Details } from './details.model';
 
@@ -11,6 +12,20 @@ export class DetailsService {
   constructor(
     private fb: FormBuilder
   ) { }
+
+  public selectedRace = new BehaviorSubject<string>('');
+  getRace = this.selectedRace.asObservable();
+
+  updateRace(yourRace: string): void {
+    this.selectedRace.next(yourRace);
+  }
+
+  public selectedMagic = new BehaviorSubject<string>('');
+  getMagic = this.selectedMagic.asObservable();
+
+  updateMagic(yourMagic: string): void {
+    this.selectedMagic.next(yourMagic);
+  }
 
   createDetails(): FormGroup {
     const details: FormGroupConfig<Details> = {

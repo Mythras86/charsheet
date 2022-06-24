@@ -1,8 +1,7 @@
 
-<div class="section-cont" *ngIf="weapons" [formGroup]='weaponsForm'>
+<div class="sectioncont" *ngIf="weapons" [formGroup]='weaponsForm'>
 
-  <h1>Fegyverek {{getSum()}}</h1>
-
+  <h1>Fegyverek {{getSum()}} / {{this.yourMoney}}</h1>
 
   <div formArrayName="weapons">
     <div [formGroupName]='i' *ngFor="let weapon of weapons?.controls; let i = index">
@@ -10,10 +9,7 @@
       <fieldset class="flexcont">
         <legend>
           <div class="bl-wh">{{getDetails(i, 'weaponName')}}</div>
-          <div class="or-bl">{{getDetails(i, 'weaponPrice')
-            +getDetails(i, 'addonPriceOver')*1
-            +getDetails(i, 'addonPriceBelow')*1
-            +getDetails(i, 'addonPriceBarrel')*1}} cred
+          <div class="or-bl">{{getSubTotal(i, 'Price')}} cred
           </div>
           <div class="levelBtnCont">
             <button type="button" (click)="removeWeapon(i)">X</button>
@@ -27,10 +23,7 @@
           {{getDetails(i, 'weaponRange')*4}}/
           {{getDetails(i, 'weaponRange')*8}}
         </div>
-        <div class="w20">{{getDetails(i, 'weaponWeight')
-          +getDetails(i, 'addonWeightOver')*1
-          +getDetails(i, 'addonWeightBelow')*1
-          +getDetails(i, 'addonWeightBarrel')*1}} Kg
+        <div class="w20">{{getSubTotal(i, 'Weight')}} Kg
         </div>
         <input type="text" class="w100" formControlName="weaponDesc" placeholder="Megjegyzések">
         <fieldset>
@@ -39,12 +32,12 @@
             <div class="w50 bl-wh">{{getDetails(i, 'addonName1')}}</div>
             <div class="w100">{{getDetails(i, 'addonDesc1')}}</div>
           </div>
-          <div class="flexcont w100" (click)="AddAddon(i, 2)">
+          <div class="flexcont w100" (click)="AddAddon(i, 2, getDetails(i, 'weaponCategory'))">
             <div>Kiegészítő2</div>
             <div class="w50 bl-wh">{{getDetails(i, 'addonName2')}}</div>
             <div class="w100">{{getDetails(i, 'addonDesc2')}}</div>
           </div>
-          <div class="flexcont w100" (click)="AddAddon(i, 3)">
+          <div class="flexcont w100" (click)="AddAddon(i, 3, getDetails(i, 'weaponCategory'))">
             <div>Kiegészítő3</div>
             <div class="w50 bl-wh">{{getDetails(i, 'addonName3')}}</div>
             <div class="w100">{{getDetails(i, 'addonDesc3')}}</div>

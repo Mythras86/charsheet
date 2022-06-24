@@ -1,4 +1,4 @@
-<div class="section-cont" [formGroup]="detailsForm" *ngIf="detailsForm">
+<div class="sectioncont" [formGroup]="detailsForm" *ngIf="detailsForm">
 
   <h1>Karakter Jellemzők</h1>
 
@@ -10,15 +10,14 @@
     placeholder="{{item.megjegyz}}">
     <!-- lista inputtal -->
 
-    <input *ngIf='item.type=="inpselect"' [attr.list]=item.listname [formControlName]=item.fcname
-    (ngModelChange)="sendRaceData()" placeholder="{{item.megjegyz}}">
+    <input *ngIf='item.type=="inpselect"' [attr.list]=item.listname [formControlName]=item.fcname placeholder="{{item.megjegyz}}">
     <datalist *ngIf='item.type=="inpselect"' id={{item.listname}}>
       <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
     </datalist>
 
     <!-- lista sima -->
 
-    <select *ngIf='item.type=="select"' [formControlName]=item.fcname (ngModelChange)="sendRaceData()">
+    <select *ngIf='item.type=="select"' [formControlName]=item.fcname (ngModelChange)="sendData()">
       <option value="" selected disabled hidden>{{item.megjegyz}}</option>
       <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
     </select>

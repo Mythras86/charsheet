@@ -1,26 +1,27 @@
-<div [formGroup]="attributesForm" class="section-cont" *ngIf="attributesForm">
+<div [formGroup]="attributesForm" class="sectioncont" *ngIf="attributesForm">
 
-  <h1>Tulajdonságok {{getSum()}}</h1>
+  <h1>Tulajdonságok {{getSum()}} / {{this.yourAttrs}}</h1>
 
-  <fieldset *ngFor='let legend of charSubs.getLegends(getAttributes(), "csoport")'>
+  <fieldset *ngFor='let legend of getLegends()'>
     <legend>
       <div>
         {{legend}}
       </div>
     </legend>
-    <div class="flexcont" *ngFor="let item of charSubs.getGroups(getAttributes(), legend)">
+    <div class="flexcont" *ngFor="let item of getGroups(legend)">
       <div class="bl-wh elemnev">
         {{item.nev}}
       </div>
       <app-levelcontrol
         [baseValue]="getMinValue(item.fcname)"
         [fcName]='getFormcontrol(item.fcname)'
-        [disableIncrement]="nopoints || getMaxValue(item.fcname) == getTotalValue(item.fcname) ">
+        [disableIncrement]="getMaxValue(item.fcname) == getTotalValue(item.fcname) || noPointsForAttrs()==true">
+        {{noPointsForAttrs()}}
       </app-levelcontrol>
       <div  class="elemnev">
         m: {{getMinValue(item.fcname)}}
         m: {{getMaxValue(item.fcname)}}
-        v: {{charSubs.getFromContValue(item.fcname, attributesForm)}}
+        v: {{getFormcontrol(item.fcname).value}}
         t: {{getTotalValue(item.fcname)}}
       </div>
     </div>

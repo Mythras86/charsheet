@@ -58,7 +58,7 @@ export class WeaponsListComponent implements OnInit {
   }
 
   gotoUpdate(id:string) {
-    (<any>this.router).navigate(["/edit/"+id]);
+    (<any>this.router).navigate(["/weaponedit/"+id]);
   }
 
   ngOnInit():void {

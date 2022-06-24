@@ -18,20 +18,11 @@ export interface Resources {
 }
 
 export const resources: Array<any> = [
-  {nev: 'Induló Karma', csoport: 'Karma', fcname: 'basekarma', maxValue: 250},
-  {nev: 'Kapott Karma', csoport: 'Karma', fcname: 'gainedkarma', maxValue: 50},
-  {nev: 'Tulajdonságok (3karma/1pont)', csoport: 'Karma', fcname: 'karmaonattr', lepes:3, maxValue: 40, hide: true},
-  {nev: 'Szakértelmek (2karma/1pont)', csoport: 'Karma', fcname: 'karmaonskills', lepes:2, maxValue: 60, hide: true},
-  {nev: 'Erőforrások (1karma/6000cred)', csoport: 'Karma', fcname: 'karmaonmoney', maxValue: 150, hide: true},
-  {nev: 'Szerzett erőforrások', csoport: 'Karma', fcname: 'gainedmoney'},
-  {nev: 'Mágia pontok (2karma/1pont)', csoport: 'Karma', fcname: 'karmaonmagic', lepes:2, maxValue: 60, hide: true},
-  {nev: 'Varázslatok', csoport: 'Mágia', fcname: 'magiconspells'},
-  {nev: 'Szellemek', csoport: 'Mágia', fcname: 'magiconspirits'},
-  {nev: 'Mágikus eszközök', csoport: 'Mágia', fcname: 'magiconartifacts'},
-  {nev: 'Fegyverek', csoport: 'Erőforrások', fcname: 'moneyonwapons'},
-  {nev: 'Felszerelések', csoport: 'Erőforrások', fcname: 'moneyontools'},
-  {nev: 'Kiberverek', csoport: 'Erőforrások', fcname: 'moneyoncyber'},
-  {nev: 'Programok', csoport: 'Erőforrások', fcname: 'moneyonsoftware'},
-  {nev: 'Járművek', csoport: 'Erőforrások', fcname: 'moneyonrides'},
-  {nev: 'Mágikus eszközök', csoport: 'Erőforrások', fcname: 'moneyonartifacts'},
+  {nev: 'Induló Karma', fcname: 'basekarma', maxValue: 250, hide: true},
+  {nev: 'Kapott Karma', fcname: 'gainedkarma', maxValue: 50, hide: true},
+  {nev: 'Tulajdonságok (3karma/1pont)', fcname: 'karmaonattr', lepes:3, maxValue: 40, hide: false},
+  {nev: 'Szakértelmek (2karma/1pont)', fcname: 'karmaonskills', lepes:2, maxValue: 60, hide: false},
+  {nev: 'Erőforrások (1karma/6000cred)', fcname: 'karmaonmoney', maxValue: 150, hide: false},
+  {nev: 'Szerzett erőforrások',  fcname: 'gainedmoney', hide: true},
+  {nev: 'Mágia pontok (2karma/1pont)', fcname: 'karmaonmagic', lepes:2, maxValue: 60, hide: false},
 ];

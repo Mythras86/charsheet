@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { FooterComponent } from './elements/footer/footer.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { MainComponent } from './pages/main/main.component';
@@ -39,6 +39,7 @@ import { SkillsService } from './pages/charsheets/char-sub-forms/char-skills/ski
 import { AddonsService } from './pages/Armory/Weapons/weapon-addons/weapon-addons.service';
 import { AttributesService } from './pages/charsheets/char-sub-forms/char-attributes/attributes.service';
 import { DetailsService } from './pages/charsheets/char-sub-forms/char-details/details.service';
+import { ArmorsService } from './pages/Armory/Armors/armors/armors.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,7 @@ import { DetailsService } from './pages/charsheets/char-sub-forms/char-details/d
     AttributesService,
     DetailsService,
     AddonsService,
-    WeaponsService
+    ArmorsService,
   ],
   bootstrap: [AppComponent],
   exports: [],

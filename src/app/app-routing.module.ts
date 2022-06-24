@@ -10,6 +10,8 @@ import { WeaponsComponent } from "./pages/Armory/Weapons/weapons/weapons.compone
 import { WeaponAddonsComponent } from "./pages/Armory/Weapons/weapon-addons/weapon-addons.component";
 import { WeaponsListComponent } from "./pages/Armory/Weapons/weaponslist/weaponslist.component";
 import { WeaponAddonslistComponent } from "./pages/Armory/Weapons/weapon-addonslist/weapon-addonslist.component";
+import { ArmorslistComponent } from "./pages/Armory/Armors/armorslist/armorslist.component";
+import { ArmorsComponent } from "./pages/Armory/Armors/armors/armors.component";
 
 const routes: Routes = [
   { path: "", component: MainComponent },
@@ -21,11 +23,15 @@ const routes: Routes = [
 
   { path: "weaponslist", component: WeaponsListComponent},
   { path: "newweapon", component: WeaponsComponent},
-  { path: "edit/:weaponId", component: WeaponsComponent},
+  { path: "weaponedit/:weaponId", component: WeaponsComponent},
 
   { path: "weaponaddonslist", component: WeaponAddonslistComponent},
-  { path: "newaddon", component: WeaponAddonsComponent},
-  { path: "edit/:addonId", component: WeaponAddonsComponent},
+  { path: "newweaponaddon", component: WeaponAddonsComponent},
+  { path: "weaponaddonedit/:addonId", component: WeaponAddonsComponent},
+
+  { path: "armorslist", component: ArmorslistComponent},
+  { path: "newarmor", component: ArmorsComponent},
+  { path: "armoredit/:armorId", component: ArmorsComponent},
 
 ];
 

@@ -7,7 +7,7 @@ import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Addons, AddonsDataInterface } from './weapon-addons.model';
 
-const BACKEND_URL = environment.apiUrl + "/addons/";
+const BACKEND_URL = environment.apiUrl + "/weaponaddons/";
 
 @Injectable({providedIn: 'root'})
 
@@ -100,28 +100,28 @@ export class AddonsService {
   updateOneAddon(
     id: string,
     addonName: string,
+    addonCategory: string,
     addonPlace: string,
     addonWeight: number,
     addonPrice: number,
     addonDesc: string,
-    addonCategory: string,
   ) {
     let addonData: Addons;
     addonData = {
       id: id,
       addonName: addonName,
+      addonCategory: addonCategory,
       addonPlace: addonPlace,
       addonWeight: addonWeight,
       addonPrice: addonPrice,
       addonDesc: addonDesc,
-      addonCategory: addonCategory,
     };
-    this.getAddons();
     this.http
-      .patch(BACKEND_URL + id, addonData)
-      .subscribe(response => {
-        this.router.navigate(["/weaponaddonslist"]);
-      });
+    .patch(BACKEND_URL + id, addonData)
+    .subscribe(response => {
+      this.router.navigate(["/weaponaddonslist"]);
+    });
+    this.getAddons();
   }
 
   deleteOneAddon(id: string) {

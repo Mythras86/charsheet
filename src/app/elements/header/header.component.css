@@ -1,18 +1,14 @@
 ul {
   display: flex;
   flex-flow: row wrap;
+  text-align: center;
 }
 
 a {
   display: block;
   color: white;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding: 0.2rem;
-}
-
-li {
-  flex: 1 1 auto;
-  text-align: center;
 }
 
 li :hover {
@@ -24,6 +20,16 @@ li :hover {
   text-align: center;
   font-size: 2rem;
   padding: 0.7rem;
+}
+
+.w33 {
+  flex: 1 1 0;
+  min-width: 33%;
+}
+
+.w50 {
+  flex: 1 1 0;
+  min-width: 50%;
 }
 
 .creator {

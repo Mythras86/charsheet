@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class SkillsService {
 
   createSkills(): FormGroup {
     const skillsForm = {
-      skills: this.fb.array([]),
+      activeSkills: this.fb.array([]),
+      knowledgeSkills: this.fb.array([]),
+      languageSkills: this.fb.array([]),
     };
     return this.fb.group(skillsForm);
   }

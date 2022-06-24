@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { ArmorsService } from '../armors/armors.service';
 
 @Component({
   selector: 'app-armorslist',
@@ -7,9 +9,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArmorslistComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public armorsServ: ArmorsService,
+    private router: Router,
+  ) { }
 
-  ngOnInit(): void {
+  @Output() onArmorSelected = new EventEmitter<string>();
+
+  public armorId:string = '';
+
+  getArmors(categ: string): Array<any> | null {
+    return this.armorsServ.armorsList.filter(x => x.armorCategory == categ);
+  }
+
+  getArmorCats(): Array<any> | null {
+    const categs = [...new Set(this.armorsServ.armorsList.map(x=> x.armorCategory))];
+    return categs;
+  }
+
+  sendArmorID(id: string) {
+    this.onArmorSelected.next(id);
+  }
+
+  gotoNewArmor() {
+    (<any>this.router).navigate(["/newarmor"]);
+  }
+
+  gotoUpdate(id:string) {
+    (<any>this.router).navigate(["/armoredit/"+id]);
+  }
+
+  ngOnInit():void {
+    this.armorsServ.getArmors().subscribe({
+      next: (w) => {
+        this.armorsServ.armorsList = w;
+      }
+    });
   }
 
 }

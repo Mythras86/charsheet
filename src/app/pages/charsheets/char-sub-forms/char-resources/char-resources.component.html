@@ -1,29 +1,27 @@
-<div class="section-cont" [formGroup]="resourcesForm" *ngIf="resourcesForm">
+<div class="sectioncont" [formGroup]="resourcesForm" *ngIf="resourcesForm">
 
   <h1>Pontelosztás</h1>
 
-  <fieldset *ngFor='let legend of charSubs.getLegends(getResources(), "csoport")'>
+  <fieldset>
     <legend>
-      <div>{{legend}}</div>
-      <div *ngIf="legend == 'Karma'">{{getRemainingKarma()}}</div>
-      <div *ngIf="legend == 'Mágia'">{{getRemainingMagic()}}</div>
-      <div *ngIf="legend == 'Erőforrások'">{{getRemainingCash()}}</div>
+      <div>Karmaelosztás</div>
     </legend>
 
-    <div class="flexcont" *ngFor='let res of charSubs.getGroups(getResources(), legend)'>
+    <div class="flexcont" *ngFor='let res of getResources()'>
       <div class="bl-wh elemnev">
         {{res.nev}}
       </div>
-      <input [formControlName]='res.fcname' *ngIf="!res.hide" type="number" class="elemertek" readonly
+      <input [formControlName]='res.fcname' *ngIf="res.hide==true" type="number" class="elemertek" readonly
       [value]="getTotalValue(res.fcname)">
       <app-levelcontrol
-        *ngIf='res.csoport=="Karma" && res.hide'
+        *ngIf='res.hide==false'
         [baseValue]=0
         [fcName]='getFormcontrol(res.fcname)'
-        [disableIncrement]="nopoints || getTotalValue(res.fcname)==res.maxValue">{{sendResData(res.fcname)}}
-      </app-levelcontrol>
+        [disableIncrement]="nopoints
+         || getTotalValue(res.fcname)==res.maxValue
+         || getRemainingKarma() < res.lepes"
+         [disableDecrement]='disableDec(res.fcname)==0'>
+      </app-levelcontrol>{{sendResData(res.fcname)}}
     </div>
-
   </fieldset>
-
 </div>

@@ -10,27 +10,50 @@
     </div>
   </div>
   <ul class="element-cont bl-wh">
-      <li>
-        <a routerLink="/">Főoldal</a>
+      <li class="w33">
+        <a (click)="showSubMenu('')" routerLink="/">Főoldal</a>
       </li>
-      <li *ngIf="userIsAuthenticated">
-        <a routerLink="/characters">Karakterek</a>
+      <li class="w33" *ngIf="userIsAuthenticated">
+        <a (click)="showSubMenu('')" routerLink="/characters">Karakterek</a>
       </li>
-      <li *ngIf="userIsAuthenticated">
-        <a routerLink="/weaponslist">Fegyverek</a>
+      <li class="w33" *ngIf="!userIsAuthenticated">
+        <a (click)="showSubMenu('')" routerLink="/login">Belépés</a>
       </li>
-      <li *ngIf="userIsAuthenticated">
-        <a routerLink="/weaponaddonslist">Fegyver Kiegészítők</a>
+      <li class="w33" *ngIf="!userIsAuthenticated">
+        <a (click)="showSubMenu('')" routerLink="/register">Regisztráció</a>
       </li>
-      <li *ngIf="!userIsAuthenticated">
-        <a routerLink="/login">Belépés</a>
+      <li class="w33" *ngIf="userIsAuthenticated">
+        <a (click)="onLogout() && showSubMenu('')">Kilépés</a>
       </li>
-      <li *ngIf="!userIsAuthenticated">
-        <a routerLink="/register">Regisztráció</a>
-      </li>
-      <li *ngIf="userIsAuthenticated">
-        <a (click)="onLogout()">Kilépés</a>
-      </li>
-
   </ul>
+
+  <ul class="element-cont bl-wh">
+    <li class="w33" *ngIf="userIsAuthenticated">
+      <a (click)="showSubMenu('armory')">Felszerelések</a>
+    </li>
+    <li class="w33" *ngIf="userIsAuthenticated">
+      <a (click)="showSubMenu('magic')">Mágia</a>
+    </li>
+    <li class="w33" *ngIf="userIsAuthenticated">
+      <a (click)="showSubMenu('cyber')">Kibervilág</a>
+    </li>
+  </ul>
+
+  <!-- Armory -->
+  <ul class="element-cont bl-wh" *ngIf="this.subMenu=='armory'">
+    <li class="w50" *ngIf="userIsAuthenticated">
+      <a routerLink="/weaponslist">Fegyverek</a>
+    </li>
+    <li class="w50" *ngIf="userIsAuthenticated">
+      <a routerLink="/weaponaddonslist">Fegyver Kiegek</a>
+    </li>
+    <li class="w50" *ngIf="userIsAuthenticated">
+      <a routerLink="/armorslist">Páncélok</a>
+    </li>
+    <li class="w50" *ngIf="userIsAuthenticated">
+      <a routerLink="/armoraddonslist">Páncél Kiegek</a>
+    </li>
+  </ul>
+
+
 </nav>

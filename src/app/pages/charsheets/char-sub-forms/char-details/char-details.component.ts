@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { Fajok, HagyomanyLista, Hagyomanyok, Nemek, Nyelvek, selectRaceService } from '../char-utility'
+import { Fajok, HagyomanyLista, Hagyomanyok, Nemek, Nyelvek } from '../char-utility'
 import { details } from './details.model';
+import { DetailsService } from './details.service';
 
 @Component({
   selector: 'app-char-details',
@@ -14,19 +15,12 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
   @Input() detailsForm!: FormGroup;
 
   hideMe: boolean = false;
-  yourRace!: string;
+  yourRace: string;
+  yourMagic: string;
 
   constructor(
-    private selectraceservice: selectRaceService,
+    public detailsServ: DetailsService,
   ) {  }
-
-  hasMagic():boolean {
-    let magic = this.detailsForm.get('magikus')?.value;
-    if (magic == 'inaktiv') {
-      return false;
-    }
-    return true;
-  }
 
   getDetailsData() {
     return details;
@@ -64,14 +58,14 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  sendRaceData(): void {
-    this.selectraceservice.updateRace(
-      this.detailsForm.get('faj')?.value
-    );
+  sendData():void {
+    this.detailsServ.updateRace(this.detailsForm.get('faj')?.value);
+    this.detailsServ.updateMagic(this.detailsForm.get('magikus')?.value);
   }
 
   ngOnInit(): void {
-    this.selectraceservice.getRace.subscribe(yourRace => this.yourRace = yourRace);
+    this.detailsServ.getRace.subscribe(yourRace => this.yourRace = yourRace);
+    this.detailsServ.getMagic.subscribe(yourMagic => this.yourMagic = yourMagic);
    }
 
   ngOnDestroy(): void {
