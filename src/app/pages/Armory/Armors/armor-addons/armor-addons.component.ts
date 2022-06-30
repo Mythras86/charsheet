@@ -2,33 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormGroupConfig } from 'src/app/pages/charsheets/char.fgconfing';
-import { WeaponAddons } from './weapon-addons.model';
-import { WeaponAddonsService } from './weapon-addons.service';
+import { ArmorAddons } from './armor-addons.model';
+import { ArmorAddonsService } from './armor-addons.service';
 
 @Component({
-  selector: 'app-weapon-addons',
-  templateUrl: './weapon-addons.component.html',
-  styleUrls: ['./weapon-addons.component.css']
+  selector: 'app-armor-addons',
+  templateUrl: './armor-addons.component.html',
+  styleUrls: ['./armor-addons.component.css']
 })
-export class WeaponAddonsComponent implements OnInit {
+export class ArmorAddonsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
     public route: ActivatedRoute,
-    private addonServ: WeaponAddonsService,
+    private addonServ: ArmorAddonsService,
     public router: Router
     ) { }
 
-  public weaponAddonsForm!: FormGroup;
+  public armorAddonsForm!: FormGroup;
 
   public mode:string = 'create';
-  public weaponAddonId: string = '';
+  public armorAddonId: string = '';
 
   newAddon() {
-    const newAddon: FormGroupConfig<WeaponAddons> = {
+    const newAddon: FormGroupConfig<ArmorAddons> = {
       id: ['', {value: '', disabled: false}],
       addonName: ['', {value: '', disabled: false}],
-      addonCategory: ['', {value: '', disabled: false}],
       addonPlace: ['', {value: '', disabled: false}],
       addonAddWeight: [0, {value: 0, disabled: false}],
       addonAddPrice: [0, {value: 0, disabled: false}],
@@ -40,13 +39,12 @@ export class WeaponAddonsComponent implements OnInit {
   }
 
   createNewAddon() {
-    var form = this.weaponAddonsForm;
+    var form = this.armorAddonsForm;
     if (form.invalid) {
       return;
     }
     this.addonServ.addOneAddon(
       form.value.addonName,
-      form.value.addonCategory,
       form.value.addonPlace,
       form.value.addonAddWeight,
       form.value.addonAddPrice,
@@ -57,14 +55,13 @@ export class WeaponAddonsComponent implements OnInit {
   }
 
   onSubmit() {
-    var form = this.weaponAddonsForm;
+    var form = this.armorAddonsForm;
      if (form.invalid) {
        return;
      }
      if (this.mode === 'create') {
        this.addonServ.addOneAddon(
          form.value.addonName,
-         form.value.addonCategory,
          form.value.addonPlace,
          form.value.addonAddWeight,
          form.value.addonAddPrice,
@@ -74,9 +71,8 @@ export class WeaponAddonsComponent implements OnInit {
          );
      } else {
        this.addonServ.updateOneAddon(
-         this.weaponAddonId,
+         this.armorAddonId,
          form.value.addonName,
-         form.value.addonCategory,
          form.value.addonPlace,
          form.value.addonAddWeight,
          form.value.addonAddPrice,
@@ -85,24 +81,23 @@ export class WeaponAddonsComponent implements OnInit {
          form.value.addonDesc,
          );
      }
-     this.weaponAddonsForm.reset();
+     this.armorAddonsForm.reset();
   }
 
   backToList() {
-    this.router.navigate(["/weaponaddonslist"]);
+    this.router.navigate(["/armoraddonslist"]);
   }
 
   ngOnInit(): void {
-    this.weaponAddonsForm = this.newAddon();
+    this.armorAddonsForm = this.newAddon();
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has('id')) {
         this.mode = 'edit';
-        this.weaponAddonId = paramMap.get('id')!;
-        this.addonServ.getOneAddon(this.weaponAddonId).subscribe(addonData => {
-          this.weaponAddonsForm = this.fb.group({
+        this.armorAddonId = paramMap.get('id')!;
+        this.addonServ.getOneAddon(this.armorAddonId).subscribe(addonData => {
+          this.armorAddonsForm = this.fb.group({
             id: addonData._id,
             addonName: addonData.addonName,
-            addonCategory: addonData.addonCategory,
             addonPlace: addonData.addonPlace,
             addonAddWeight: addonData.addonAddWeight,
             addonAddPrice: addonData.addonAddPrice,
@@ -110,20 +105,19 @@ export class WeaponAddonsComponent implements OnInit {
             addonMultiPrice: addonData.addonMultiPrice,
             addonDesc: addonData.addonDesc,
           });
-          this.weaponAddonsForm.patchValue({
-            addonName: this.weaponAddonsForm.get('addonName')?.value,
-            addonCategory: this.weaponAddonsForm.get('addonCategory')?.value,
-            addonPlace: this.weaponAddonsForm.get('addonPlace')?.value,
-            addonAddWeight: this.weaponAddonsForm.get('addonAddWeight')?.value,
-            addonAddPrice: this.weaponAddonsForm.get('addonAddPrice')?.value,
-            addonMultiWeight: this.weaponAddonsForm.get('addonMultiWeight')?.value,
-            addonMultiPrice: this.weaponAddonsForm.get('addonMultiPrice')?.value,
-            addonDesc:  this.weaponAddonsForm.get('addonDesc')?.value,
+          this.armorAddonsForm.patchValue({
+            addonName: this.armorAddonsForm.get('addonName')?.value,
+            addonPlace: this.armorAddonsForm.get('addonPlace')?.value,
+            addonAddWeight: this.armorAddonsForm.get('addonAddWeight')?.value,
+            addonAddPrice: this.armorAddonsForm.get('addonAddPrice')?.value,
+            addonMultiWeight: this.armorAddonsForm.get('addonMultiWeight')?.value,
+            addonMultiPrice: this.armorAddonsForm.get('addonMultiPrice')?.value,
+            addonDesc:  this.armorAddonsForm.get('addonDesc')?.value,
           });
         });
       } else {
         this.mode = 'create';
-        this.weaponAddonId = '';
+        this.armorAddonId = '';
       }
     });
   }

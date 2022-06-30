@@ -1,6 +1,6 @@
 const express = require("express");
 
-const AddonController = require("../controllers/weaponAddons");
+const AddonController = require("../controllers/armorAddons");
 
 const router = express.Router();
 

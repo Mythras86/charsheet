@@ -1,4 +1,4 @@
-<div class="sectioncont">
+<div class="sectioncont" *ngIf="armorsServ.armorsList !== null">
 
   <h1>Ruházat és Páncélzat</h1>
 
@@ -6,7 +6,7 @@
     <button type="button" (click)="gotoNewArmor()">Új Páncél Rögzítése</button>
   </div>
 
-  <div class="div100" *ngFor="let categ of getArmorCats()">
+  <div class="w100" *ngFor="let categ of getArmorCats()">
 
     <h2>{{categ}}</h2>
 

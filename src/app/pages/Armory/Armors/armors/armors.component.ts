@@ -87,9 +87,9 @@ export class ArmorsComponent implements OnInit {
   ngOnInit(): void {
     this.newArmorForm = this.newArmor();
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has('armorId')) {
+      if(paramMap.has('id')) {
         this.mode = 'edit';
-        this.armorId = paramMap.get('armorId')!;
+        this.armorId = paramMap.get('id')!;
         this.armorServ.getOneArmor(this.armorId).subscribe(armorData => {
           this.newArmorForm = this.fb.group({
             id: armorData._id,

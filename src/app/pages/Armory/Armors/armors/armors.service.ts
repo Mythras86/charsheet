@@ -45,7 +45,7 @@ export class ArmorsService {
       return of(this.armorsList)
     }
     return this.http
-      .get<{ message: string; armors: any}>(BACKEND_URL + "armorslist")
+      .get<{ message: string; armors: any}>(BACKEND_URL + "list")
       .pipe(
         map(this.processArmorsData),
         tap(this.setArmorsList.bind(this))
@@ -85,6 +85,8 @@ export class ArmorsService {
       BACKEND_URL + "create", armorData).subscribe(response => {
         this.router.navigate(["/armorslist"]);
       });
+      this.armorsList = null;
+      this.getArmors();
   }
 
   updateOneArmor(
@@ -111,13 +113,16 @@ export class ArmorsService {
       .subscribe(response => {
         this.router.navigate(["/armorslist"]);
       });
-    this.getArmors();
+      this.armorsList = null;
+      this.getArmors();
   }
 
   deleteOneArmor(id: string) {
-    return this.http.delete(BACKEND_URL + id).subscribe(response => {
+    this.http.delete(BACKEND_URL + id).subscribe(response => {
       this.router.navigate(["/armorslist "]);
     });
+    this.armorsList = null;
+    this.getArmors();
   }
 }
 

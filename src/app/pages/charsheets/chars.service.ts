@@ -19,7 +19,7 @@ export class CharService {
 
   getChars() {
     this.http
-      .get<{ message: string; chars: any}>(BACKEND_URL + "charslist")
+      .get<{ message: string; chars: any}>(BACKEND_URL + "list")
       .pipe(
         map(charsData => {
           return {

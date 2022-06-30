@@ -1,4 +1,4 @@
-<div class="sectioncont">
+<div class="sectioncont" *ngIf="weaponsServ.weaponsList !== null">
 
   <div class="flexcont">
     <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
@@ -12,7 +12,7 @@
     <button type="button" (click)="gotoNewWeapon()">Új Fegyver Rögzítése</button>
   </div>
 
-  <div *ngFor="let categ of getWeaponCatsFiltered()">
+  <div class="w100" *ngFor="let categ of getWeaponCatsFiltered()">
 
     <h1>{{categ}}</h1>
 

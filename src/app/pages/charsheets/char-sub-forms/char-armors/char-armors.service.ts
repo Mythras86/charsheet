@@ -2,25 +2,26 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
-@Injectable({providedIn: 'root'})
-
-export class CharWeaponsService {
+@Injectable({
+  providedIn: 'root'
+})
+export class CharArmorsService {
 
   constructor(
     private fb: FormBuilder,
   ) { }
 
-  public selectedWeaponID: Subject<string> = new Subject;
+  public selectedArmorID: Subject<string> = new Subject;
 
   createWeapons(): FormGroup {
-    const weaponsForm = {
-      weapons: this.fb.array([]),
+    const armorsForm = {
+      armors: this.fb.array([]),
     };
-    return this.fb.group(weaponsForm);
+    return this.fb.group(armorsForm);
   }
 
   onWeaponSelected(id: string) {
-    this.selectedWeaponID.next(id);
+    this.selectedArmorID.next(id);
   }
 
 }

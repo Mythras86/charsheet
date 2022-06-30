@@ -1,9 +1,3 @@
-.flexcont {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-}
-
 .elemertek {
   flex: 1 2 15%;
 }

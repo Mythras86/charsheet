@@ -46,15 +46,14 @@ export class WeaponsService {
 
   getWeapons(): Observable<Weapons[]> {
     if (this.weaponsList !== null) {
-      return of(this.weaponsList)
+      return of(this.weaponsList);
     }
-
     return this.http
-      .get<{ message: string; weapons: any}>(BACKEND_URL + "weaponslist")
-      .pipe(
-        map(this.processWeaponsData),
-        tap(this.setWeaponsList.bind(this))
-      )
+    .get<{ message: string; weapons: any}>(BACKEND_URL + "list")
+    .pipe(
+      map(this.processWeaponsData),
+      tap(this.setWeaponsList.bind(this))
+    );
   }
 
   getOneWeapon(id: string) {
@@ -108,7 +107,8 @@ export class WeaponsService {
       BACKEND_URL + "create", weaponData).subscribe(response => {
         this.router.navigate(["/weaponslist"]);
       });
-    this.getWeapons();
+      this.weaponsList = null;
+      this.getWeapons();
   }
 
   updateOneWeapon(
@@ -147,13 +147,16 @@ export class WeaponsService {
       .subscribe(response => {
         this.router.navigate(["/weaponslist"]);
       });
-    this.getWeapons();
-  }
+      this.weaponsList = null;
+      this.getWeapons();
+    }
 
   deleteOneWeapon(id: string) {
-    return this.http.delete(BACKEND_URL + id).subscribe(response => {
+    this.http.delete(BACKEND_URL + id).subscribe(response => {
       this.router.navigate(["/weaponslist "]);
     });
+    this.weaponsList = null;
+    this.getWeapons();
   }
 }
 

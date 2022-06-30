@@ -10,7 +10,8 @@
     placeholder="{{item.megjegyz}}">
     <!-- lista inputtal -->
 
-    <input *ngIf='item.type=="inpselect"' [attr.list]=item.listname [formControlName]=item.fcname placeholder="{{item.megjegyz}}">
+    <input *ngIf='item.type=="inpselect"' [attr.list]=item.listname [formControlName]=item.fcname
+    (ngModelChange)="sendData()" placeholder="{{item.megjegyz}}">
     <datalist *ngIf='item.type=="inpselect"' id={{item.listname}}>
       <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
     </datalist>

@@ -10,7 +10,7 @@ router.post("/create", checkAuth, CharController.createChar);
 
 router.put("/:id", checkAuth, CharController.updateChar);
 
-router.get("/charslist", CharController.getChars);
+router.get("/list", CharController.getChars);
 
 router.get("/:id", CharController.getOneChar);
 

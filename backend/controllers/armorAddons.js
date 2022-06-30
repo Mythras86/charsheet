@@ -1,9 +1,8 @@
-const WeaponAddon = require("../models/weaponAddon");
+const ArmorAddon = require("../models/armorAddon");
 
 exports.createAddon = (req, res, next) => {
-  const addon = new WeaponAddon ({
+  const addon = new ArmorAddon ({
     addonName:req.body.addonName,
-    addonCategory:req.body.addonCategory,
     addonPlace:req.body.addonPlace,
     addonAddWeight:req.body.addonAddWeight,
     addonAddPrice:req.body.addonAddPrice,
@@ -16,7 +15,7 @@ exports.createAddon = (req, res, next) => {
     .save()
     .then(createdAddon => {
       res.status(201).json({
-        message: "WeaponAddon added successfully",
+        message: "ArmorAddon added successfully",
         addon: {
           ...createdAddon,
           id: createdAddon._id
@@ -25,16 +24,15 @@ exports.createAddon = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Creating a WeaponAddon failed!"
+        message: "Creating a ArmorAddon failed!"
       });
     });
 };
 
 exports.updateAddon = (req, res, next) => {
-  const addon = new WeaponAddon({
+  const addon = new ArmorAddon({
     _id: req.body.id,
     addonName:req.body.addonName,
-    addonCategory:req.body.addonCategory,
     addonPlace:req.body.addonPlace,
     addonAddWeight:req.body.addonAddWeight,
     addonAddPrice:req.body.addonAddPrice,
@@ -43,7 +41,7 @@ exports.updateAddon = (req, res, next) => {
     addonPrice:req.body.addonPrice,
     addonDesc:req.body.addonDesc,
   });
-  WeaponAddon.updateOne({_id: req.params.id}, addon)
+  ArmorAddon.updateOne({_id: req.params.id}, addon)
     .then(result => {
       console.log (result);
       if (result.modifiedCount > 0) {
@@ -54,18 +52,18 @@ exports.updateAddon = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Couldn't udpate WeaponAddon!"
+        message: "Couldn't udpate ArmorAddon!"
       });
     });
 };
 
 exports.getAddons = (req, res, next) => {
-  const addonQuery = WeaponAddon.find();
+  const addonQuery = ArmorAddon.find();
   let fetchedAddons;
   addonQuery
     .then(documents => {
       fetchedAddons = documents;
-      return WeaponAddon.count();
+      return ArmorAddon.count();
     })
     .then(count => {
       res.status(200).json({
@@ -82,23 +80,23 @@ exports.getAddons = (req, res, next) => {
 };
 
 exports.getOneAddon = (req, res, next) => {
-  WeaponAddon.findById(req.params.id)
+  ArmorAddon.findById(req.params.id)
     .then(addon => {
       if (addon) {
         res.status(200).json(addon);
       } else {
-        res.status(404).json({ message: "WeaponAddon not found!" });
+        res.status(404).json({ message: "ArmorAddon not found!" });
       }
     })
     .catch(error => {
       res.status(500).json({
-        message: "Fetching WeaponAddon failed!"
+        message: "Fetching ArmorAddon failed!"
       });
     });
 };
 
 exports.deleteAddon = (req, res, next) => {
-  WeaponAddon.deleteOne({ _id: req.params.id})
+  ArmorAddon.deleteOne({ _id: req.params.id})
     .then(result => {
       console.log(result);
       if (result.deletedCount > 0) {

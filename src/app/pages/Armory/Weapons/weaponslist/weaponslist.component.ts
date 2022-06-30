@@ -38,10 +38,8 @@ export class WeaponsListComponent implements OnInit {
       let categs = [...new Set(this.weaponsServ.weaponsList.map(x=> x.weaponCategory))];
       return categs;
     }
-    let categs = [...new Set(
-      this.weaponsServ.weaponsList.filter(x=>x.weaponCategory == this.sortMeFilter).map(x=>x.weaponCategory)
-      )];
-      return categs;
+    let categs = [...new Set(this.weaponsServ.weaponsList.filter(x=>x.weaponCategory == this.sortMeFilter).map(x=>x.weaponCategory))];
+    return categs;
   }
 
   getWeaponTypes(categs: string):Array<any> {

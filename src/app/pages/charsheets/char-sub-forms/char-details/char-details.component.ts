@@ -17,6 +17,7 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
   hideMe: boolean = false;
   yourRace: string;
   yourMagic: string;
+  yourLanguage: string;
 
   constructor(
     public detailsServ: DetailsService,
@@ -61,11 +62,13 @@ export class CharDetailsComponent implements OnInit, OnDestroy {
   sendData():void {
     this.detailsServ.updateRace(this.detailsForm.get('faj')?.value);
     this.detailsServ.updateMagic(this.detailsForm.get('magikus')?.value);
+    this.detailsServ.updateLanguage(this.detailsForm.get('anyanyelv')?.value);
   }
 
   ngOnInit(): void {
     this.detailsServ.getRace.subscribe(yourRace => this.yourRace = yourRace);
     this.detailsServ.getMagic.subscribe(yourMagic => this.yourMagic = yourMagic);
+    this.detailsServ.getLanguage.subscribe(yourLanguage => this.yourLanguage = yourLanguage);
    }
 
   ngOnDestroy(): void {

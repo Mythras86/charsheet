@@ -1,110 +1,31 @@
 <div class="sectioncont" *ngIf="skillsForm" [formGroup]='skillsForm'>
 
-  <h1>Szakértelmek {{this.yourSkills}}</h1>
+  <h1>Szakértelmek {{getSumAll()}} {{yourSkills}} </h1>
 
 
-  <fieldset class="arraycont" formArrayName="activeSkills">
+  <fieldset *ngFor="let type of getTypes()" class="arraycont" [formArrayName]='type'>
     <legend>
-      <div>Aktív {{getSum('activeSkills')}}</div>
+      <div>{{getLegends(type)}} {{getSumSub(type)}}</div>
     </legend>
     <div>
-      <button [disabled]="this.yourSkills==0" type="button" (click)="addSkill('activeSkills')">Új Aktív Szakértelem</button>
+      <button [disabled]="this.yourSkills==getSumAll()" type="button" (click)="addSkill(type)">Új {{getLegends(type)}} Szakértelem</button>
     </div>
-    <div class="flexcont" [formGroupName]='i' *ngFor="let item of activeSkills.controls; let i = index">
+    <div class="flexcont" [formGroupName]='i' *ngFor="let item of getControls(type); let i = index">
       <select class="w40 bl-wh" formControlName="skillName">
         <option value="" selected disabled hidden>Válassz</option>
-        <optgroup *ngFor="let item of getGroups('Aktív')" label={{item}}>
+        <optgroup *ngFor="let item of getGroups(type)" label={{item}}>
           <option *ngFor="let listitem of getOptions(item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
         </optgroup>
       </select>
+      <input type="text" formControlName="skillDesc">
       <app-levelcontrol
       [baseValue]=0
-      [fcName]="getFormcontrol(i, 'activeSkills')"
-      [disableIncrement]="getSkillLevel(i, 'activeSkills')==6 || this.yourSkills==0">
+      [fcName]="getFormcontrol(i, type)"
+      [disableIncrement]="getSkillLevel(i, type)==6 || this.yourSkills==getSumAll()">
       </app-levelcontrol>
       <div>
-        <button type="button" (click)="removeSkill(i, 'activeSkills')">X</button>
+        <button type="button" (click)="removeSkill(i, type)">X</button>
       </div>
     </div>
   </fieldset>
-
-  <fieldset class="arraycont" formArrayName="knowledgeSkills">
-    <legend>
-      <div>Ismeret {{getSum('knowledgeSkills')}}</div>
-    </legend>
-      <div>
-        <button [disabled]="this.yourSkills==0" type="button" (click)="addSkill('knowledgeSkills')">Új Ismeret Szakértelem</button>
-      </div>
-      <div class="flexcont" [formGroupName]='i' *ngFor="let item of knowledgeSkills.controls; let i = index">
-        <select class="w40 bl-wh" formControlName="skillName">
-          <option value="" selected disabled hidden>Válassz</option>
-          <optgroup *ngFor="let item of getGroups('Ismeret')" label={{item}}>
-            <option *ngFor="let listitem of getOptions(item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
-          </optgroup>
-        </select>
-        <app-levelcontrol
-        [baseValue]=0
-        [fcName]="getFormcontrol(i, 'knowledgeSkills')"
-        [disableIncrement]="getSkillLevel(i, 'knowledgeSkills')==6 || this.yourSkills==0">
-        </app-levelcontrol>
-        <div>
-          <button type="button" (click)="removeSkill(i, 'knowledgeSkills')">X</button>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset class="arraycont" formArrayName="languageSkills">
-      <legend>
-        <div>Nyelvi {{getSum('languageSkills')}}</div>
-      </legend>
-      <div>
-        <button [disabled]="this.yourSkills==0" type="button" (click)="addSkill('languageSkills')">Új Nyelvi Szakértelem</button>
-      </div>
-      <div class="flexcont" [formGroupName]='i' *ngFor="let item of languageSkills.controls; let i = index">
-        <select class="w40 bl-wh" formControlName="skillName">
-          <option value="" selected disabled hidden>Válassz</option>
-          <optgroup *ngFor="let item of getGroups('Nyelvi')" label={{item}}>
-            <option *ngFor="let listitem of getOptions(item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
-          </optgroup>
-        </select>
-        <app-levelcontrol
-        [baseValue]=0
-        [fcName]="getFormcontrol(i, 'languageSkills')"
-        [disableIncrement]="getSkillLevel(i, 'languageSkills')==6 || this.yourSkills==0">
-        </app-levelcontrol>
-        <div>
-          <button type="button" (click)="removeSkill(i, 'languageSkills')">X</button>
-        </div>
-      </div>
-    </fieldset>
-
-
-
 </div>
-
-<!-- <div class="arraycont" formArrayName="skills">
-
-  <fieldset *ngFor="let legend of getLegends()">
-    <legend>
-      <div>{{legend}}</div>
-    </legend>
-    <div class="flexcont" [formGroupName]='i' *ngFor="let item of filteredSkills(legend); let i = index">
-      <select class="w40 bl-wh" formControlName="skillName">
-        <option value="" selected disabled hidden>Válassz</option>
-        <optgroup *ngFor="let item of getTypes(legend)" label={{item}}>
-          <option *ngFor="let listitem of getGroups(item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
-        </optgroup>
-      </select>
-      <input class="w20" type="text" formControlName="skillDesc">
-      <input class="w20" type="text" formControlName="skillCateg">
-      <app-levelcontrol
-      [baseValue]=0
-      [fcName]='getFormcontrol(i)'
-      [disableIncrement]='getSkillLevel(i)==6 || this.yourSkills==0'>
-      </app-levelcontrol>
-      <button type="button" (click)="removeSkill(i)">X</button>
-    </div>
-  </fieldset>
-
-
-</div> -->

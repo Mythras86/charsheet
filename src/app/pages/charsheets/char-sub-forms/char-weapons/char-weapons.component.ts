@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, AfterContentChecked, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { WeaponsService } from 'src/app/pages/Armory/Weapons/weapons/weapons.service';
-import { AddonsService } from 'src/app/pages/Armory/Weapons/weapon-addons/weapon-addons.service';
+import { WeaponAddonsService } from 'src/app/pages/Armory/Weapons/weapon-addons/weapon-addons.service';
 import { ResourcesService } from '../char-resources/resources.service';
 import { CharWeaponsService } from './char-weapons.service';
 import { ModalService } from 'src/app/modals/modal.service';
 import { WeaponslistModalComponent } from 'src/app/modals/weaponslist-modal/weaponslist-modal.component';
-import { AddonslistModalComponent } from 'src/app/modals/addonslist-modal/addonslist-modal.component';
+import { AddonslistModalComponent } from 'src/app/modals/weaponaddonslist-modal/weaponaddonslist-modal.component';
 
 @Component({
   selector: 'app-char-weapons',
@@ -21,7 +21,7 @@ export class CharWeaponsComponent implements OnInit, AfterContentChecked {
     private fb: FormBuilder,
     private changeDetector: ChangeDetectorRef,
     public weapServ: WeaponsService,
-    public addonServ: AddonsService,
+    public addonServ: WeaponAddonsService,
     public resServ: ResourcesService,
     public charWeaponsServ: CharWeaponsService,
     private modalService: ModalService,
@@ -55,17 +55,31 @@ export class CharWeaponsComponent implements OnInit, AfterContentChecked {
       weaponPrice: this.weapServ.weaponsList.filter(x=>x.id == id).map(x=>x.weaponPrice)[0],
       weaponDesc: this.weapServ.weaponsList.filter(x=>x.id == id).map(x=>x.weaponDesc)[0],
       addonName1: ['', {value: '', disabled: false}],
-      addonPrice1: [0, {value: 0, disabled: false}],
-      addonWeight1: [0, {value: 0, disabled: false}],
+      addonAddPrice1: [0, {value: 0, disabled: false}],
+      addonMultiPrice1: [1, {value: 1, disabled: false}],
+      addonAddWeight1: [0, {value: 0, disabled: false}],
+      addonMultiWeight1: [1, {value: 1, disabled: false}],
       addonDesc1: ['', {value: '', disabled: false}],
       addonName2: ['', {value: '', disabled: false}],
-      addonPrice2: [0, {value: 0, disabled: false}],
-      addonWeight2: [0, {value: 0, disabled: false}],
+      addonAddPrice2: [0, {value: 0, disabled: false}],
+      addonMultiPrice2: [1, {value: 1, disabled: false}],
+      addonAddWeight2: [0, {value: 0, disabled: false}],
+      addonMultiWeight2: [1, {value: 1, disabled: false}],
       addonDesc2: ['', {value: '', disabled: false}],
       addonName3: ['', {value: '', disabled: false}],
-      addonPrice3: [0, {value: 0, disabled: false}],
-      addonWeight3: [0, {value: 0, disabled: false}],
+      addonAddPrice3: [0, {value: 0, disabled: false}],
+      addonMultiPrice3: [1, {value: 1, disabled: false}],
+      addonAddWeight3: [0, {value: 0, disabled: false}],
+      addonMultiWeight3: [1, {value: 1, disabled: false}],
       addonDesc3: ['', {value: '', disabled: false}],
+      addonName4: ['', {value: '', disabled: false}],
+      addonAddPrice4: [0, {value: 0, disabled: false}],
+      addonMultiPrice4: [1, {value: 1, disabled: false}],
+      addonAddWeight4: [0, {value: 0, disabled: false}],
+      addonMultiWeight4: [1, {value: 1, disabled: false}],
+      addonDesc4: ['', {value: '', disabled: false}],
+      weaponTotalPrice: [0, {value: 0, disabled: false}],
+      weaponTotalWeight: [0, {value: 0, disabled: false}],
     });
     this.weapons?.push(weaponsForm);
   }
@@ -81,10 +95,17 @@ export class CharWeaponsComponent implements OnInit, AfterContentChecked {
 
   getSubTotal(i:number, tag:string):number {
     const weapon:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('weapon' +tag)?.value;
-    const kieg1:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addon' + tag + '1')?.value;
-    const kieg2:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addon' + tag + '2')?.value;
-    const kieg3:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addon' + tag + '3')?.value;
-    return weapon+kieg1+kieg2+kieg3;
+    const kieg1add:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonAdd' + tag + '1')?.value;
+    const kieg2add:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonAdd' + tag + '2')?.value;
+    const kieg3add:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonAdd' + tag + '3')?.value;
+    const kieg4add:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonAdd' + tag + '4')?.value;
+    const kieg1multi:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '1')?.value;
+    const kieg2multi:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '2')?.value;
+    const kieg3multi:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '3')?.value;
+    const kieg4multi:number = ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '4')?.value;
+    const subtotal = weapon*kieg1multi*kieg2multi*kieg3multi*kieg4multi+kieg1add+kieg2add+kieg3add+kieg4add;
+    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('weaponTotal'+tag)?.patchValue(subtotal);
+    return Math.round((subtotal + Number.EPSILON) * 100) / 100;
   }
 
   AddAddon(i:number, tag:number, categ:string) {
@@ -93,16 +114,22 @@ export class CharWeaponsComponent implements OnInit, AfterContentChecked {
 
   onAddAddon(id:string, i:number, tag:number) {
     ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonName'+tag)?.patchValue(
-      this.addonServ.addonsList.filter(x=>x.id == id).map(x=>x.addonName)[0]
+      this.addonServ.weaponAddonsList.filter(x=>x.id == id).map(x=>x.addonName)[0]
     );
-    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonPrice'+tag)?.patchValue(
-      this.addonServ.addonsList.filter(x=>x.id == id).map(x=>x.addonPrice)[0]
+    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonAddPrice'+tag)?.patchValue(
+      this.addonServ.weaponAddonsList.filter(x=>x.id == id).map(x=>x.addonAddPrice)[0]
     );
-    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonWeight'+tag)?.patchValue(
-      this.addonServ.addonsList.filter(x=>x.id == id).map(x=>x.addonWeight)[0]
+    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonAddWeight'+tag)?.patchValue(
+      this.addonServ.weaponAddonsList.filter(x=>x.id == id).map(x=>x.addonAddWeight)[0]
+    );
+    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonMultiPrice'+tag)?.patchValue(
+      this.addonServ.weaponAddonsList.filter(x=>x.id == id).map(x=>x.addonMultiPrice)[0]
+    );
+    ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonMultiWeight'+tag)?.patchValue(
+      this.addonServ.weaponAddonsList.filter(x=>x.id == id).map(x=>x.addonMultiWeight)[0]
     );
     ((this.weaponsForm.get('weapons') as FormArray).at(i) as FormGroup).get('addonDesc'+tag)?.patchValue(
-      this.addonServ.addonsList.filter(x=>x.id == id).map(x=>x.addonDesc)[0]
+      this.addonServ.weaponAddonsList.filter(x=>x.id == id).map(x=>x.addonDesc)[0]
     );
   }
 
@@ -110,14 +137,9 @@ export class CharWeaponsComponent implements OnInit, AfterContentChecked {
     return this.weaponsForm.get('weapons') as FormArray;
   }
 
-  getSum():number | null {
-    const sumWeapons:number = (this.weaponsForm.get('weapons') as FormArray).value.reduce((prev: number, next: { weaponPrice: number; }) => prev + +next.weaponPrice, 0);
-    const sumKieg1:number = (this.weaponsForm.get('weapons') as FormArray).value.reduce((prev: number, next: { addonPrice1: number; }) => prev + +next.addonPrice1, 0);
-    const sumKieg2:number = (this.weaponsForm.get('weapons') as FormArray).value.reduce((prev: number, next: { addonPrice2: number; }) => prev + +next.addonPrice2, 0);
-    const sumKieg3:number = (this.weaponsForm.get('weapons') as FormArray).value.reduce((prev: number, next: { addonPrice3: number; }) => prev + +next.addonPrice3, 0);
-    const sumAll:number = sumWeapons + sumKieg1 + sumKieg2 + sumKieg3;
-    this.resServ.updateMoney(this.yourMoney-sumAll);
-    return sumAll;
+  getSum(tag:string):number | null {
+    const sumthing:number = (this.weaponsForm.get('weapons') as FormArray).value.reduce((prev: number, next:number) => prev + +next['weaponTotal'+tag], 0);
+    return Math.round((sumthing + Number.EPSILON) * 100) / 100;
   }
 
   ngAfterContentChecked(): void {
@@ -132,7 +154,7 @@ export class CharWeaponsComponent implements OnInit, AfterContentChecked {
     });
     this.addonServ.getAddons().subscribe({
       next: (w) => {
-        this.addonServ.addonsList = w;
+        this.addonServ.weaponAddonsList = w;
       }
     });
     this.resServ.getMoneyFlow.subscribe(yourMoney => this.yourMoney = yourMoney);

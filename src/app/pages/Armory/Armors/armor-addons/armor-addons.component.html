@@ -1,18 +1,14 @@
-<form class="sectioncont" [formGroup]="weaponAddonsForm" (ngSubmit)="onSubmit()">
+<form class="sectioncont" [formGroup]="armorAddonsForm" (ngSubmit)="onSubmit()">
 
   <label class="bl-wh" for="addonName">Név</label>
   <input class="" id="addonName" type="text" formControlName="addonName">
 
-  <label class="bl-wh" for="addonCategory">Kategória</label>
-  <input class="" id="addonCategory" type="text" formControlName="addonCategory">
-
   <label class="bl-wh" for="addonPlace">Elhelyezés</label>
   <select formControlName="addonPlace" id="addonPlace">
     <option value="" selected disabled hidden>Válassz</option>
-    <option value="kieg1">Kiegészítő1</option>
-    <option value="kieg2">Kiegészítő2</option>
-    <option value="kieg3">Kiegészítő3</option>
-    <option value="kieg4">Kiegészítő4</option>
+    <option value="Sisak kiegészítők">Sisak kiegészítők</option>
+    <option value="Páncél kiegészítők">Páncél kiegészítők</option>
+    <option value="Pajzs kiegészítők">Pajzs kiegészítők</option>
   </select>
 
   <label class="bl-wh" for="addonAddWeight">Extra súly</label>

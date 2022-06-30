@@ -1,7 +1,7 @@
 
-<div class="sectioncont" *ngIf="weapons" [formGroup]='weaponsForm'>
+<div class="sectioncont" *ngIf="weaponsForm" [formGroup]='weaponsForm'>
 
-  <h1>Fegyverek {{getSum()}} / {{this.yourMoney}}</h1>
+  <h1>Fegyverek {{getSum('Price')}} / {{this.yourMoney}} / {{getSum('Weight')}}</h1>
 
   <div formArrayName="weapons">
     <div [formGroupName]='i' *ngFor="let weapon of weapons?.controls; let i = index">
@@ -28,19 +28,24 @@
         <input type="text" class="w100" formControlName="weaponDesc" placeholder="Megjegyzések">
         <fieldset>
           <div class="flexcont w100" (click)="AddAddon(i, 1, getDetails(i, 'weaponCategory'))">
-            <div>Kiegészítő1</div>
-            <div class="w50 bl-wh">{{getDetails(i, 'addonName1')}}</div>
+            <div *ngIf="getDetails(i, 'addonName1') == ''">Kiegészítő1</div>
+            <div *ngIf="getDetails(i, 'addonName1') !== ''" class="w50 bl-wh">{{getDetails(i, 'addonName1')}}</div>
             <div class="w100">{{getDetails(i, 'addonDesc1')}}</div>
           </div>
           <div class="flexcont w100" (click)="AddAddon(i, 2, getDetails(i, 'weaponCategory'))">
-            <div>Kiegészítő2</div>
-            <div class="w50 bl-wh">{{getDetails(i, 'addonName2')}}</div>
+            <div *ngIf="getDetails(i, 'addonName2') == ''">Kiegészítő2</div>
+            <div *ngIf="getDetails(i, 'addonName2') !== ''" class="w50 bl-wh">{{getDetails(i, 'addonName2')}}</div>
             <div class="w100">{{getDetails(i, 'addonDesc2')}}</div>
           </div>
           <div class="flexcont w100" (click)="AddAddon(i, 3, getDetails(i, 'weaponCategory'))">
-            <div>Kiegészítő3</div>
-            <div class="w50 bl-wh">{{getDetails(i, 'addonName3')}}</div>
+            <div *ngIf="getDetails(i, 'addonName3') == ''">Kiegészítő3</div>
+            <div *ngIf="getDetails(i, 'addonName3') !== ''" class="w50 bl-wh">{{getDetails(i, 'addonName3')}}</div>
             <div class="w100">{{getDetails(i, 'addonDesc3')}}</div>
+          </div>
+          <div class="flexcont w100" (click)="AddAddon(i, 4, getDetails(i, 'weaponCategory'))">
+            <div *ngIf="getDetails(i, 'addonName4') == ''">Kiegészítő4</div>
+            <div *ngIf="getDetails(i, 'addonName4') !== ''" class="w50 bl-wh">{{getDetails(i, 'addonName4')}}</div>
+            <div class="w100">{{getDetails(i, 'addonDesc4')}}</div>
           </div>
         </fieldset>
       </fieldset>

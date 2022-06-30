@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddonslistModalComponent } from './addonslist-modal.component';
+import { AddonslistModalComponent } from './weaponaddonslist-modal.component';
 
 describe('AddonslistModalComponent', () => {
   let component: AddonslistModalComponent;

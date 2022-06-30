@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { CharWeaponsService } from 'src/app/pages/charsheets/char-sub-forms/char-weapons/char-weapons.service';
 import { AModal } from '../weaponslist-modal/modal.abstract';
 
 @Component({
-  selector: 'app-addonslist-modal',
-  templateUrl: './addonslist-modal.component.html',
-  styleUrls: ['./addonslist-modal.component.css']
+  selector: 'app-weaponaddonslist-modal',
+  templateUrl: './weaponaddonslist-modal.component.html',
+  styleUrls: ['./weaponaddonslist-modal.component.css']
 })
 export class AddonslistModalComponent implements OnInit, AModal {
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AddonsService } from '../weapon-addons/weapon-addons.service';
+import { WeaponAddonsService } from '../weapon-addons/weapon-addons.service';
 
 @Component({
   selector: 'app-weapon-addonslist',
@@ -10,7 +10,7 @@ import { AddonsService } from '../weapon-addons/weapon-addons.service';
 export class WeaponAddonslistComponent implements OnInit {
 
   constructor(
-    public addonServ: AddonsService,
+    public addonServ: WeaponAddonsService,
     private router: Router
   ) { }
 
@@ -19,44 +19,46 @@ export class WeaponAddonslistComponent implements OnInit {
   @Input() categFilter: string = '';
   @Input() kiegFilter: string = '';
 
-  public addonId:string = '';
+  public weaponAddonId:string = '';
 
   sortMeBy(categ: string):void {
     this.categFilter = categ;
   }
 
-  getAddons(type: string, categ: string): Array<any> | null {
-    if (this.kiegFilter !== '') {
-      const addons = this.addonServ.addonsList.filter(x=> x.addonCategory == this.categFilter);
-      return addons.filter(x=> x.addonPlace == this.kiegFilter);
-    }
-    const addons = this.addonServ.addonsList.filter(x=> x.addonPlace == type);
-    return addons.filter(x=> x.addonCategory == categ);
-  }
-
   getAddonCats(): Array<any> | null {
-    const categs = [...new Set(this.addonServ.addonsList.map(x => x.addonCategory))];
+    const categs = [...new Set(this.addonServ.weaponAddonsList.map(x => x.addonCategory))];
     return categs;
   }
 
   getAddonCatsFiltered(): Array<any> | null {
     if(this.categFilter == '') {
-      let categs = [...new Set(this.addonServ.addonsList.map(x => x.addonCategory))];
+      const categs = [...new Set(this.addonServ.weaponAddonsList.map(x => x.addonCategory))];
       return categs;
     }
-    let categs = [...new Set(
-      this.addonServ.addonsList.filter(x=>x.addonCategory == this.categFilter).map(x=>x.addonCategory)
-    )];
+    const categs = [...new Set(this.addonServ.weaponAddonsList.filter(x=>x.addonCategory == this.categFilter)
+      .map(x=>x.addonCategory))];
     return categs;
   }
 
-  getAddonPlace(categs: string):Array<any> {
-    if (this.kiegFilter !== '') {
-      const types = this.addonServ.addonsList.filter(x=> x.addonCategory == this.categFilter);
-      return types.filter(x=> x.addonPlace == this.kiegFilter).map(x=> x.addonPlace);
+  getAddonByPlace(categs: string):Array<any> {
+    if (this.kiegFilter == '') {
+      const place = [...new Set(this.addonServ.weaponAddonsList.filter(x => x.addonCategory == categs).map(x => x.addonPlace))];
+      return place;
     }
-    const types = [...new Set(this.addonServ.addonsList.filter(x => x.addonCategory == categs).map(x => x.addonPlace))];
-    return types;
+    const place = [...new Set(this.addonServ.weaponAddonsList.filter(x=> x.addonCategory == this.categFilter)
+    .filter(x=> x.addonPlace == this.kiegFilter).map(x=> x.addonPlace))];
+    return place;
+  }
+
+  getAddons(type: string, categ: string): Array<any> | null {
+    if (this.kiegFilter !== '') {
+      const addons = [...new Set(this.addonServ.weaponAddonsList.filter(x => x.addonCategory == this.categFilter))]
+      .filter(x=> x.addonPlace == this.kiegFilter).map(x=> x);
+      return addons;
+    }
+    const addons = this.addonServ.weaponAddonsList.filter(x=> x.addonPlace == type)
+    .filter(x=> x.addonCategory == categ);
+    return addons;
   }
 
   gotoNewAddon() {
@@ -74,7 +76,7 @@ export class WeaponAddonslistComponent implements OnInit {
   ngOnInit(): void {
     this.addonServ.getAddons().subscribe({
       next: (w) => {
-        this.addonServ.addonsList = w;
+        this.addonServ.weaponAddonsList = w;
       }
     });
   }

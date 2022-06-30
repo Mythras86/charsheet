@@ -1,8 +1,11 @@
-<form [formGroup]="loginUserForm" (ngSubmit)="onLogin()">
+<app-spinner *ngIf="isLoading"></app-spinner>
+
+<form *ngIf="!isLoading" class="sectioncont" [formGroup]="loginUserForm" (ngSubmit)="onLogin()">
 
   <input type="email" formControlName="useremail" placeholder="E-amil cím">
   <input type="password" formControlName="userpass" placeholder="Jelszó">
-  <button type="submit"  *ngIf="!isLoading" [disabled]="!loginUserForm.valid">Belépés</button>
-  <app-spinner *ngIf="isLoading"></app-spinner>
+  <div>
+    <button type="submit"  *ngIf="!isLoading" [disabled]="!loginUserForm.valid">Belépés</button>
+  </div>
 
 </form>

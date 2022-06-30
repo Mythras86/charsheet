@@ -33,13 +33,17 @@ import { ModalWrapperComponent } from './modals/modal-wrapper.component';
 import { ModalService } from './modals/modal.service';
 import { WeaponsService } from './pages/Armory/Weapons/weapons/weapons.service';
 import { CharWeaponsService } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.service';
-import { AddonslistModalComponent } from './modals/addonslist-modal/addonslist-modal.component';
+import { AddonslistModalComponent } from './modals/weaponaddonslist-modal/weaponaddonslist-modal.component';
 import { ResourcesService } from './pages/charsheets/char-sub-forms/char-resources/resources.service';
 import { SkillsService } from './pages/charsheets/char-sub-forms/char-skills/skills.service';
-import { AddonsService } from './pages/Armory/Weapons/weapon-addons/weapon-addons.service';
+import { WeaponAddonsService } from './pages/Armory/Weapons/weapon-addons/weapon-addons.service';
 import { AttributesService } from './pages/charsheets/char-sub-forms/char-attributes/attributes.service';
 import { DetailsService } from './pages/charsheets/char-sub-forms/char-details/details.service';
 import { ArmorsService } from './pages/Armory/Armors/armors/armors.service';
+import { CharArmorsComponent } from './pages/charsheets/char-sub-forms/char-armors/char-armors.component';
+import { ArmorAddonsComponent } from './pages/Armory/Armors/armor-addons/armor-addons.component';
+import { ArmorAddonsService } from './pages/Armory/Armors/armor-addons/armor-addons.service';
+import { ArmorAddonslistComponent } from './pages/Armory/Armors/armor-addonslist/armor-addonslist.component';
 
 @NgModule({
   declarations: [
@@ -60,14 +64,18 @@ import { ArmorsService } from './pages/Armory/Armors/armors/armors.service';
     LevelcontrolComponent,
     CharWeaponsComponent,
     WeaponsComponent,
-    WeaponAddonsComponent,
     WeaponsListComponent,
+    WeaponAddonsComponent,
     WeaponAddonslistComponent,
     ArmorsComponent,
     ArmorslistComponent,
+    ArmorslistComponent,
+    ArmorAddonsComponent,
+    ArmorAddonslistComponent,
     WeaponslistModalComponent,
     ModalWrapperComponent,
-    AddonslistModalComponent
+    AddonslistModalComponent,
+    CharArmorsComponent
   ],
   imports: [
     BrowserModule,
@@ -83,13 +91,15 @@ import { ArmorsService } from './pages/Armory/Armors/armors/armors.service';
     CharWeaponsService,
     ResourcesService,
     SkillsService,
-    AddonsService,
+    WeaponAddonsService,
     AttributesService,
     DetailsService,
-    AddonsService,
     ArmorsService,
+    ArmorAddonsService,
   ],
   bootstrap: [AppComponent],
-  exports: [],
+  exports: [
+    CharArmorsComponent
+  ],
 })
 export class AppModule { }

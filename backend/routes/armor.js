@@ -8,7 +8,7 @@ router.post("/create", ArmorController.createArmor);
 
 router.patch("/:id", ArmorController.updateArmor);
 
-router.get("/armorslist", ArmorController.getArmors);
+router.get("/list", ArmorController.getArmors);
 
 router.get("/:id", ArmorController.getOneArmor);
 

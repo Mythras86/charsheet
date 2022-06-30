@@ -27,6 +27,13 @@ export class DetailsService {
     this.selectedMagic.next(yourMagic);
   }
 
+  public selectedLanguage = new BehaviorSubject<string>('');
+  getLanguage = this.selectedLanguage.asObservable();
+
+  updateLanguage(yourLanguage: string): void {
+    this.selectedLanguage.next(yourLanguage);
+  }
+
   createDetails(): FormGroup {
     const details: FormGroupConfig<Details> = {
     // szöveges

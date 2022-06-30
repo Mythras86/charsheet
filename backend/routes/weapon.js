@@ -8,7 +8,7 @@ router.post("/create", WeaponController.createWeapon);
 
 router.patch("/:id", WeaponController.updateWeapon);
 
-router.get("/weaponslist", WeaponController.getWeapons);
+router.get("/list", WeaponController.getWeapons);
 
 router.get("/:id", WeaponController.getOneWeapon);
 

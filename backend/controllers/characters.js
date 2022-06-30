@@ -82,7 +82,7 @@ exports.getChars = (req, res, next) => {
 };
 
 exports.getOneChar = (req, res, next) => {
-  char.findById(req.params.id)
+  Char.findById(req.params.id)
     .then(char => {
       if (char) {
         res.status(200).json(char);

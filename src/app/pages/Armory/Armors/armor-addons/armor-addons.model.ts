@@ -1,7 +1,6 @@
-export interface WeaponAddons {
+export interface ArmorAddons {
   id: string,
   addonName: string,
-  addonCategory: string,
   addonPlace: string,
   addonAddWeight: number,
   addonAddPrice: number,
@@ -10,6 +9,6 @@ export interface WeaponAddons {
   addonDesc: string,
 }
 
-export interface WeaponAddonsDataInterface {
-  addons: WeaponAddons[];
+export interface ArmorAddonsDataInterface {
+  addons: ArmorAddons[];
 }

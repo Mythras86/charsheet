@@ -5,54 +5,53 @@ import { Router } from "@angular/router";
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { WeaponAddons, WeaponAddonsDataInterface } from './weapon-addons.model';
+import { ArmorAddons, ArmorAddonsDataInterface } from './armor-addons.model';
 
-const BACKEND_URL = environment.apiUrl + "/weaponaddons/";
+const BACKEND_URL = environment.apiUrl + "/armoraddons/";
 
 @Injectable({providedIn: 'root'})
 
-export class WeaponAddonsService {
+export class ArmorAddonsService {
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
   ) {
-    this.weaponAddonsList = null;
+    this.armorAddonsList = null;
    }
 
-  public weaponAddonsList: WeaponAddons[] = [];
+  public armorAddonsList: ArmorAddons[] = [];
 
   createAddons(): FormGroup {
-    const addonsForm = {
+    const armorAddonsForm = {
       addons: this.fb.array([]),
     };
-    return this.fb.group(addonsForm);
+    return this.fb.group(armorAddonsForm);
   }
 
-  private processAddonData(addonsData: WeaponAddonsDataInterface) {
+  private processAddonData(addonsData: ArmorAddonsDataInterface) {
     return addonsData.addons.map((w) => {
       return {
         id: (w as any)._id,
         addonName: w.addonName,
-        addonCategory: w.addonCategory,
         addonPlace: w.addonPlace,
         addonAddWeight: w.addonAddWeight,
         addonAddPrice: w.addonAddPrice,
         addonMultiWeight: w.addonMultiWeight,
         addonMultiPrice: w.addonMultiPrice,
         addonDesc: w.addonDesc,
-      } as WeaponAddons
+      } as ArmorAddons
     });
   }
 
-  private setAddonsList (weaponAddonsList: WeaponAddons[]) {
-    this.weaponAddonsList = weaponAddonsList;
+  private setAddonsList (armorAddonsList: ArmorAddons[]) {
+    this.armorAddonsList = armorAddonsList;
   }
 
-  getAddons(): Observable<WeaponAddons[]> {
-    if (this.weaponAddonsList !== null) {
-      return of(this.weaponAddonsList)
+  getAddons(): Observable<ArmorAddons[]> {
+    if (this.armorAddonsList !== null) {
+      return of(this.armorAddonsList)
     }
     return this.http
       .get<{ message: string; addons: any}>(BACKEND_URL + "list")
@@ -66,7 +65,6 @@ export class WeaponAddonsService {
     return this.http.get<{
       _id: string;
       addonName: string,
-      addonCategory: string,
       addonPlace: string,
       addonAddWeight: number,
       addonAddPrice: number,
@@ -78,7 +76,6 @@ export class WeaponAddonsService {
 
   addOneAddon(
     addonName: string,
-    addonCategory: string,
     addonPlace: string,
     addonAddWeight: number,
     addonAddPrice: number,
@@ -86,10 +83,9 @@ export class WeaponAddonsService {
     addonMultiPrice: number,
   addonDesc: string,
 ) {
-    const addonData: WeaponAddons = {
+    const addonData: ArmorAddons = {
       id:'',
       addonName: addonName,
-      addonCategory: addonCategory,
       addonPlace: addonPlace,
       addonAddWeight: addonAddWeight,
       addonAddPrice: addonAddPrice,
@@ -97,18 +93,17 @@ export class WeaponAddonsService {
       addonMultiPrice: addonMultiPrice,
       addonDesc: addonDesc,
     };
-    this.http.post<{ message: string; addon: WeaponAddons }>(
+    this.http.post<{ message: string; addon: ArmorAddons }>(
       BACKEND_URL + "create", addonData).subscribe(response => {
-        this.router.navigate(["/weaponaddonslist"]);
+        this.router.navigate(["/armoraddonslist"]);
       });
-      this.weaponAddonsList= null;
+      this.armorAddonsList= null;
       this.getAddons();
   }
 
   updateOneAddon(
     id: string,
     addonName: string,
-    addonCategory: string,
     addonPlace: string,
     addonAddWeight: number,
     addonAddPrice: number,
@@ -116,11 +111,10 @@ export class WeaponAddonsService {
     addonMultiPrice: number,
     addonDesc: string,
   ) {
-    let addonData: WeaponAddons;
+    let addonData: ArmorAddons;
     addonData = {
       id: id,
       addonName: addonName,
-      addonCategory: addonCategory,
       addonPlace: addonPlace,
       addonAddWeight: addonAddWeight,
       addonAddPrice: addonAddPrice,
@@ -131,17 +125,17 @@ export class WeaponAddonsService {
     this.http
     .patch(BACKEND_URL + id, addonData)
     .subscribe(response => {
-      this.router.navigate(["/weaponaddonslist"]);
+      this.router.navigate(["/armoraddonslist"]);
     });
-    this.weaponAddonsList= null;
+    this.armorAddonsList= null;
     this.getAddons();
   }
 
   deleteOneAddon(id: string) {
     this.http.delete(BACKEND_URL + id).subscribe(response => {
-      this.weaponAddonsList= null;
+      this.armorAddonsList= null;
     });
     this.getAddons();
-    this.router.navigate(["/weaponaddonslist"]);
+    this.router.navigate(["/armoraddonslist"]);
   }
 }

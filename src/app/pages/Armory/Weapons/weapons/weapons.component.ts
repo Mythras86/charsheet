@@ -107,9 +107,9 @@ export class WeaponsComponent implements OnInit {
   ngOnInit(): void {
     this.newWeaponForm = this.newWeapon();
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has('weaponId')) {
+      if(paramMap.has('id')) {
         this.mode = 'edit';
-        this.weaponId = paramMap.get('weaponId')!;
+        this.weaponId = paramMap.get('id')!;
         this.weapServ.getOneWeapon(this.weaponId).subscribe(weaponData => {
           this.newWeaponForm = this.fb.group({
             id: weaponData._id,
