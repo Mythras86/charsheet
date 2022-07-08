@@ -8,11 +8,11 @@
     </div>
   </div>
 
-  <div>
-    <button type="button" (click)="gotoNewWeapon()">Új Fegyver Rögzítése</button>
+  <div class="buttoncont">
+    <button class="gr-wh" type="button" (click)="gotoNewWeapon()"*ngIf="!selectionMode">Új Fegyver Rögzítése</button>
   </div>
 
-  <div class="w100" *ngFor="let categ of getWeaponCatsFiltered()">
+  <div *ngFor="let categ of getWeaponCatsFiltered()">
 
     <h1>{{categ}}</h1>
 
@@ -20,18 +20,18 @@
 
       <h2>{{type}}</h2>
 
-      <div *ngFor="let item of getWeapons(type)">
-        <div class="flexcont" (click)="sendWeaponID(item.id)">
-          <div class="w50 bl-wh">{{item.weaponName}}</div>
-          <div class="w20">Táv: {{item.weaponRange}}</div>
-          <div class="w30 bl-wh">{{item.weaponPrice}} cred</div>
-          <div class="w50">{{item.weaponMods}} || {{item.weaponClip}}</div>
-          <div class="w20">{{item.weaponWeight}} Kg</div>
-          <div class="w30 or-bl">{{item.weaponPower}} ({{item.weaponDamage}}) {{item.weaponDmgType}}</div>
-          <div class="w100">Megj.: {{item.weaponDesc}}</div>
+      <div class="flexcont itemcont" (click)="sendWeaponID(item.id)" *ngFor="let item of getWeapons(type)">
+        <div class="w50 bl-wh">{{item.weaponName}}</div>
+        <div class="w20">Táv: {{item.weaponRange}}</div>
+        <div class="w30 bl-wh">{{item.weaponPrice}} cred</div>
+        <div class="w50">{{item.weaponMods}} | {{item.weaponClip}}</div>
+        <div class="w20">{{item.weaponWeight}} Kg</div>
+        <div class="w30 or-bl">{{item.weaponPower}} ({{item.weaponDamage}}) {{item.weaponDmgType}}</div>
+        <div class="w100">Megj.: {{item.weaponDesc}}</div>
+        <div class=""*ngIf="!selectionMode">
+          <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+          <button class="re-wh" type="button" (click)="weaponsServ.deleteOneWeapon(item.id)">Törlés</button>
         </div>
-        <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
-        <button class="or-bl" type="button" (click)="weaponsServ.deleteOneWeapon(item.id)">Törlés</button>
       </div>
     </div>
   </div>

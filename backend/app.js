@@ -14,6 +14,7 @@ const app = express();
 mongoose
   .connect(
     process.env.DB_CONNECT
+    //"mongodb+srv://Testuser:vTrWLCEg3Mj5Jfwf@mydevdb.igiaj.mongodb.net/charsheet"
   )
   .then(() => {
     console.log("Connected to database!");

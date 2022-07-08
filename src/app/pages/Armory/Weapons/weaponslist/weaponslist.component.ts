@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeaponsService } from '../weapons/weapons.service';
 
@@ -15,6 +15,8 @@ export class WeaponsListComponent implements OnInit {
   ) { }
 
   @Output() onWeaponSelected = new EventEmitter<string>();
+
+  @Input() selectionMode: boolean = false;
 
   public sortMeFilter: string = 'none';
 

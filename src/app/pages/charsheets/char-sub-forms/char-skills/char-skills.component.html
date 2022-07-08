@@ -1,31 +1,31 @@
-<div class="sectioncont" *ngIf="skillsForm" [formGroup]='skillsForm'>
+<h1 (click)="toggleHide()">Szakértelmek {{getSumAll()}} / {{yourSkills}} </h1>
 
-  <h1>Szakértelmek {{getSumAll()}} {{yourSkills}} </h1>
+<div class="sectioncont" [hidden]="hideMe" *ngIf="skillsForm" [formGroup]='skillsForm'>
 
-
-  <fieldset *ngFor="let type of getTypes()" class="arraycont" [formArrayName]='type'>
+  <fieldset *ngFor="let type of getTypes()" [formArrayName]='type'>
     <legend>
       <div>{{getLegends(type)}} {{getSumSub(type)}}</div>
     </legend>
-    <div>
-      <button [disabled]="this.yourSkills==getSumAll()" type="button" (click)="addSkill(type)">Új {{getLegends(type)}} Szakértelem</button>
+    <div class="buttoncont">
+      <button class="gr-wh" [disabled]="this.yourSkills==getSumAll()" type="button"
+      (click)="addSkill(type)">Új {{getLegends(type)}} Szakértelem</button>
     </div>
+
     <div class="flexcont" [formGroupName]='i' *ngFor="let item of getControls(type); let i = index">
-      <select class="w40 bl-wh" formControlName="skillName">
+      <select class="w50 bl-wh" formControlName="skillName">
         <option value="" selected disabled hidden>Válassz</option>
         <optgroup *ngFor="let item of getGroups(type)" label={{item}}>
           <option *ngFor="let listitem of getOptions(item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
         </optgroup>
       </select>
-      <input type="text" formControlName="skillDesc">
+      <div class="bl-wh w30">{{getSelectedGroup(i, type)}}</div>
+      <button class="w20 re-wh" type="button" (click)="removeSkill(i, type)">Törlés</button>
       <app-levelcontrol
       [baseValue]=0
       [fcName]="getFormcontrol(i, type)"
       [disableIncrement]="getSkillLevel(i, type)==6 || this.yourSkills==getSumAll()">
       </app-levelcontrol>
-      <div>
-        <button type="button" (click)="removeSkill(i, type)">X</button>
-      </div>
+      <input class="w70" type="text" formControlName="skillDesc">
     </div>
   </fieldset>
 </div>

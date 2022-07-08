@@ -44,6 +44,8 @@ import { CharArmorsComponent } from './pages/charsheets/char-sub-forms/char-armo
 import { ArmorAddonsComponent } from './pages/Armory/Armors/armor-addons/armor-addons.component';
 import { ArmorAddonsService } from './pages/Armory/Armors/armor-addons/armor-addons.service';
 import { ArmorAddonslistComponent } from './pages/Armory/Armors/armor-addonslist/armor-addonslist.component';
+import { ArmorslistModalComponent } from './modals/armorslist-modal/armorslist-modal.component';
+import { ArmorAddonslistModalComponent } from './modals/armoraddonslist-modal/armoraddonslist-modal.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { ArmorAddonslistComponent } from './pages/Armory/Armors/armor-addonslist
     WeaponslistModalComponent,
     ModalWrapperComponent,
     AddonslistModalComponent,
-    CharArmorsComponent
+    CharArmorsComponent,
+    ArmorslistModalComponent,
+    ArmorAddonslistModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,7 +103,8 @@ import { ArmorAddonslistComponent } from './pages/Armory/Armors/armor-addonslist
   ],
   bootstrap: [AppComponent],
   exports: [
-    CharArmorsComponent
+    CharArmorsComponent,
+    ArmorslistModalComponent
   ],
 })
 export class AppModule { }

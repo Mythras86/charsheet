@@ -22,6 +22,12 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
 
   public yourSkills:number = 0;
   public yourLanguage:string = '';
+  public hideMe:boolean = true;
+
+  toggleHide() {
+    this.hideMe = !this.hideMe;
+  }
+
 
   public get activeSkills(): FormArray | null {
     if(!this.skillsForm) {
@@ -82,6 +88,15 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
     return options;
   }
 
+  getSelectedGroup(i:number, arrayname:string):string {
+    const selectedSkill = ((this.skillsForm.get(arrayname) as FormArray).at(i) as FormGroup).get('skillName').value;
+    const skillgroup = charSkills.filter(x=>x.szakertelem == selectedSkill).map(x=>x.group)[0];
+    if (selectedSkill == '') {
+      return 'Válassz';
+    }
+    return skillgroup;
+  }
+
   addSkill(faName: string): void {
     const skillsForm = this.fb.group({
       skillName: ['', {value: '', disabled: false}],
@@ -103,11 +118,17 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
   getSumSub(faName:string):number | null {
     const skillarrayname = this.skillsForm.get(faName) as FormArray;
     const sumSkills = skillarrayname.value.reduce((prev: number, next: { skillLevel: number; }) => prev + +next.skillLevel, 0);
+
+    if (faName == 'languageSkills') {
+      return sumSkills -6;
+    }
+
     return sumSkills;
   }
 
   getSumAll():number {
     const sumall = this.getSumSub('activeSkills')+this.getSumSub('knowledgeSkills')+this.getSumSub('languageSkills');
+    this.resServ.getPointsSpent('spentOnSkills', sumall);
     return sumall;
   }
 
@@ -126,12 +147,8 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
-    this.detailsServ.getLanguage.subscribe(yourLanguage => {
-      this.yourLanguage = yourLanguage;
-      if(this.yourLanguage !== '') {
-        this.addFirstLanguage('Anyanyelv', this.yourLanguage, 3)
-        this.addFirstLanguage('Anyanyelv í/o', this.yourLanguage, 3)
-      }
-    })
+    this.detailsServ.getLanguage.subscribe(yourLanguage => this.yourLanguage = yourLanguage);
+    this.addFirstLanguage('Nyelvismeret', 'magyar', 3);
+    this.addFirstLanguage('Írás/olvasás', 'magyar', 3);
   }
 }

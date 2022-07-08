@@ -6,9 +6,9 @@
   <label class="bl-wh" for="addonPlace">Elhelyezés</label>
   <select formControlName="addonPlace" id="addonPlace">
     <option value="" selected disabled hidden>Válassz</option>
-    <option value="Sisak kiegészítők">Sisak kiegészítők</option>
-    <option value="Páncél kiegészítők">Páncél kiegészítők</option>
-    <option value="Pajzs kiegészítők">Pajzs kiegészítők</option>
+    <option value="Sisakok">Sisakok</option>
+    <option value="Páncélok">Páncélok</option>
+    <option value="Pajzsok">Pajzsok</option>
   </select>
 
   <label class="bl-wh" for="addonAddWeight">Extra súly</label>
@@ -26,9 +26,9 @@
   <label class="bl-wh" for="addonDesc">Megjegyzések</label>
   <input class="" id="addonDesc" type="text" formControlName="addonDesc">
 
-  <div>
-    <button type="submit">Mentés</button>
-    <button type="button" (click)="backToList()">Vissza</button>
+  <div class="buttoncont">
+    <button class="gr-wh" type="submit">Mentés</button>
+    <button class="or-bl" type="button" (click)="backToList()">Vissza</button>
   </div>
 
 </form>

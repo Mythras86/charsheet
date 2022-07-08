@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DetailsService } from '../char-details/details.service';
 import { CharWeaponsService } from '../char-weapons/char-weapons.service';
@@ -10,11 +10,12 @@ import { ResourcesService } from './resources.service';
   templateUrl: './char-resources.component.html',
   styleUrls: ['./char-resources.component.css']
 })
-export class CharResourcesComponent implements OnInit {
+export class CharResourcesComponent implements OnInit, AfterContentChecked {
 
   @Input() resourcesForm!: FormGroup;
 
   constructor(
+    private changeDetector: ChangeDetectorRef,
     public charWeapServ: CharWeaponsService,
     public resServ: ResourcesService,
     public detailsServ: DetailsService,
@@ -22,21 +23,26 @@ export class CharResourcesComponent implements OnInit {
 
   public nopoints:boolean = false;
 
-  public yourMagic:string = '';
-
   public yourAttrs:number = 0;
   public yourSkills:number = 0;
   public yourMoney:number = 0;
+  public yourMagic:number = 0;
+  public hideMe:boolean = true;
+
+  toggleHide():boolean {
+    return this.hideMe = !this.hideMe;
+  }
+
 
   disableDec(fcname: string):number {
     if(fcname == 'karmaonattr') {
-      return this.yourAttrs;
+      return this.yourAttrs - this.resServ.spentOnAttrs;
     }
     if(fcname == 'karmaonskills') {
-      return this.yourSkills;
+      return this.yourSkills - this.resServ.spentOnSkills;
     }
     if(fcname == 'karmaonmoney') {
-      return this.yourMoney;
+      return this.yourMoney - this.resServ.spentOnWeapons - this.resServ.spentOnArmors;
     }
     return 0;
   }
@@ -53,7 +59,7 @@ export class CharResourcesComponent implements OnInit {
     if(fcname == 'karmaonmoney' || 'gainedmoney') {
       const karmaonmoney:number = this.resourcesForm.get('karmaonmoney')?.value*6000;
       const gainedmoney:number = this.resourcesForm.get('gainedmoney')?.value;
-      const money:number = karmaonmoney + gainedmoney;
+      const money:number = karmaonmoney + gainedmoney - this.resServ.spentOnArmors - this.resServ.spentOnWeapons;
       this.resServ.updateMoney(money);
     }
     return;
@@ -95,12 +101,15 @@ export class CharResourcesComponent implements OnInit {
     return this.getFormcontrol(fcname).value;
   }
 
-  ngOnInit() {
-    this.detailsServ.getMagic.subscribe(yourMagic => this.yourMagic = yourMagic);
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
 
+  ngOnInit() {
     this.resServ.getAttrPoints.subscribe(yourAttrs => this.yourAttrs = yourAttrs);
     this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
     this.resServ.getMoneyFlow.subscribe(yourMoney => this.yourMoney = yourMoney);
+    this.resServ.getMagicPoints.subscribe(yourMagic => this.yourMagic = yourMagic);
   }
 
 }

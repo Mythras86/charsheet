@@ -1,24 +1,26 @@
 <div class="sectioncont" *ngIf="addonServ.armorAddonsList !== null">
 
-  <div>
-    <button type="button" (click)="gotoNewAddon()">Új Páncél Kieg Rögzítése</button>
+  <div class="buttoncont">
+    <button class="gr-wh" type="button" (click)="gotoNewAddon()" *ngIf="!selectionMode">Új Páncél Kieg Rögzítése</button>
   </div>
 
-  <div class="w100" *ngFor="let type of getAddonPlace()">
+  <h1>Páncél Kiegészítők</h1>
+
+  <div *ngFor="let type of getAddonPlace()">
 
     <h2>{{type}}</h2>
 
-    <div *ngFor="let item of getAddons(type)">
-      <div class="flexcont" (click)="sendAddonID(item.id)">
-        <div class="bl-wh w50">{{item.addonName}}</div>
-        <div class="or-bl w20">{{item.addonMultiPrice}}x</div>
-        <div class="or-bl w30">{{item.addonAddPrice}} cred</div>
-        <div class="w20">{{item.addonMultiWeight}}x</div>
-        <div class="w30">{{item.addonAddWeight}} Kg</div>
-        <div class="w100"> Megj.: {{item.addonDesc}}</div>
+    <div class="flexcont itemcont" (click)="sendAddonID(item.id)" *ngFor="let item of getAddons(type)">
+      <div class="bl-wh w50">{{item.addonName}}</div>
+      <div class="or-bl w20">{{item.addonMultiPrice}}x</div>
+      <div class="or-bl w30">{{item.addonAddPrice}} cred</div>
+      <div class="w20">{{item.addonMultiWeight}}x</div>
+      <div class="w30">{{item.addonAddWeight}} Kg</div>
+      <div class="w100"> Megj.: {{item.addonDesc}}</div>
+      <div class="" *ngIf="!selectionMode">
+        <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+        <button class="re-wh" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
       </div>
-      <button class="" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
-      <button class="or-bl delete" type="button" (click)="addonServ.deleteOneAddon(item.id)">Törlés</button>
     </div>
   </div>
 

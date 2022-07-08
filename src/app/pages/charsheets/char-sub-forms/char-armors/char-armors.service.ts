@@ -13,14 +13,16 @@ export class CharArmorsService {
 
   public selectedArmorID: Subject<string> = new Subject;
 
-  createWeapons(): FormGroup {
+  createArmors(): FormGroup {
     const armorsForm = {
+      helms: this.fb.array([]),
       armors: this.fb.array([]),
+      shields: this.fb.array([]),
     };
     return this.fb.group(armorsForm);
   }
 
-  onWeaponSelected(id: string) {
+  onArmorSelected(id: string) {
     this.selectedArmorID.next(id);
   }
 

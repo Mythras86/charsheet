@@ -153,7 +153,7 @@ export class WeaponsService {
 
   deleteOneWeapon(id: string) {
     this.http.delete(BACKEND_URL + id).subscribe(response => {
-      this.router.navigate(["/weaponslist "]);
+      this.router.navigate(["/weaponslist"]);
     });
     this.weaponsList = null;
     this.getWeapons();

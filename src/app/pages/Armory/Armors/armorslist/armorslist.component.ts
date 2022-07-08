@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArmorsService } from '../armors/armors.service';
 
@@ -16,15 +16,27 @@ export class ArmorslistComponent implements OnInit {
 
   @Output() onArmorSelected = new EventEmitter<string>();
 
+  @Input() public categFilter: string = '';
+  @Input() selectionMode: boolean = false;
+
   public armorId:string = '';
 
-  getArmors(categ: string): Array<any> | null {
-    return this.armorsServ.armorsList.filter(x => x.armorCategory == categ);
+  getArmorCats(): Array<any> | null {
+    if (this.categFilter == '') {
+      const categs = [...new Set(this.armorsServ.armorsList.map(x=> x.armorCategory))];
+      return categs;
+    }
+    const categs = [...new Set(this.armorsServ.armorsList.filter(x=> x.armorCategory == this.categFilter).map(x=> x.armorCategory))];
+    return categs;
   }
 
-  getArmorCats(): Array<any> | null {
-    const categs = [...new Set(this.armorsServ.armorsList.map(x=> x.armorCategory))];
-    return categs;
+  getArmors(categ: string): Array<any> | null {
+    if (this.categFilter == '') {
+      const filteredarmor = this.armorsServ.armorsList.filter(x => x.armorCategory == categ);
+      return filteredarmor;
+    }
+    const filteredarmor = this.armorsServ.armorsList.filter(x => x.armorCategory == this.categFilter);
+    return filteredarmor;
   }
 
   sendArmorID(id: string) {

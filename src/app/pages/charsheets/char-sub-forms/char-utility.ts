@@ -8,7 +8,7 @@ export const Fajok: Array<any> = [
     karKockatartalekMax: 3,
     defHeight: 180,
     defWieght: 75,
-    defAge: 30,
+    defAge: 65,
     defKepessegek: [{kepesseg: '+3 Karmatartalék'}],
   },
   {
@@ -17,7 +17,7 @@ export const Fajok: Array<any> = [
     karAsztAllMax: 2,
     defHeight: 180,
     defWieght: 70,
-    defAge: 30,
+    defAge: 100,
     defKepessegek: [
       {kepesseg: 'Éjszakai látás'},
       {kepesseg: '1,2x jobb látás'},
@@ -29,7 +29,9 @@ export const Fajok: Array<any> = [
     karFizEroMax: 2,
     karFizAll: 1,
     karAsztEroMax: 1,
-    defHeight: 140, defWieght: 60, defAge: 30,
+    defHeight: 140,
+    defWieght: 60,
+    defAge: 100,
     defKepessegek: [
       {kepesseg: 'Hőlátás'},
       {kepesseg: 'Irányérzék'}
@@ -41,7 +43,9 @@ export const Fajok: Array<any> = [
     karFizAllMax: 3,
     karAsztAllMax: -1,
     karAsztUgyMax: -1,
-    defHeight: 190, defWieght: 95, defAge: 30,
+    defHeight: 190,
+    defWieght: 95,
+    defAge: 40,
     defKepessegek: [
       {kepesseg: 'Éjszakai látás'},
       {kepesseg: '1,2x jobb látás'},
@@ -55,7 +59,9 @@ export const Fajok: Array<any> = [
     karFizAllMax: 4,
     karAsztAllMax: -2,
     karAsztUgyMax: -2,
-    defHeight: 280, defWieght: 220, defAge: 30,
+    defHeight: 280,
+    defWieght: 220,
+    defAge: 50,
     defKepessegek: [
       {kepesseg: 'Hőlátás'},
       {kepesseg: '+1 Elérés'},
@@ -102,6 +108,7 @@ export const HagyomanyLista: Array<any> = [
   {list: 'elementalista', text: 'Víz'},
   {list: 'elementalista', text: 'Levegő'},
   {list: 'elementalista', text: 'Föld'},
+  {list: 'elementalista', text: 'Egészség'},
   {list: 'saman', text: 'Aligátor'},
   {list: 'saman', text: 'Bagoly'},
   {list: 'saman', text: 'Medve'},

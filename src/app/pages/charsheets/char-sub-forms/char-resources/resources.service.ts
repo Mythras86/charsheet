@@ -13,6 +13,12 @@ export class ResourcesService {
     private fb: FormBuilder
     ) { }
 
+    spentOnAttrs:number = 0;
+    spentOnSkills:number = 0;
+    spentOnWeapons:number = 0;
+    spentOnArmors:number = 0;
+    spentOnMagic:number = 0;
+
     private remainingAttrs = new BehaviorSubject<number>(0);
     getAttrPoints = this.remainingAttrs.asObservable();
 
@@ -34,6 +40,13 @@ export class ResourcesService {
       this.remainingMoney.next(credit);
     }
 
+    private remainingMagic = new BehaviorSubject<number>(0);
+    getMagicPoints = this.remainingMagic.asObservable();
+
+    public updateMagic(points: number):void {
+      this.remainingMagic.next(points);
+    }
+
   createResources(): FormGroup {
     const resources: FormGroupConfig<Resources> = {
       basekarma: [250, {value:250, disabled: false}],
@@ -43,18 +56,13 @@ export class ResourcesService {
       karmaonmoney: [0, {value:0, disabled: false}],
       gainedmoney: [50000, {value:50000, disabled: false}],
       karmaonmagic: [0, {value:0, disabled: false}],
-      magiconspells: [0, {value:0, disabled: false}],
-      magiconspirits: [0, {value:0, disabled: false}],
-      magiconartifacts: [0, {value:0, disabled: false}],
-      moneyonwapons: [0, {value:0, disabled: false}],
-      moneyontools: [0, {value:0, disabled: false}],
-      moneyoncyber: [0, {value:0, disabled: false}],
-      moneyonsoftware: [0, {value:0, disabled: false}],
-      moneyonrides: [0, {value:0, disabled: false}],
-      moneyonartifacts: [0, {value:0, disabled: false}],
     };
     return this.fb.group(resources);
   };
+
+  getPointsSpent(varstring: string, points: number) {
+    return this[varstring] = points;
+  }
 
 
 }

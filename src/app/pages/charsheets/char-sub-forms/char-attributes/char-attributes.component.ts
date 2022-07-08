@@ -24,6 +24,12 @@ export class CharAttributesComponent implements OnInit, OnDestroy, AfterContentC
 
   public yourRace: string = '';
   public yourAttrs: number = 0
+  public hideMe:boolean = true;
+
+  toggleHide():boolean {
+    return this.hideMe = !this.hideMe;
+  }
+
 
   getFormcontrol(fcname: string):any {
     let fc = this.attributesForm.get(fcname);
@@ -59,6 +65,7 @@ export class CharAttributesComponent implements OnInit, OnDestroy, AfterContentC
     const attrObj: Object = this.attributesForm.value;
     const attrArray = Object.values(attrObj);
     const sumAttr: number = attrArray.reduce((prev, next ) => prev + next, 0);
+    this.resServ.getPointsSpent('spentOnAttrs', sumAttr);
     return sumAttr;
   }
 

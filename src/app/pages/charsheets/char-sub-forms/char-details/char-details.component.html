@@ -1,30 +1,36 @@
-<div class="sectioncont" [formGroup]="detailsForm" *ngIf="detailsForm">
+<h1 (click)="toggleHide()">Karakter Jellemzők</h1>
 
-  <h1>Karakter Jellemzők</h1>
+<div class="sectioncont" [hidden]="hideMe" [formGroup]="detailsForm" *ngIf="detailsForm">
 
-  <div class="mainContainer" *ngFor="let item of getDetailsData(); first as isFirst">
-    <label for={{item.fcname}}>{{item.nev}}</label>
+
+  <div class="flexcont w100" *ngFor="let item of getDetailsData(); first as isFirst">
+    <label class="bl-wh w30" *ngIf='item.type!=="number"' for={{item.fcname}}>{{item.nev}}</label>
+
     <!-- szöveg -->
-    <input id={{item.fcname}} *ngIf='item.type=="text"'
+    <input class="w70" id={{item.fcname}} *ngIf='item.type=="text"'
     [formControlName]=item.fcname type="text" [value]="getDetails(item.fcname)"
     placeholder="{{item.megjegyz}}">
-    <!-- lista inputtal -->
 
-    <input *ngIf='item.type=="inpselect"' [attr.list]=item.listname [formControlName]=item.fcname
+    <!-- szövegdoboz -->
+    <textarea class="w70" id={{item.fcname}} *ngIf='item.type=="textarea"'
+    [formControlName]=item.fcname [value]="getDetails(item.fcname)"
+    placeholder="{{item.megjegyz}}"></textarea>
+
+    <!-- lista inputtal -->
+    <input class="w70" *ngIf='item.type=="inpselect"' [attr.list]=item.listname [formControlName]=item.fcname
     (ngModelChange)="sendData()" placeholder="{{item.megjegyz}}">
     <datalist *ngIf='item.type=="inpselect"' id={{item.listname}}>
       <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
     </datalist>
 
     <!-- lista sima -->
-
-    <select *ngIf='item.type=="select"' [formControlName]=item.fcname (ngModelChange)="sendData()">
+    <select class="w70" *ngIf='item.type=="select"' [formControlName]=item.fcname (ngModelChange)="sendData()">
       <option value="" selected disabled hidden>{{item.megjegyz}}</option>
       <option *ngFor="let listitem of listGetter(item.listname)" value={{listitem}}>{{listitem}}</option>
     </select>
 
     <!-- szín -->
-    <input id={{item.fcname}} list="presetcolors" *ngIf='item.type=="color"' [formControlName]=item.fcname type="color">
+    <input class="w70" id={{item.fcname}} list="presetcolors" *ngIf='item.type=="color"' [formControlName]=item.fcname type="color">
       <datalist id="presetcolors" *ngIf='item.type=="color"'>
         <option>#c58c85</option>
         <option>#ecbcb4</option>
@@ -33,7 +39,12 @@
         <option>#503335</option>
         <option>#592f2a</option>
       </datalist>
+
     <!-- szám -->
-    <input id={{item.fcname}} *ngIf='item.type=="number"' [formControlName]=item.fcname type="number">
+    <label class="bl-wh w70" *ngIf='item.type=="number"' for={{item.fcname}}>
+      {{item.nev}} (Átlag: {{getDefault(item.fcname)}}{{item.unit}})
+    </label>
+    <input class="w20" id={{item.fcname}} *ngIf='item.type=="number"' [formControlName]=item.fcname type="number">
+    <div class="w10 bl-wh" *ngIf='item.type=="number"'>{{item.unit}}</div>
   </div>
 </div>

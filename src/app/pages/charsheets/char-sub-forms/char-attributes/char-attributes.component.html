@@ -1,6 +1,6 @@
-<div [formGroup]="attributesForm" class="sectioncont" *ngIf="attributesForm">
+<h1 (click)="toggleHide()">Tulajdonságok {{getSum()}} / {{this.yourAttrs}}</h1>
 
-  <h1>Tulajdonságok {{getSum()}} / {{this.yourAttrs}}</h1>
+<div class="sectioncont" [hidden]="hideMe" *ngIf="attributesForm" [formGroup]="attributesForm">
 
   <fieldset *ngFor='let legend of getLegends()'>
     <legend>

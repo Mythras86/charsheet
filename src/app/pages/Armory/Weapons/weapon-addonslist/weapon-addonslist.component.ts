@@ -18,6 +18,7 @@ export class WeaponAddonslistComponent implements OnInit {
 
   @Input() categFilter: string = '';
   @Input() kiegFilter: string = '';
+  @Input() selectionMode: boolean = false;
 
   public weaponAddonId:string = '';
 

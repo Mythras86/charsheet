@@ -1,12 +1,15 @@
-<form [formGroup]="mainCharForm" (ngSubmit)="createNewChar()">
+<form *ngIf="!isLoading" [formGroup]="mainCharForm" (ngSubmit)="createNewChar()">
 
   <app-char-details [detailsForm]="detailsForm"></app-char-details>
   <app-char-resources [resourcesForm]="resourcesForm"></app-char-resources>
   <app-char-attributes [attributesForm]="attributesForm"></app-char-attributes>
   <app-char-skills [skillsForm]="skillsForm"></app-char-skills>
   <app-char-weapons [weaponsForm]="weaponsForm"></app-char-weapons>
+  <app-char-armors [armorsForm]="armorsForm"></app-char-armors>
 
-  <button type="text"  *ngIf="!isLoading" [disabled]="!mainCharForm.valid">Karakter mentése</button>
-  <app-spinner *ngIf="isLoading"></app-spinner>
+  <div class="or-bl buttoncont">
+    <button class="bl-wh" *ngIf="!isLoading" [disabled]="!mainCharForm.valid">Karakter mentése</button>
+  </div>
 
 </form>
+<app-spinner *ngIf="isLoading"></app-spinner>

@@ -17,6 +17,7 @@ export class ArmorAddonslistComponent implements OnInit {
   @Output() onAddonSelected = new EventEmitter<string>();
 
   @Input() kiegFilter: string = '';
+  @Input() selectionMode: boolean = false;
 
   public addonId:string = '';
 
@@ -31,7 +32,7 @@ export class ArmorAddonslistComponent implements OnInit {
 
   getAddonPlace(categs: string):Array<any> {
     if (this.kiegFilter !== '') {
-      const types = this.addonServ.armorAddonsList.filter(x=> x.addonPlace == this.kiegFilter).map(x=> x.addonPlace)
+      const types = [...new Set(this.addonServ.armorAddonsList.filter(x => x.addonPlace == this.kiegFilter).map(x=> x.addonPlace))];
       return types;
     }
     const types = [...new Set(this.addonServ.armorAddonsList.map(x => x.addonPlace))];

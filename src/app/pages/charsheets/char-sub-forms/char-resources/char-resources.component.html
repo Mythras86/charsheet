@@ -1,10 +1,10 @@
-<div class="sectioncont" [formGroup]="resourcesForm" *ngIf="resourcesForm">
+<h1 (click)="toggleHide()">Pontelosztás</h1>
 
-  <h1>Pontelosztás</h1>
+<div class="sectioncont" [hidden]="hideMe" [formGroup]="resourcesForm" *ngIf="resourcesForm">
 
   <fieldset>
     <legend>
-      <div>Karmaelosztás</div>
+      <div>Karmaelosztás {{getRemainingKarma()}}</div>
     </legend>
 
     <div class="flexcont" *ngFor='let res of getResources()'>
@@ -20,8 +20,9 @@
         [disableIncrement]="nopoints
          || getTotalValue(res.fcname)==res.maxValue
          || getRemainingKarma() < res.lepes"
-         [disableDecrement]='disableDec(res.fcname)==0'>
-      </app-levelcontrol>{{sendResData(res.fcname)}}
+         [disableDecrement]='disableDec(res.fcname)<=0'>
+         {{sendResData(res.fcname)}}
+      </app-levelcontrol>
     </div>
   </fieldset>
 </div>

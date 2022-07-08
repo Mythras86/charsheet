@@ -11,6 +11,12 @@ export class CharEquipmentComponent implements OnInit {
   @Input() charForm!: FormGroup;
 
   constructor() { }
+  public hideMe:boolean = true;
+
+  toggleHide():boolean {
+    return this.hideMe = !this.hideMe;
+  }
+
 
   ngOnInit(): void {
   }

@@ -12,10 +12,20 @@ const BACKEND_URL = environment.apiUrl + "/chars/";
 
 @Injectable({ providedIn: "root" })
 export class CharService {
+  constructor(private http: HttpClient, private router: Router) {}
+
   private chars: Char[] = [];
   private charsUpdated = new Subject<{ chars: Char[]}>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  private mainCharFormData:any;
+
+  public setFormData(mainCharFormData: any): void {
+    this.mainCharFormData = mainCharFormData;
+  }
+
+  public getFormData(): any {
+    return this.mainCharFormData;
+  }
 
   getChars() {
     this.http

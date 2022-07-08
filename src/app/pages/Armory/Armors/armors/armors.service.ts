@@ -119,7 +119,7 @@ export class ArmorsService {
 
   deleteOneArmor(id: string) {
     this.http.delete(BACKEND_URL + id).subscribe(response => {
-      this.router.navigate(["/armorslist "]);
+      this.router.navigate(["/armorslist"]);
     });
     this.armorsList = null;
     this.getArmors();
