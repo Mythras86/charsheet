@@ -5,20 +5,22 @@
   <fieldset *ngFor='let legend of getLegends()'>
     <legend>
       <div>
-        {{legend}}
+        {{legend}} {{getSumSub(legend)}}
       </div>
     </legend>
     <div class="flexcont" *ngFor="let item of getGroups(legend)">
-      <div class="bl-wh elemnev">
+      <div class="bl-wh w20">
         {{item.nev}}
       </div>
       <app-levelcontrol
         [baseValue]="getMinValue(item.fcname)"
         [fcName]='getFormcontrol(item.fcname)'
-        [disableIncrement]="getMaxValue(item.fcname) == getTotalValue(item.fcname) || noPointsForAttrs()==true">
+        [disableIncrement]="getMaxValue(item.fcname) == getTotalValue(item.fcname)
+        || noPointsForAttrs()==true
+        || item.fcname == 'karEsszencia'">
         {{noPointsForAttrs()}}
       </app-levelcontrol>
-      <div  class="elemnev">
+      <div  class="w30">
         m: {{getMinValue(item.fcname)}}
         m: {{getMaxValue(item.fcname)}}
         v: {{getFormcontrol(item.fcname).value}}

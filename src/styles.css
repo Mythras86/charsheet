@@ -20,8 +20,8 @@ li {list-style: none;}
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-content: flex-start;
-  margin: 0 0.5rem 0.5rem 0.5rem;
-  min-height: 10rem;
+  margin: 0.5rem;
+  min-height: 5rem;
 }
 
 .bl-wh {
@@ -125,11 +125,12 @@ button:disabled {
   display: flex;
   flex-flow: row wrap;
   text-align: center;
+  align-content: space-evenly;
 }
 
 .itemcont {
-  border: 2px black solid;
   margin-bottom: 1rem;
+  border: 1px solid black;
 }
 
 .w10 {

@@ -1,0 +1,36 @@
+
+<div class="sectioncont" *ngIf="equipsServ.equipmentsList !== null">
+
+  <div class="buttoncont">
+    <button class="gr-wh" type="button" (click)="gotoNewEquipment()" *ngIf="!selectionMode">Új Felszerelés Rögzítése</button>
+  </div>
+
+  <div class="flexcont">
+    <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
+    <div class="w30 bl-wh"
+    *ngFor="let categ of getEquipmentCats()" (click)="sortMeBy(categ)">
+      {{categ}}
+    </div>
+  </div>
+
+  <h1>Felszerelések</h1>
+
+  <div class="a100" *ngFor="let categ of getEquipmentCatsFiltered()">
+
+    <h2>{{categ}}</h2>
+
+    <div class="flexcont itemcont" (click)="sendEquipmentID(item.id)" *ngFor="let item of getEquipments(categ)">
+      <div class="w50 bl-wh">{{item.equipmentName}}</div>
+      <div class="w30 or-bl">{{item.equipmentPrice}} cr</div>
+      <div class="w20 bl-wh">{{item.equipmentWeight}} kg</div>
+      <div class="or-bl w30">{{item.equipmentLevel}}</div>
+      <div class="bl-wh w70">Alapszint</div>
+      <div class="w100">{{item.equipmentDesc}}</div>
+      <div class="" *ngIf="!selectionMode">
+        <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+        <button class="re-wh" type="button" (click)="equipsServ.deleteOneEquipment(item.id)">Törlés</button>
+      </div>
+    </div>
+  </div>
+
+</div>

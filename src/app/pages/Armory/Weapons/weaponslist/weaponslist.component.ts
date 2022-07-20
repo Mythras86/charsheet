@@ -18,7 +18,7 @@ export class WeaponsListComponent implements OnInit {
 
   @Input() selectionMode: boolean = false;
 
-  public sortMeFilter: string = 'none';
+  @Input() sortMeFilter: string = 'none';
 
   public weaponId:string = '';
 
@@ -31,6 +31,10 @@ export class WeaponsListComponent implements OnInit {
   }
 
   getWeaponCats(): Array<any> | null {
+    if (this.selectionMode == true && this.sortMeFilter !== 'Robbanóanyagok') {
+      const categs = [...new Set(this.weaponsServ.weaponsList.filter(x=> x.weaponCategory !== 'Robbanóanyagok').map(x=> x.weaponCategory))];
+      return categs;
+    }
     const categs = [...new Set(this.weaponsServ.weaponsList.map(x=> x.weaponCategory))];
     return categs;
   }

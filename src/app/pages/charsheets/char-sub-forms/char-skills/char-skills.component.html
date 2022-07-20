@@ -1,31 +1,34 @@
-<h1 (click)="toggleHide()">Szakértelmek {{getSumAll()}} / {{yourSkills}} </h1>
-
+<h1 (click)="toggleHide()">Szakértelmek {{getSumAll()}} / {{getPoints('total')}} </h1>
 <div class="sectioncont" [hidden]="hideMe" *ngIf="skillsForm" [formGroup]='skillsForm'>
 
   <fieldset *ngFor="let type of getTypes()" [formArrayName]='type'>
     <legend>
-      <div>{{getLegends(type)}} {{getSumSub(type)}}</div>
+      <div>{{getLegends(type)}} {{getSumSub(type)}} / {{getPoints(type)}}</div>
     </legend>
     <div class="buttoncont">
-      <button class="gr-wh" [disabled]="this.yourSkills==getSumAll()" type="button"
+      <button class="gr-wh" [disabled]="getPoints(type)<=getSumSub(type)" type="button"
       (click)="addSkill(type)">Új {{getLegends(type)}} Szakértelem</button>
     </div>
 
     <div class="flexcont" [formGroupName]='i' *ngFor="let item of getControls(type); let i = index">
-      <select class="w50 bl-wh" formControlName="skillName">
+      <!-- anyanyelv esetén -->
+      <input readonly *ngIf="skillBase(i, type)==4" class="w70 bl-wh" type="text" formControlName="skillName" [value]=''>
+      <!-- más szakértelmek -->
+      <select *ngIf="skillBase(i, type)==0" class="w50 bl-wh" formControlName="skillName">
         <option value="" selected disabled hidden>Válassz</option>
         <optgroup *ngFor="let item of getGroups(type)" label={{item}}>
           <option *ngFor="let listitem of getOptions(item)" value={{listitem.szakertelem}}>{{listitem.szakertelem}}</option>
         </optgroup>
       </select>
       <div class="bl-wh w30">{{getSelectedGroup(i, type)}}</div>
-      <button class="w20 re-wh" type="button" (click)="removeSkill(i, type)">Törlés</button>
+      <button *ngIf="skillBase(i, type)==0" class="w20 re-wh" type="button" (click)="removeSkill(i, type)">Törlés</button>
       <app-levelcontrol
-      [baseValue]=0
+      [baseValue]='skillBase(i, type)'
       [fcName]="getFormcontrol(i, type)"
-      [disableIncrement]="getSkillLevel(i, type)==6 || this.yourSkills==getSumAll()">
+      [disableIncrement]="getSkillLevel(i, type)+skillBase(i, type)==6 || getPoints(type)<=getSumSub(type)">
       </app-levelcontrol>
-      <input class="w70" type="text" formControlName="skillDesc">
+      <input *ngIf="skillBase(i, type)==0" class="w70" type="text" formControlName="skillDesc" [value]="" placeholder="Megjegyzések">
+      <input *ngIf="skillBase(i, type)==4" class="w70" type="text" formControlName="skillDesc" [value]="yourLanguage">
     </div>
   </fieldset>
 </div>

@@ -1,0 +1,24 @@
+<form class="sectioncont" [formGroup]="newEquipmentForm" (ngSubmit)="onSubmit()">
+
+  <label class="bl-wh w50" for="equipmentName">Név</label>
+  <input class="w50" id="equipmentName" type="text" formControlName="equipmentName">
+
+  <label class="bl-wh w50" for="equipmentCategory">Kategória</label>
+  <input class="w50" id="equipmentCategory" type="text" formControlName="equipmentCategory">
+
+  <label class="bl-wh w50" for="equipmentLevel">Szint</label>
+  <input class="w50" id="equipmentLevel" type="text" formControlName="equipmentLevel" placeholder="Nulla, ha nem szintezhető">
+
+  <label class="bl-wh w50" for="equipmentWeight">Súly</label>
+  <input class="w50" id="equipmentWeight" type="number" formControlName="equipmentWeight">
+
+  <label class="bl-wh w50" for="equipmentPrice">Ár</label>
+  <input class="w50" id="equipmentPrice" type="number" formControlName="equipmentPrice">
+
+  <label class="bl-wh w100" for="equipmentDesc">Megjegyzések</label>
+  <input class="w100" id="equipmentDesc" type="text" formControlName="equipmentDesc">
+  <div class="buttoncont">
+    <button class="bl-wh" type="submit">Mentés</button>
+    <button class="or-bl" type="button" (click)="backToList()">Vissza</button>
+  </div>
+</form>

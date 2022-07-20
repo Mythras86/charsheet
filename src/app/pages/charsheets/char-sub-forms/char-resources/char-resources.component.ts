@@ -1,7 +1,7 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DetailsService } from '../char-details/details.service';
-import { CharWeaponsService } from '../char-weapons/char-weapons.service';
+import { CharWeaponsService } from '../char-tools/char-weapons.service';
 import { resources } from './resources.model';
 import { ResourcesService } from './resources.service';
 
@@ -33,6 +33,9 @@ export class CharResourcesComponent implements OnInit, AfterContentChecked {
     return this.hideMe = !this.hideMe;
   }
 
+  getResFeedback(resName: string):number {
+    return this.resServ[resName];
+  }
 
   disableDec(fcname: string):number {
     if(fcname == 'karmaonattr') {
@@ -42,7 +45,7 @@ export class CharResourcesComponent implements OnInit, AfterContentChecked {
       return this.yourSkills - this.resServ.spentOnSkills;
     }
     if(fcname == 'karmaonmoney') {
-      return this.yourMoney - this.resServ.spentOnWeapons - this.resServ.spentOnArmors;
+      return this.yourMoney - this.resServ.moneyOnWeapons - this.resServ.moneyOnArmors;
     }
     return 0;
   }
@@ -59,7 +62,7 @@ export class CharResourcesComponent implements OnInit, AfterContentChecked {
     if(fcname == 'karmaonmoney' || 'gainedmoney') {
       const karmaonmoney:number = this.resourcesForm.get('karmaonmoney')?.value*6000;
       const gainedmoney:number = this.resourcesForm.get('gainedmoney')?.value;
-      const money:number = karmaonmoney + gainedmoney - this.resServ.spentOnArmors - this.resServ.spentOnWeapons;
+      const money:number = karmaonmoney + gainedmoney - this.resServ.moneyOnArmors - this.resServ.moneyOnWeapons;
       this.resServ.updateMoney(money);
     }
     return;

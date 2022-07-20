@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CharWeaponsService } from 'src/app/pages/charsheets/char-sub-forms/char-weapons/char-weapons.service';
+import { CharWeaponsService } from 'src/app/pages/charsheets/char-sub-forms/char-tools/char-weapons.service';
 import { AModal } from '../weaponslist-modal/modal.abstract';
 
 @Component({
@@ -28,6 +28,11 @@ export class AddonslistModalComponent implements OnInit, AModal {
 
   onAddonSelect(id: string) {
     this.closeEvent.next(id);
+    this.closeEvent.complete();
+  }
+
+  onClose() {
+    this.closeEvent.next('none');
     this.closeEvent.complete();
   }
 

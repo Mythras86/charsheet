@@ -5,7 +5,7 @@ import { AttributesService } from '../char-sub-forms/char-attributes/attributes.
 import { DetailsService } from '../char-sub-forms/char-details/details.service';
 import { ResourcesService } from '../char-sub-forms/char-resources/resources.service';
 import { SkillsService } from '../char-sub-forms/char-skills/skills.service';
-import { CharWeaponsService } from '../char-sub-forms/char-weapons/char-weapons.service';
+import { CharWeaponsService } from '../char-sub-forms/char-tools/char-weapons.service';
 import { CharService } from '../chars.service';
 
 @Component({
@@ -67,8 +67,8 @@ export class MainCharComponent implements OnInit, OnDestroy {
   public get skillsForm(): FormGroup {
     return this.mainCharForm.get('skillsForm') as FormGroup;
   }
-  public get weaponsForm(): FormGroup {
-    return this.mainCharForm.get('weaponsForm') as FormGroup;
+  public get toolsForm(): FormGroup {
+    return this.mainCharForm.get('toolsForm') as FormGroup;
   }
   public get armorsForm(): FormGroup {
     return this.mainCharForm.get('armorsForm') as FormGroup;
@@ -80,7 +80,7 @@ export class MainCharComponent implements OnInit, OnDestroy {
       attributesForm: this.attributesServ.createAttributes(),
       resourcesForm: this.resourcesServ.createResources(),
       skillsForm: this.skillsServ.createSkills(),
-      weaponsForm: this.weaponsServ.createWeapons(),
+      toolsForm: this.weaponsServ.createTools(),
       armorsForm: this.armorsServ.createArmors(),
     });
     this.mainCharForm.patchValue(

@@ -14,6 +14,8 @@ import { ArmorslistComponent } from "./pages/Armory/Armors/armorslist/armorslist
 import { ArmorsComponent } from "./pages/Armory/Armors/armors/armors.component";
 import { ArmorAddonslistComponent } from "./pages/Armory/Armors/armor-addonslist/armor-addonslist.component";
 import { ArmorAddonsComponent } from "./pages/Armory/Armors/armor-addons/armor-addons.component";
+import { EquipmentComponent } from "./pages/Armory/Equipment/equipments/equipment.component";
+import { EquipmentslistComponent } from "./pages/Armory/Equipment/equipmentslist/equipmentslist.component";
 
 const routes: Routes = [
   { path: "", component: MainComponent },
@@ -38,6 +40,10 @@ const routes: Routes = [
   { path: "armoraddonslist", component: ArmorAddonslistComponent},
   { path: "newarmoraddon", component: ArmorAddonsComponent},
   { path: "armoraddonedit/:id", component: ArmorAddonsComponent},
+
+  { path: "equipmentslist", component: EquipmentslistComponent},
+  { path: "newequipment", component: EquipmentComponent},
+  { path: "equipmentedit/:id", component: EquipmentComponent},
 
 ];
 

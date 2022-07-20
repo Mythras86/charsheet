@@ -1,13 +1,13 @@
 <form class="sectioncont" [formGroup]="weaponAddonsForm" (ngSubmit)="onSubmit()">
 
-  <label class="bl-wh" for="addonName">Név</label>
-  <input class="" id="addonName" type="text" formControlName="addonName">
+  <label class="bl-wh w50" for="addonName">Név</label>
+  <input class="w50" id="addonName" type="text" formControlName="addonName">
 
-  <label class="bl-wh" for="addonCategory">Kategória</label>
-  <input class="" id="addonCategory" type="text" formControlName="addonCategory">
+  <label class="bl-wh w50" for="addonCategory">Kategória</label>
+  <input class="w50" id="addonCategory" type="text" formControlName="addonCategory">
 
-  <label class="bl-wh" for="addonPlace">Elhelyezés</label>
-  <select formControlName="addonPlace" id="addonPlace">
+  <label class="bl-wh w50" for="addonPlace">Elhelyezés</label>
+  <select class="w50" formControlName="addonPlace" id="addonPlace">
     <option value="" selected disabled hidden>Válassz</option>
     <option value="kieg1">Kiegészítő1</option>
     <option value="kieg2">Kiegészítő2</option>
@@ -15,20 +15,20 @@
     <option value="kieg4">Kiegészítő4</option>
   </select>
 
-  <label class="bl-wh" for="addonAddWeight">Extra súly</label>
-  <input class="" id="addonAddWeight" type="number" formControlName="addonAddWeight">
+  <label class="bl-wh w50" for="addonAddWeight">Extra súly</label>
+  <input class="w50" id="addonAddWeight" type="number" formControlName="addonAddWeight">
 
-  <label class="bl-wh" for="addonAddPrice">Extra Ár</label>
-  <input class="" id="addonAddPrice" type="number" formControlName="addonAddPrice">
+  <label class="bl-wh w50" for="addonAddPrice">Extra Ár</label>
+  <input class="w50" id="addonAddPrice" type="number" formControlName="addonAddPrice">
 
-  <label class="bl-wh" for="addonMultiWeight">Súly módosító</label>
-  <input class="" id="addonMultiWeight" type="number" formControlName="addonMultiWeight">
+  <label class="bl-wh w50" for="addonMultiWeight">Súly módosító</label>
+  <input class="w50" id="addonMultiWeight" type="number" formControlName="addonMultiWeight">
 
-  <label class="bl-wh" for="addonMultiPrice">Ár módosító</label>
-  <input class="" id="addonMultiPrice" type="number" formControlName="addonMultiPrice">
+  <label class="bl-wh w50" for="addonMultiPrice">Ár módosító</label>
+  <input class="w50" id="addonMultiPrice" type="number" formControlName="addonMultiPrice">
 
-  <label class="bl-wh" for="addonDesc">Megjegyzések</label>
-  <input class="" id="addonDesc" type="text" formControlName="addonDesc">
+  <label class="bl-wh w100" for="addonDesc">Megjegyzések</label>
+  <input class="w100" id="addonDesc" type="text" formControlName="addonDesc">
 
   <div class="buttoncont">
     <button class="bl-wh" type="submit">Mentés</button>

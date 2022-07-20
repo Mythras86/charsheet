@@ -87,6 +87,9 @@ export class CharArmorsComponent implements OnInit, AfterContentChecked {
   }
 
   onAddArmor(id: string, faName) {
+    if (id == 'none') {
+      return;
+    }
     const armorsForm = this.fb.group({
       armorName: this.armorServ.armorsList.filter(x=>x.id == id).map(x=>x.armorName)[0],
       armorCategory: this.armorServ.armorsList.filter(x=>x.id == id).map(x=>x.armorCategory)[0],
@@ -130,16 +133,20 @@ export class CharArmorsComponent implements OnInit, AfterContentChecked {
     const kieg1multi:number = ((this.armorsForm.get(type) as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '1')?.value;
     const kieg2multi:number = ((this.armorsForm.get(type) as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '2')?.value;
     const kieg3multi:number = ((this.armorsForm.get(type) as FormArray).at(i) as FormGroup).get('addonMulti' + tag + '3')?.value;
-    const total = armor*kieg1multi*kieg2multi*kieg3multi+kieg1add+kieg2add+kieg3add;
+    const total = Math.round(armor*kieg1multi*kieg2multi*kieg3multi+kieg1add+kieg2add+kieg3add);
     ((this.armorsForm.get(type) as FormArray).at(i) as FormGroup).get('armorTotal'+tag)?.patchValue(total);
-    return Math.round(total);
+    return total;
   }
 
   AddAddon(i:number, type:string, tag: number) {
-    this.modalService.openModal(ArmorAddonslistModalComponent, {kiegFilter: this.getLegends(type)}).subscribe(w => this.onAddAddon(w, i, type, tag));
+    this.modalService.openModal(ArmorAddonslistModalComponent, {kiegFilter: this.getLegends(type)}).subscribe(
+      w => this.onAddAddon(w, i, type, tag));
   }
 
   onAddAddon(id:string, i:number, type:string, tag:number) {
+    if (id == 'none') {
+      return;
+    }
     ((this.armorsForm.get(type) as FormArray).at(i) as FormGroup).get('addonName'+tag)?.patchValue(
       this.armorAddonServ.armorAddonsList.filter(x=>x.id == id).map(x=>x.addonName)[0]
     );
@@ -165,10 +172,7 @@ export class CharArmorsComponent implements OnInit, AfterContentChecked {
     const armors:number = (this.armorsForm.get('armors') as FormArray).value.reduce((prev: number, next:number) => prev + +next['armorTotal'+tag], 0);
     const shields:number = (this.armorsForm.get('shields') as FormArray).value.reduce((prev: number, next:number) => prev + +next['armorTotal'+tag], 0);
     const total = helms + armors + shields;
-    if (tag == 'Price') {
-      this.resServ.getPointsSpent('spentOnArmors', total);
-    }
-    return Math.round(total);
+    return total;
   }
 
   ngAfterContentChecked(): void {

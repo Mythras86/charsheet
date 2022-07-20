@@ -1,0 +1,139 @@
+<h1 (click)="toggleHide()">Eszközök {{yourMoney}}/{{getSum('Price')}}</h1>
+
+<div class="sectioncont" [hidden]="hideMe" *ngIf="toolsForm" [formGroup]='toolsForm'>
+
+  <fieldset>
+    <legend>
+      <div>Fegyverek</div>
+    </legend>
+
+    <div class="buttoncont">
+      <button class="gr-wh" type="button" (click)="addNewTool('weapons')"
+      [disabled]="this.yourMoney <= 0">Fegyver Beszerzése</button>
+    </div>
+
+    <div formArrayName="weapons">
+      <div class="flexcont" [formGroupName]='i' *ngFor="let item of weapons?.controls; let i = index">
+        <div class="bl-wh w50">{{getDetails(i, 'weaponName', 'weapons')}}</div>
+        <div class="or-bl w30">{{getSubTotal(i, 'Price', 'weapons')}} cr</div>
+        <div class="bl-wh w20">{{getSubTotal(i, 'Weight', 'weapons')}} kg</div>
+        <div class="w50 bl-wh">{{getDetails(i, 'weaponType', 'weapons')}}</div>
+        <div class="w50 bl-wh">{{getDetails(i, 'weaponPower', 'weapons')}}
+          ({{getDetails(i, 'weaponDamage', 'weapons')}})
+          {{getDetails(i, 'weaponDmgType', 'weapons')}}
+        </div>
+        <div class="w50 or-bl">{{getDetails(i, 'weaponPrice', 'weapons')}} cr</div>
+        <div class="w30 bl-wh">{{getDetails(i, 'weaponWeight', 'weapons')}} kg</div>
+        <button class="re-wh w20" type="button" (click)="removeTool(i, 'weapons')">Törlés</button>
+        <div class="w50">{{getDetails(i, 'weaponRange', 'weapons')}}
+          /{{getDetails(i, 'weaponRange', 'weapons')*2}}
+          /{{getDetails(i, 'weaponRange', 'weapons')*4}}
+          /{{getDetails(i, 'weaponRange', 'weapons')*8}}</div>
+        <div class="w50">{{getDetails(i, 'weaponMods', 'weapons')}} | {{getDetails(i, 'weaponClip', 'weapons')}}</div>
+        <input type="text" class="w100" formControlName="weaponDesc" placeholder="Megjegyzések">
+
+        <div class="w100 bl-wh" *ngIf="getDetails(i, 'addonName1', 'weapons') == ''"
+        (click)="AddAddon(i, 1, getDetails(i, 'weaponCategory', 'weapons'))">Kiegészítő1</div>
+        <div class="flexcont w100" *ngIf="getDetails(i, 'addonName1', 'weapons') !== ''">
+          <div class="w50 bl-wh" >{{getDetails(i, 'addonName1', 'weapons')}}</div>
+          <div class="w20 or-bl" >{{getDetails(i, 'addonMultiPrice1', 'weapons')}}x</div>
+          <div class="w30 or-bl" >{{getDetails(i, 'addonAddPrice1', 'weapons')}} cr</div>
+          <div class="w100">{{getDetails(i, 'addonDesc1', 'weapons')}}</div>
+        </div>
+        <div class="w100 bl-wh" *ngIf="getDetails(i, 'addonName2', 'weapons') == ''"
+        (click)="AddAddon(i, 2, getDetails(i, 'weaponCategory', 'weapons'))">Kiegészítő2</div>
+        <div class="flexcont w100" *ngIf="getDetails(i, 'addonName2', 'weapons') !== ''">
+          <div class="w50 bl-wh" >{{getDetails(i, 'addonName2', 'weapons')}}</div>
+          <div class="w20 or-bl" >{{getDetails(i, 'addonMultiPrice2', 'weapons')}}x</div>
+          <div class="w30 or-bl" >{{getDetails(i, 'addonAddPrice2', 'weapons')}} cr</div>
+          <div class="w100">{{getDetails(i, 'addonDesc2', 'weapons')}}</div>
+        </div>
+        <div class="w100 bl-wh" *ngIf="getDetails(i, 'addonName3', 'weapons') == ''"
+        (click)="AddAddon(i, 3, getDetails(i, 'weaponCategory', 'weapons'))">Kiegészítő3</div>
+        <div class="flexcont w100" *ngIf="getDetails(i, 'addonName3', 'weapons') !== ''">
+          <div class="w50 bl-wh" >{{getDetails(i, 'addonName3', 'weapons')}}</div>
+          <div class="w20 or-bl" >{{getDetails(i, 'addonMultiPrice3', 'weapons')}}x</div>
+          <div class="w30 or-bl" >{{getDetails(i, 'addonAddPrice3', 'weapons')}} cr</div>
+          <div class="w100">{{getDetails(i, 'addonDesc3', 'weapons')}}</div>
+        </div>
+        <div class="w100 bl-wh" *ngIf="getDetails(i, 'addonName4', 'weapons') == ''"
+        (click)="AddAddon(i, 4, getDetails(i, 'weaponCategory', 'weapons'))">Kiegészítő4</div>
+        <div class="flexcont w100" *ngIf="getDetails(i, 'addonName4', 'weapons') !== ''">
+          <div class="w50 bl-wh" >{{getDetails(i, 'addonName4', 'weapons')}}</div>
+          <div class="w20 or-bl" >{{getDetails(i, 'addonMultiPrice4', 'weapons')}}x</div>
+          <div class="w30 or-bl" >{{getDetails(i, 'addonAddPrice4', 'weapons')}} cr</div>
+          <div class="w100">{{getDetails(i, 'addonDesc4', 'weapons')}}</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      <div>Robbanószerek</div>
+    </legend>
+
+    <div class="buttoncont">
+      <button class="gr-wh" type="button" (click)="addNewTool('explosives')"
+      [disabled]="this.yourMoney <= 0">Robbanószer Beszerzése</button>
+    </div>
+
+    <div formArrayName="explosives">
+      <div class="flexcont itemcont" [formGroupName]='i' *ngFor="let item of explosives?.controls; let i = index">
+        <div class="bl-wh w50">{{getDetails(i, 'weaponName', 'explosives')}}</div>
+        <div class="w50 bl-wh">{{getDetails(i, 'weaponType', 'explosives')}}</div>
+        <div class="w20">{{getDetails(i, 'weaponRange', 'explosives')}} m</div>
+        <div class="w20">{{getDetails(i, 'weaponMods', 'explosives')}} | {{getDetails(i, 'weaponClip', 'explosives')}}</div>
+        <div class="or-bl w30">{{getExpoSubTotal(i, 'Price', 'explosives')}} cr</div>
+        <div class="bl-wh w30">{{getExpoSubTotal(i, 'Weight', 'explosives')}} kg</div>
+        <app-levelcontrol class="w30"
+        [baseValue]=0
+        [fcName]="getFormcontrol(i, 'explosives', 'weaponCount')"
+        [disableIncrement]="this.yourMoney <= 0">
+      </app-levelcontrol>
+      <div class="w50 bl-wh">{{getDetails(i, 'weaponPower', 'explosives')}}
+        ({{getDetails(i, 'weaponDamage', 'explosives')}})
+        {{getDetails(i, 'weaponDmgType', 'explosives')}}
+      </div>
+      <button class="re-wh w20" type="button" (click)="removeTool(i, 'explosives')">Törlés</button>
+        <div class="w100">{{getDetails(i, 'weaponDesc', 'explosives')}}</div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      <div>Felszerelések</div>
+    </legend>
+
+    <div class="buttoncont">
+      <button class="gr-wh" type="button" (click)="addNewTool('equipments')"
+      [disabled]="this.yourMoney <= 0">Felszerelés Beszerzése</button>
+    </div>
+
+    <div formArrayName="equipments">
+      <div class="flexcont itemcont" [formGroupName]='i' *ngFor="let item of equipments?.controls; let i = index">
+        <div class="bl-wh w70">{{getDetails(i, 'equipmentName', 'equipments')}}</div>
+        <app-levelcontrol class="w30"
+        [baseValue]=0
+        [fcName]="getFormcontrol(i, 'equipments', 'equipmentCount')"
+        [disableIncrement]="this.yourMoney <= 0">
+        </app-levelcontrol>
+        <div class="w50">{{getDetails(i, 'equipmentCategory', 'equipments')}}</div>
+        <div class="or-bl w30">{{getEquipSubTotal(i, 'Price', 'equipments')}} cr</div>
+        <div class="bl-wh w20">{{getEquipSubTotal(i, 'Weight', 'equipments')}} kg</div>
+        <div *ngIf="getDetails(i, 'equipmentLevel', 'equipments')>0" class="bl-wh w20">Szint</div>
+        <app-levelcontrol *ngIf="getDetails(i, 'equipmentLevel', 'equipments')>0"
+        [baseValue]=0
+        [fcName]="getFormcontrol(i, 'equipments', 'equipmentLevel')"
+        [disableIncrement]="this.yourMoney <= 0 || getFormcontrol(i, 'equipments', 'equipmentLevel').value >= 10">
+      </app-levelcontrol>
+
+      <div class="w100">{{getDetails(i, 'equipmentDesc', 'equipments')}}</div>
+      <button class="re-wh" type="button" (click)="removeTool(i, 'equipments')">Törlés</button>
+      </div>
+    </div>
+  </fieldset>
+
+
+</div>

@@ -10,22 +10,26 @@ export interface Attributes {
   karAsztUgy: number,
   karAsztAll: number,
   //speciális
+  karEsszencia: number,
   karMagia: number,
+  karErzekeles: number,
   karKockatartalek: number,
 };
 
 export const attributes: Array<any> = [
   //fizikai
-  {nev: 'Erő', rovidnev: 'Erő', fcname:'karFizEro', csoport: 'Fizikum', karFizEromin: 1},
-  {nev: 'Reakció', rovidnev: 'Rea', fcname:'karFizGyo', csoport: 'Fizikum', karFizGyomin: 1},
-  {nev: 'Ügyesség', rovidnev: 'Ügy', fcname:'karFizUgy', csoport: 'Fizikum', karFizUgymin: 1},
-  {nev: 'Kitartás', rovidnev: 'Kit', fcname:'karFizAll', csoport: 'Fizikum', karFizAllmin: 1},
+  {nev: 'Erő', fcname:'karFizEro', csoport: 'Fizikum', karFizEromin: 1},
+  {nev: 'Reakció', fcname:'karFizGyo', csoport: 'Fizikum', karFizGyomin: 1},
+  {nev: 'Ügyesség', fcname:'karFizUgy', csoport: 'Fizikum', karFizUgymin: 1},
+  {nev: 'Kitartás', fcname:'karFizAll', csoport: 'Fizikum', karFizAllmin: 1},
   //szellemi
-  {nev: 'Akaraterő', rovidnev: 'Aka', fcname:'karAsztEro', csoport: 'Asztrál', karAsztEromin: 1},
-  {nev: 'Intuíció', rovidnev: 'Int', fcname:'karAsztGyo', csoport: 'Asztrál', karAsztGyomin: 1},
-  {nev: 'Logika', rovidnev: 'Log', fcname:'karAsztUgy', csoport: 'Asztrál', karAsztUgymin: 1},
-  {nev: 'Karizma', rovidnev: 'Kar', fcname:'karAsztAll', csoport: 'Asztrál', karAsztAllmin: 1},
+  {nev: 'Akaraterő', fcname:'karAsztEro', csoport: 'Asztrál', karAsztEromin: 1},
+  {nev: 'Intuíció', fcname:'karAsztGyo', csoport: 'Asztrál', karAsztGyomin: 1},
+  {nev: 'Logika', fcname:'karAsztUgy', csoport: 'Asztrál', karAsztUgymin: 1},
+  {nev: 'Karizma', fcname:'karAsztAll', csoport: 'Asztrál', karAsztAllmin: 1},
   //speciális
-  {nev: 'Mágia', rovidnev: 'Mág', fcname:'karMagia', csoport: 'Speciális', karMagiamin: 0},
-  {nev: 'Kockatartalék', rovidnev: 'Ktart', fcname:'karKockatartalek', csoport: 'Speciális', karKockatartalekmin: 0},
+  {nev: 'Esszencia', fcname:'karEsszencia', csoport: 'Speciális', karEsszenciamin: 6},
+  {nev: 'Mágia', fcname:'karMagia', csoport: 'Speciális', karMagiamin: 0},
+  {nev: 'Érzékelés', fcname:'karErzekeles', csoport: 'Speciális', karErzekelesmin: 1},
+  {nev: 'Kockatartalék', fcname:'karKockatartalek', csoport: 'Speciális', karKockatartalekmin: 0},
 ];

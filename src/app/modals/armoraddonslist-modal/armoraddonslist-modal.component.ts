@@ -29,6 +29,11 @@ export class ArmorAddonslistModalComponent implements OnInit, AModal {
     this.closeEvent.complete();
   }
 
+  onClose() {
+    this.closeEvent.next('none');
+    this.closeEvent.complete();
+  }
+
   ngOnInit(): void {
   }
 

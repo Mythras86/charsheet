@@ -6,16 +6,16 @@
 
   <h1>Ruházat és Páncélzat</h1>
 
-  <div *ngFor="let categ of getArmorCats()">
+  <div class="a100" *ngFor="let categ of getArmorCats()">
 
     <h2>{{categ}}</h2>
 
     <div class="flexcont itemcont" (click)="sendArmorID(item.id)" *ngFor="let item of getArmors(categ)">
       <div class="w50 bl-wh">{{item.armorName}}</div>
       <div class="w20 or-bl">{{item.armorRating}}</div>
-      <div class="w30 bl-wh">{{item.armorPrice}} cred</div>
-      <div class="w70">Megj.: {{item.armorDesc}}</div>
-      <div class="w30">{{item.armorWeight}} Kg</div>
+      <div class="w30 bl-wh">{{item.armorPrice}} cr</div>
+      <div class="w70">{{item.armorDesc}}</div>
+      <div class="w30">{{item.armorWeight}} kg</div>
       <div class="" *ngIf="!selectionMode">
         <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
         <button class="re-wh" type="button" (click)="armorsServ.deleteOneArmor(item.id)">Törlés</button>

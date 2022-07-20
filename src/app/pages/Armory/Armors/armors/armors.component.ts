@@ -103,7 +103,7 @@ export class ArmorsComponent implements OnInit {
           this.newArmorForm.patchValue({
             armorName: this.newArmorForm.get('armorName')?.value,
             armorCategory: this.newArmorForm.get('armorCategory')?.value,
-            armorDmgType: this.newArmorForm.get('armorRating')?.value,
+            armorRating: this.newArmorForm.get('armorRating')?.value,
             armorWeight: this.newArmorForm.get('armorWeight')?.value,
             armorPrice: this.newArmorForm.get('armorPrice')?.value,
             armorDesc: this.newArmorForm.get('armorDesc')?.value,

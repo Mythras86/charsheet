@@ -30,7 +30,6 @@ export class CharAttributesComponent implements OnInit, OnDestroy, AfterContentC
     return this.hideMe = !this.hideMe;
   }
 
-
   getFormcontrol(fcname: string):any {
     let fc = this.attributesForm.get(fcname);
     return fc;
@@ -54,11 +53,42 @@ export class CharAttributesComponent implements OnInit, OnDestroy, AfterContentC
 
   getMaxValue(fcname: string): number {
     const maxvalue:any = Fajok.filter(x => x.fajnev == this.yourRace).map(x => x[fcname + "Max"]);
+    if (fcname == 'karMagia') {
+      return this.attrServ.karEsszencia
+    }
     return maxvalue*1+6;
   }
 
   getTotalValue(attrInput: string): number {
-    return this.getMinValue(attrInput) + this.getFormcontrol(attrInput).value;
+    const totalvalue = this.getMinValue(attrInput) + this.getFormcontrol(attrInput).value;
+    this.attrServ[attrInput] = totalvalue;
+    return totalvalue;
+  }
+
+  getSumSub(legend: string): number {
+    const karFizEro = this.attributesForm.get('karFizEro').value;
+    const karFizGyo = this.attributesForm.get('karFizGyo').value;
+    const karFizUgy = this.attributesForm.get('karFizUgy').value;
+    const karFizAll = this.attributesForm.get('karFizAll').value;
+    const karAsztEro = this.attributesForm.get('karAsztEro').value;
+    const karAsztGyo = this.attributesForm.get('karAsztGyo').value;
+    const karAsztUgy = this.attributesForm.get('karAsztUgy').value;
+    const karAsztAll = this.attributesForm.get('karAsztAll').value;
+    const karMagia = this.attributesForm.get('karMagia').value;
+    const karErzekeles = this.attributesForm.get('karErzekeles').value;
+    const karKockatartalek = this.attributesForm.get('karKockatartalek').value;
+    if (legend == 'Fizikum') {
+      const fullfiz = karFizAll + karFizEro + karFizGyo + karFizUgy+4;
+      this.attrServ.karFullFiz = fullfiz;
+      return fullfiz;
+    }
+    if (legend == 'Asztrál') {
+      const fullaszt = karAsztAll + karAsztEro + karAsztGyo + karAsztUgy+4;
+      this.attrServ.karFullAszt = fullaszt;
+      return fullaszt;
+    }
+    const fullspec = karMagia + karErzekeles + karKockatartalek
+    return fullspec;
   }
 
   getSum():number {

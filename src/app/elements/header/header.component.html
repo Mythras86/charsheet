@@ -29,7 +29,7 @@
 
   <ul class="element-cont bl-wh">
     <li class="w33" *ngIf="userIsAuthenticated">
-      <a (click)="showSubMenu('armory')">Felszerelések</a>
+      <a (click)="showSubMenu('armory')">Eszközök</a>
     </li>
     <li class="w33" *ngIf="userIsAuthenticated">
       <a (click)="showSubMenu('magic')">Mágia</a>
@@ -41,14 +41,17 @@
 
   <!-- Armory -->
   <ul class="element-cont bl-wh" *ngIf="this.subMenu=='armory'">
-    <li class="w50" *ngIf="userIsAuthenticated">
+    <li class="w30" *ngIf="userIsAuthenticated">
       <a routerLink="/weaponslist">Fegyverek</a>
+    </li>
+    <li class="w40" *ngIf="userIsAuthenticated">
+      <a routerLink="/equipmentslist">Felszerelések</a>
+    </li>
+    <li class="w30" *ngIf="userIsAuthenticated">
+      <a routerLink="/armorslist">Páncélok</a>
     </li>
     <li class="w50" *ngIf="userIsAuthenticated">
       <a routerLink="/weaponaddonslist">Fegyver Kiegek</a>
-    </li>
-    <li class="w50" *ngIf="userIsAuthenticated">
-      <a routerLink="/armorslist">Páncélok</a>
     </li>
     <li class="w50" *ngIf="userIsAuthenticated">
       <a routerLink="/armoraddonslist">Páncél Kiegek</a>

@@ -1,5 +1,6 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { AttributesService } from '../char-attributes/attributes.service';
 import { DetailsService } from '../char-details/details.service';
 import { ResourcesService } from '../char-resources/resources.service';
 import { charSkills } from './skills.util';
@@ -18,6 +19,7 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
     private changeDetector: ChangeDetectorRef,
     public resServ: ResourcesService,
     public detailsServ: DetailsService,
+    public attrServ: AttributesService,
   ) { }
 
   public yourSkills:number = 0;
@@ -27,7 +29,6 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
   toggleHide() {
     this.hideMe = !this.hideMe;
   }
-
 
   public get activeSkills(): FormArray | null {
     if(!this.skillsForm) {
@@ -84,7 +85,10 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
   }
 
   getOptions(group:string):Array<any> {
-    const options = charSkills.filter(x=> x.group == group);
+    const options = charSkills
+    .filter(x=>x.szakertelem !== 'Anyanyelvi beszéd')
+    .filter(x=>x.szakertelem !== 'Anyanyelvi Í/O')
+    .filter(x=> x.group == group);
     return options;
   }
 
@@ -118,22 +122,37 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
   getSumSub(faName:string):number | null {
     const skillarrayname = this.skillsForm.get(faName) as FormArray;
     const sumSkills = skillarrayname.value.reduce((prev: number, next: { skillLevel: number; }) => prev + +next.skillLevel, 0);
-
-    if (faName == 'languageSkills') {
-      return sumSkills -6;
-    }
-
     return sumSkills;
   }
 
+  getPoints(faName:string):number | null {
+    if (faName == 'total') {
+      return this.yourSkills + this.attrServ.karFullAszt*2 + this.attrServ.karAsztUgy*2;
+    }
+    if (faName == 'knowledgeSkills') {
+      return this.yourSkills + this.attrServ.karFullAszt*2;
+    }
+    if (faName == 'languageSkills') {
+      return this.yourSkills + this.attrServ.karAsztUgy*2;
+    }
+    return this.yourSkills
+  }
+
   getSumAll():number {
-    const sumall = this.getSumSub('activeSkills')+this.getSumSub('knowledgeSkills')+this.getSumSub('languageSkills');
-    this.resServ.getPointsSpent('spentOnSkills', sumall);
+    const sumall = this.getSumSub('activeSkills') + this.getSumSub('knowledgeSkills') + this.getSumSub('languageSkills');
     return sumall;
   }
 
-  ngAfterContentChecked(): void {
-    this.changeDetector.detectChanges();
+  skillBase(i:number, type: string):number {
+    if (type !== 'languageSkills') {
+      return 0;
+    } else {
+      const skillname = ((this.skillsForm.get('languageSkills') as FormArray).at(i) as FormGroup).get('skillName')?.value;
+      if (skillname == 'Anyanyelvi beszéd' || skillname == 'Anyanyelvi Í/O') {
+        return 4;
+      }
+      return 0;
+    }
   }
 
   addFirstLanguage(langName:string, langDesc:string, baseLvl: number): void {
@@ -145,10 +164,14 @@ export class CharSkillsComponent implements OnInit, AfterContentChecked {
     (this.skillsForm.get('languageSkills') as FormArray).push(skillsForm);
   }
 
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
+
   ngOnInit(): void {
     this.resServ.getSkillPoints.subscribe(yourSkills => this.yourSkills = yourSkills);
     this.detailsServ.getLanguage.subscribe(yourLanguage => this.yourLanguage = yourLanguage);
-    this.addFirstLanguage('Nyelvismeret', 'magyar', 3);
-    this.addFirstLanguage('Írás/olvasás', 'magyar', 3);
+    this.addFirstLanguage('Anyanyelvi beszéd', '', 0);
+    this.addFirstLanguage('Anyanyelvi Í/O', '', 0);
   }
 }

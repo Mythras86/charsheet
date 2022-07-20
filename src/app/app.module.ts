@@ -17,11 +17,10 @@ import { ListcharsComponent } from './pages/charsheets/listchars/listchars.compo
 import { MainCharComponent } from './pages/charsheets/mainchar/mainchar.component';
 import { CharDetailsComponent } from './pages/charsheets/char-sub-forms/char-details/char-details.component';
 import { CharAttributesComponent } from './pages/charsheets/char-sub-forms/char-attributes/char-attributes.component';
-import { CharEquipmentComponent } from './pages/charsheets/char-sub-forms/char-equipment/char-equipment.component';
+import { CharToolsComponent } from './pages/charsheets/char-sub-forms/char-tools/char-tools.component';
 import { CharResourcesComponent } from './pages/charsheets/char-sub-forms/char-resources/char-resources.component';
 import { CharSkillsComponent } from './pages/charsheets/char-sub-forms/char-skills/char-skills.component';
 import { LevelcontrolComponent } from './elements/levelcontrol/levelcontrol.component';
-import { CharWeaponsComponent } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.component';
 import { WeaponsComponent } from './pages/Armory/Weapons/weapons/weapons.component';
 import { WeaponAddonsComponent } from './pages/Armory/Weapons/weapon-addons/weapon-addons.component';
 import { WeaponsListComponent } from './pages/Armory/Weapons/weaponslist/weaponslist.component';
@@ -32,7 +31,7 @@ import { WeaponslistModalComponent } from './modals/weaponslist-modal/weaponslis
 import { ModalWrapperComponent } from './modals/modal-wrapper.component';
 import { ModalService } from './modals/modal.service';
 import { WeaponsService } from './pages/Armory/Weapons/weapons/weapons.service';
-import { CharWeaponsService } from './pages/charsheets/char-sub-forms/char-weapons/char-weapons.service';
+import { CharWeaponsService } from './pages/charsheets/char-sub-forms/char-tools/char-weapons.service';
 import { AddonslistModalComponent } from './modals/weaponaddonslist-modal/weaponaddonslist-modal.component';
 import { ResourcesService } from './pages/charsheets/char-sub-forms/char-resources/resources.service';
 import { SkillsService } from './pages/charsheets/char-sub-forms/char-skills/skills.service';
@@ -46,6 +45,10 @@ import { ArmorAddonsService } from './pages/Armory/Armors/armor-addons/armor-add
 import { ArmorAddonslistComponent } from './pages/Armory/Armors/armor-addonslist/armor-addonslist.component';
 import { ArmorslistModalComponent } from './modals/armorslist-modal/armorslist-modal.component';
 import { ArmorAddonslistModalComponent } from './modals/armoraddonslist-modal/armoraddonslist-modal.component';
+import { EquipmentComponent } from './pages/Armory/Equipment/equipments/equipment.component';
+import { EquipmentsService } from './pages/Armory/Equipment/equipments/equipments.service';
+import { EquipmentslistComponent } from './pages/Armory/Equipment/equipmentslist/equipmentslist.component';
+import { EquipmentslistModalComponent } from './modals/equipmentslist-modal/equipmentslist-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,11 +63,11 @@ import { ArmorAddonslistModalComponent } from './modals/armoraddonslist-modal/ar
     ListcharsComponent,
     CharDetailsComponent,
     CharAttributesComponent,
-    CharEquipmentComponent,
+    CharToolsComponent,
     CharResourcesComponent,
     CharSkillsComponent,
     LevelcontrolComponent,
-    CharWeaponsComponent,
+    CharToolsComponent,
     WeaponsComponent,
     WeaponsListComponent,
     WeaponAddonsComponent,
@@ -80,6 +83,9 @@ import { ArmorAddonslistModalComponent } from './modals/armoraddonslist-modal/ar
     CharArmorsComponent,
     ArmorslistModalComponent,
     ArmorAddonslistModalComponent,
+    EquipmentComponent,
+    EquipmentslistComponent,
+    EquipmentslistModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,11 +106,15 @@ import { ArmorAddonslistModalComponent } from './modals/armoraddonslist-modal/ar
     DetailsService,
     ArmorsService,
     ArmorAddonsService,
+    EquipmentsService,
   ],
   bootstrap: [AppComponent],
   exports: [
     CharArmorsComponent,
-    ArmorslistModalComponent
+    ArmorslistModalComponent,
+    EquipmentComponent,
+    EquipmentslistComponent,
+    EquipmentslistModalComponent
   ],
 })
 export class AppModule { }

@@ -70,4 +70,6 @@ export const charSkills: Array<any> = [
   {faName: 'knowledgeSkills', szakertelem: 'Utcai ismeretek', group: 'Ismeret', legend: 'Ismeret'},
   {faName: 'languageSkills', szakertelem: 'Nyelvismeret', group: 'Beszéd', legend: 'Nyelvi'},
   {faName: 'languageSkills', szakertelem: 'Írás/olvasás', group: 'Írott', legend: 'Nyelvi'},
+  {faName: 'languageSkills', szakertelem: 'Anyanyelvi beszéd', group: 'Beszéd', legend: 'Nyelvi', show: false},
+  {faName: 'languageSkills', szakertelem: 'Anyanyelvi Í/O', group: 'Írott', legend: 'Nyelvi', show: false},
 ];

@@ -1,45 +1,46 @@
 <form class="sectioncont" [formGroup]="newWeaponForm" (ngSubmit)="onSubmit()">
 
-  <label class="bl-wh" for="weaponName">Név</label>
-  <input class="" id="weaponName" type="text" formControlName="weaponName">
+  <label class="bl-wh w50" for="weaponName">Név</label>
+  <input class="w50" id="weaponName" type="text" formControlName="weaponName">
 
-  <label class="bl-wh" for="weaponCategory">Kategória</label>
-  <input class="" id="weaponCategory" type="text" formControlName="weaponCategory">
+  <label class="bl-wh w50" for="weaponCategory">Kategória</label>
+  <input class="w50" id="weaponCategory" type="text" formControlName="weaponCategory">
 
-  <label class="bl-wh" for="weaponType">Típus</label>
-  <input class="" id="weaponType" type="text" formControlName="weaponType">
+  <label class="bl-wh w50" for="weaponType">Típus</label>
+  <input class="w50" id="weaponType" type="text" formControlName="weaponType">
 
-  <label class="bl-wh" for="weaponClip">Tár mérete (típusa)</label>
-  <input class="" id="weaponClip" type="text" formControlName="weaponClip">
+  <label class="bl-wh w50" for="weaponClip">Tár mérete (típusa)</label>
+  <input class="w50" id="weaponClip" type="text" formControlName="weaponClip">
 
-  <label class="bl-wh" for="weaponMods">Támadási módok</label>
-  <input class="" id="weaponMods" type="text" formControlName="weaponMods">
+  <label class="bl-wh w50" for="weaponMods">Támadási módok</label>
+  <input class="w50" id="weaponMods" type="text" formControlName="weaponMods">
 
-  <label class="bl-wh" for="weaponRange">Hatótáv</label>
-  <input class="" id="weaponRange" type="number" formControlName="weaponRange">
+  <label class="bl-wh w50" for="weaponRange">Hatótáv</label>
+  <input class="w50" id="weaponRange" type="number" formControlName="weaponRange">
 
-  <label class="bl-wh" for="weaponPower">Erő</label>
-  <input class="" id="weaponPower" type="number" formControlName="weaponPower">
+  <label class="bl-wh w50" for="weaponPower">Erő</label>
+  <input class="w50" id="weaponPower" type="number" formControlName="weaponPower">
 
-  <label class="bl-wh" for="weaponDamage">Sebzés</label>
-  <input class="" id="weaponDamage" type="number" formControlName="weaponDamage">
+  <label class="bl-wh w50" for="weaponDamage">Sebzés</label>
+  <input class="w50" id="weaponDamage" type="number" formControlName="weaponDamage">
 
-  <label class="bl-wh" for="weaponDmgType">Sebzés Típusa</label>
-  <select formControlName="weaponDmgType" id="weaponDmgType">
+  <label class="bl-wh w50" for="weaponDmgType">Sebzés Típusa</label>
+  <select class="w50" formControlName="weaponDmgType" id="weaponDmgType">
     <option value="" selected disabled hidden>Válassz</option>
     <option value="Fizikai">Fizikai</option>
     <option value="Kábulás">Kábulás</option>
     <option value="Speciális">Speciális</option>
   </select>
 
-  <label class="bl-wh" for="weaponWeight">Súly</label>
-  <input class="" id="weaponWeight" type="number" formControlName="weaponWeight">
+  <label class="bl-wh w50" for="weaponWeight">Súly</label>
+  <input class="w50" id="weaponWeight" type="number" formControlName="weaponWeight">
 
-  <label class="bl-wh" for="weaponPrice">Ár</label>
-  <input class="" id="weaponPrice" type="number" formControlName="weaponPrice">
+  <label class="bl-wh w50" for="weaponPrice">Ár</label>
+  <input class="w50" id="weaponPrice" type="number" formControlName="weaponPrice">
 
-  <label class="bl-wh" for="weaponDesc">Megjegyzések</label>
-  <input class="" id="weaponDesc" type="text" formControlName="weaponDesc">
+  <label class="bl-wh w100" for="weaponDesc">Megjegyzések</label>
+  <input class="w100" id="weaponDesc" type="text" formControlName="weaponDesc">
+
   <div class="buttoncont">
     <button class="bl-wh" type="submit">Mentés</button>
     <button class="or-bl" type="button" (click)="backToList()">Vissza</button>

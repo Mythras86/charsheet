@@ -1,6 +1,6 @@
 <div class="sectioncont" *ngIf="weaponsServ.weaponsList !== null">
 
-  <div class="flexcont">
+  <div class="flexcont" *ngIf="sortMeFilter !== 'Robbanóanyagok' || selectionMode !== true">
     <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
     <div class="w30 bl-wh"
     *ngFor="let categ of getWeaponCats()" (click)="sortMeBy(categ)">
@@ -23,12 +23,12 @@
       <div class="flexcont itemcont" (click)="sendWeaponID(item.id)" *ngFor="let item of getWeapons(type)">
         <div class="w50 bl-wh">{{item.weaponName}}</div>
         <div class="w20">Táv: {{item.weaponRange}}</div>
-        <div class="w30 bl-wh">{{item.weaponPrice}} cred</div>
+        <div class="w30 bl-wh">{{item.weaponPrice}} cr</div>
         <div class="w50">{{item.weaponMods}} | {{item.weaponClip}}</div>
-        <div class="w20">{{item.weaponWeight}} Kg</div>
+        <div class="w20">{{item.weaponWeight}} kg</div>
         <div class="w30 or-bl">{{item.weaponPower}} ({{item.weaponDamage}}) {{item.weaponDmgType}}</div>
-        <div class="w100">Megj.: {{item.weaponDesc}}</div>
-        <div class=""*ngIf="!selectionMode">
+        <div class="w100">{{item.weaponDesc}}</div>
+        <div class="" *ngIf="!selectionMode">
           <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
           <button class="re-wh" type="button" (click)="weaponsServ.deleteOneWeapon(item.id)">Törlés</button>
         </div>

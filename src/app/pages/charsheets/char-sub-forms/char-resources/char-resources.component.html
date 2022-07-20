@@ -1,19 +1,18 @@
-<h1 (click)="toggleHide()">Pontelosztás</h1>
+<h1 (click)="toggleHide()">Erőforrások {{getRemainingKarma()}}</h1>
 
 <div class="sectioncont" [hidden]="hideMe" [formGroup]="resourcesForm" *ngIf="resourcesForm">
 
   <fieldset>
     <legend>
-      <div>Karmaelosztás {{getRemainingKarma()}}</div>
+      <div>Karmaelosztás</div>
     </legend>
-
     <div class="flexcont" *ngFor='let res of getResources()'>
-      <div class="bl-wh elemnev">
+      <div class="bl-wh w70">
         {{res.nev}}
       </div>
-      <input [formControlName]='res.fcname' *ngIf="res.hide==true" type="number" class="elemertek" readonly
+      <input class="w30" [formControlName]='res.fcname' *ngIf="res.hide==true" type="number" readonly
       [value]="getTotalValue(res.fcname)">
-      <app-levelcontrol
+      <app-levelcontrol class="w30"
         *ngIf='res.hide==false'
         [baseValue]=0
         [fcName]='getFormcontrol(res.fcname)'
@@ -25,4 +24,67 @@
       </app-levelcontrol>
     </div>
   </fieldset>
+
+  <fieldset>
+    <legend>
+      <div>Mágia elosztás</div>
+    </legend>
+    <div class="flexcont">
+      <div class="bl-wh w70">Varázslatok</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Szellemek</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Ereklyék</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      <div>Tőke elosztás</div>
+    </legend>
+    <div class="flexcont">
+      <div class="bl-wh w70">Fegyverek</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Páncélok</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Eszközök</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Kiberverek</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Programok</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Járművek</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Varázslatok</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Szellemek</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+    <div class="flexcont">
+      <div class="bl-wh w70">Ereklyék</div>
+      <input class="w30" type="number" readonly [value]="">
+    </div>
+  </fieldset>
+
+
+
 </div>

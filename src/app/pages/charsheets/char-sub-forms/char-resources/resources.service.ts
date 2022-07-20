@@ -10,14 +10,14 @@ import { Resources } from './resources.model';
 export class ResourcesService {
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
     ) { }
 
     spentOnAttrs:number = 0;
     spentOnSkills:number = 0;
-    spentOnWeapons:number = 0;
-    spentOnArmors:number = 0;
     spentOnMagic:number = 0;
+    moneyOnWeapons:number = 0;
+    moneyOnArmors:number = 0;
 
     private remainingAttrs = new BehaviorSubject<number>(0);
     getAttrPoints = this.remainingAttrs.asObservable();
@@ -63,6 +63,4 @@ export class ResourcesService {
   getPointsSpent(varstring: string, points: number) {
     return this[varstring] = points;
   }
-
-
 }

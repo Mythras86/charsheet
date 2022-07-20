@@ -10,7 +10,6 @@ exports.createAddon = (req, res, next) => {
     addonMultiPrice:req.body.addonMultiPrice,
     addonDesc:req.body.addonDesc
   });
-  console.log(addon);
   addon
     .save()
     .then(createdAddon => {
