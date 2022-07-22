@@ -49,6 +49,10 @@ import { EquipmentComponent } from './pages/Armory/Equipment/equipments/equipmen
 import { EquipmentsService } from './pages/Armory/Equipment/equipments/equipments.service';
 import { EquipmentslistComponent } from './pages/Armory/Equipment/equipmentslist/equipmentslist.component';
 import { EquipmentslistModalComponent } from './modals/equipmentslist-modal/equipmentslist-modal.component';
+import { CharCyberworldComponent } from './pages/charsheets/char-sub-forms/char-cyberworld/char-cyberworld.component';
+import { CyberneticsComponent } from './pages/Cyberworld/Cybernetics/cybernetics/cybernetics.component';
+import { CyberslistComponent } from './pages/Cyberworld/Cybernetics/cyberslist/cyberslist.component';
+import { CyberslistModalComponent } from './modals/cyberslist-modal/cyberslist-modal.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +90,10 @@ import { EquipmentslistModalComponent } from './modals/equipmentslist-modal/equi
     EquipmentComponent,
     EquipmentslistComponent,
     EquipmentslistModalComponent,
+    CharCyberworldComponent,
+    CyberneticsComponent,
+    CyberslistComponent,
+    CyberslistModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,7 +122,11 @@ import { EquipmentslistModalComponent } from './modals/equipmentslist-modal/equi
     ArmorslistModalComponent,
     EquipmentComponent,
     EquipmentslistComponent,
-    EquipmentslistModalComponent
+    EquipmentslistModalComponent,
+    CharCyberworldComponent,
+    CyberneticsComponent,
+    CyberslistComponent,
+    CyberslistModalComponent
   ],
 })
 export class AppModule { }

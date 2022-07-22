@@ -29,8 +29,6 @@ export class EquipmentslistModalComponent implements OnInit {
     this.closeEvent.complete();
   }
 
-
   ngOnInit(): void {
   }
-
 }

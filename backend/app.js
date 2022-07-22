@@ -9,6 +9,7 @@ const weaponAddonRoutes = require("./routes/weaponAddon");
 const armorRoutes = require("./routes/armor");
 const armorAddonRoutes = require("./routes/armorAddon");
 const equipmentRoutes = require("./routes/equipment");
+const cyberneticRoutes = require("./routes/cybernetic");
 
 const app = express();
 
@@ -47,5 +48,6 @@ app.use ("/api/weaponaddons", weaponAddonRoutes);
 app.use ("/api/armors", armorRoutes);
 app.use ("/api/armoraddons", armorAddonRoutes);
 app.use ("/api/equipments", equipmentRoutes);
+app.use ("/api/cybernetics", cyberneticRoutes);
 
 module.exports = app;

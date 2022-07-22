@@ -34,5 +34,4 @@ export class WeaponslistModalComponent implements OnInit, AModal {
 
   ngOnInit(): void {
   }
-
 }

@@ -9,10 +9,10 @@
       </div>
     </legend>
     <div class="flexcont" *ngFor="let item of getGroups(legend)">
-      <div class="bl-wh w20">
+      <div class="bl-wh w30">
         {{item.nev}}
       </div>
-      <app-levelcontrol
+      <app-levelcontrol class="w30"
         [baseValue]="getMinValue(item.fcname)"
         [fcName]='getFormcontrol(item.fcname)'
         [disableIncrement]="getMaxValue(item.fcname) == getTotalValue(item.fcname)
@@ -20,7 +20,7 @@
         || item.fcname == 'karEsszencia'">
         {{noPointsForAttrs()}}
       </app-levelcontrol>
-      <div  class="w30">
+      <div  class="w40">
         m: {{getMinValue(item.fcname)}}
         m: {{getMaxValue(item.fcname)}}
         v: {{getFormcontrol(item.fcname).value}}

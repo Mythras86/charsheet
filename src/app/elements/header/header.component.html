@@ -58,5 +58,12 @@
     </li>
   </ul>
 
+  <!-- Kibervilág -->
+  <ul class="element-cont bl-wh" *ngIf="this.subMenu=='cyber'">
+    <li class="w30" *ngIf="userIsAuthenticated">
+      <a routerLink="/cyberneticslist">Kiberverek</a>
+    </li>
+  </ul>
+
 
 </nav>

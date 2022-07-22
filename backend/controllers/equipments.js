@@ -4,7 +4,7 @@ exports.createEquipment = (req, res, next) => {
   const equipment = new Equipment ({
     equipmentName:req.body.equipmentName,
     equipmentCategory:req.body.equipmentCategory,
-    equipmentLevel:req.body.equipmentLevel,
+    equipmentMaxLevel:req.body.equipmentMaxLevel,
     equipmentWeight:req.body.equipmentWeight,
     equipmentPrice:req.body.equipmentPrice,
     equipmentDesc:req.body.equipmentDesc
@@ -32,7 +32,7 @@ exports.updateEquipment = (req, res, next) => {
     _id: req.body.id,
     equipmentName:req.body.equipmentName,
     equipmentCategory:req.body.equipmentCategory,
-    equipmentLevel:req.body.equipmentLevel,
+    equipmentMaxLevel:req.body.equipmentMaxLevel,
     equipmentWeight:req.body.equipmentWeight,
     equipmentPrice:req.body.equipmentPrice,
     equipmentDesc:req.body.equipmentDesc

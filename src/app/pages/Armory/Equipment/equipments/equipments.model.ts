@@ -2,7 +2,7 @@ export interface Equipments {
   id: string,
   equipmentName: string,
   equipmentCategory: string,
-  equipmentLevel: number,
+  equipmentMaxLevel: number,
   equipmentWeight: number,
   equipmentPrice: number,
   equipmentDesc: string,

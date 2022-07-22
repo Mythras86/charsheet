@@ -16,14 +16,17 @@ import { ArmorAddonslistComponent } from "./pages/Armory/Armors/armor-addonslist
 import { ArmorAddonsComponent } from "./pages/Armory/Armors/armor-addons/armor-addons.component";
 import { EquipmentComponent } from "./pages/Armory/Equipment/equipments/equipment.component";
 import { EquipmentslistComponent } from "./pages/Armory/Equipment/equipmentslist/equipmentslist.component";
+import { CyberslistComponent } from "./pages/Cyberworld/Cybernetics/cyberslist/cyberslist.component";
+import { CyberneticsComponent } from "./pages/Cyberworld/Cybernetics/cybernetics/cybernetics.component";
 
 const routes: Routes = [
   { path: "", component: MainComponent },
-  { path: "characters", component: ListcharsComponent },
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent},
 
+  { path: "characters", component: ListcharsComponent },
   { path: "newchar", component: MainCharComponent},
+  { path: "charedit/:id", component: MainCharComponent},
 
   { path: "weaponslist", component: WeaponsListComponent},
   { path: "newweapon", component: WeaponsComponent},
@@ -44,6 +47,10 @@ const routes: Routes = [
   { path: "equipmentslist", component: EquipmentslistComponent},
   { path: "newequipment", component: EquipmentComponent},
   { path: "equipmentedit/:id", component: EquipmentComponent},
+
+  { path: "cyberneticslist", component: CyberslistComponent},
+  { path: "newcybernetic", component: CyberneticsComponent},
+  { path: "cyberneticedit/:id", component: CyberneticsComponent},
 
 ];
 

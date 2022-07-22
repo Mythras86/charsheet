@@ -1,0 +1,7 @@
+<div class="buttoncont">
+  <button class="re-wh" type="button" (click)="onClose()">Bezárás</button>
+</div>
+<app-cyberslist
+(onCyberneticSelected)="onCyberneticSelected($event)"
+[selectionMode]="true"
+></app-cyberslist>

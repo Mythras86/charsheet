@@ -32,8 +32,6 @@ export class ArmorslistModalComponent implements OnInit {
     this.closeEvent.complete();
   }
 
-
   ngOnInit(): void {
   }
-
 }

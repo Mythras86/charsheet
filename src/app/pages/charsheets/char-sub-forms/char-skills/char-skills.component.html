@@ -22,9 +22,10 @@
       </select>
       <div class="bl-wh w30">{{getSelectedGroup(i, type)}}</div>
       <button *ngIf="skillBase(i, type)==0" class="w20 re-wh" type="button" (click)="removeSkill(i, type)">Törlés</button>
-      <app-levelcontrol
+      <app-levelcontrol class="w30"
       [baseValue]='skillBase(i, type)'
       [fcName]="getFormcontrol(i, type)"
+      [prefix]="'Lv '"
       [disableIncrement]="getSkillLevel(i, type)+skillBase(i, type)==6 || getPoints(type)<=getSumSub(type)">
       </app-levelcontrol>
       <input *ngIf="skillBase(i, type)==0" class="w70" type="text" formControlName="skillDesc" [value]="" placeholder="Megjegyzések">

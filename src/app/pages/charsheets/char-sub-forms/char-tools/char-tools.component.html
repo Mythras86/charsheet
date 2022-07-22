@@ -13,23 +13,23 @@
     </div>
 
     <div formArrayName="weapons">
-      <div class="flexcont" [formGroupName]='i' *ngFor="let item of weapons?.controls; let i = index">
-        <div class="bl-wh w50">{{getDetails(i, 'weaponName', 'weapons')}}</div>
-        <div class="or-bl w30">{{getSubTotal(i, 'Price', 'weapons')}} cr</div>
-        <div class="bl-wh w20">{{getSubTotal(i, 'Weight', 'weapons')}} kg</div>
-        <div class="w50 bl-wh">{{getDetails(i, 'weaponType', 'weapons')}}</div>
+      <div class="flexcont itemcont" [formGroupName]='i' *ngFor="let item of weapons?.controls; let i = index">
+        <div class="bl-wh w70">{{getDetails(i, 'weaponName', 'weapons')}}</div>
+        <div class="or-bl w30">{{getWeapSubTotal(i, 'Price', 'weapons')}} cr</div>
+        <div class="w70">{{getDetails(i, 'weaponType', 'weapons')}}</div>
+        <div class="bl-wh w30">{{getWeapSubTotal(i, 'Weight', 'weapons')}} kg</div>
+        <div class="w50">{{getDetails(i, 'weaponRange', 'weapons')}}
+          /{{getDetails(i, 'weaponRange', 'weapons')*2}}
+          /{{getDetails(i, 'weaponRange', 'weapons')*4}}
+          /{{getDetails(i, 'weaponRange', 'weapons')*8}}
+        </div>
+        <div class="w50">{{getDetails(i, 'weaponMods', 'weapons')}} | {{getDetails(i, 'weaponClip', 'weapons')}}</div>
         <div class="w50 bl-wh">{{getDetails(i, 'weaponPower', 'weapons')}}
           ({{getDetails(i, 'weaponDamage', 'weapons')}})
           {{getDetails(i, 'weaponDmgType', 'weapons')}}
         </div>
-        <div class="w50 or-bl">{{getDetails(i, 'weaponPrice', 'weapons')}} cr</div>
-        <div class="w30 bl-wh">{{getDetails(i, 'weaponWeight', 'weapons')}} kg</div>
-        <button class="re-wh w20" type="button" (click)="removeTool(i, 'weapons')">Törlés</button>
-        <div class="w50">{{getDetails(i, 'weaponRange', 'weapons')}}
-          /{{getDetails(i, 'weaponRange', 'weapons')*2}}
-          /{{getDetails(i, 'weaponRange', 'weapons')*4}}
-          /{{getDetails(i, 'weaponRange', 'weapons')*8}}</div>
-        <div class="w50">{{getDetails(i, 'weaponMods', 'weapons')}} | {{getDetails(i, 'weaponClip', 'weapons')}}</div>
+        <div class="w30 or-bl">{{getDetails(i, 'weaponPrice', 'weapons')}} cr</div>
+        <div class="w20 bl-wh">{{getDetails(i, 'weaponWeight', 'weapons')}} kg</div>
         <input type="text" class="w100" formControlName="weaponDesc" placeholder="Megjegyzések">
 
         <div class="w100 bl-wh" *ngIf="getDetails(i, 'addonName1', 'weapons') == ''"
@@ -64,6 +64,7 @@
           <div class="w30 or-bl" >{{getDetails(i, 'addonAddPrice4', 'weapons')}} cr</div>
           <div class="w100">{{getDetails(i, 'addonDesc4', 'weapons')}}</div>
         </div>
+        <button class="re-wh" type="button" (click)="removeTool(i, 'weapons')">Törlés</button>
       </div>
     </div>
   </fieldset>
@@ -81,22 +82,23 @@
     <div formArrayName="explosives">
       <div class="flexcont itemcont" [formGroupName]='i' *ngFor="let item of explosives?.controls; let i = index">
         <div class="bl-wh w50">{{getDetails(i, 'weaponName', 'explosives')}}</div>
-        <div class="w50 bl-wh">{{getDetails(i, 'weaponType', 'explosives')}}</div>
-        <div class="w20">{{getDetails(i, 'weaponRange', 'explosives')}} m</div>
-        <div class="w20">{{getDetails(i, 'weaponMods', 'explosives')}} | {{getDetails(i, 'weaponClip', 'explosives')}}</div>
         <div class="or-bl w30">{{getExpoSubTotal(i, 'Price', 'explosives')}} cr</div>
-        <div class="bl-wh w30">{{getExpoSubTotal(i, 'Weight', 'explosives')}} kg</div>
+        <div class="bl-wh w20">{{getExpoSubTotal(i, 'Weight', 'explosives')}} kg</div>
+        <div class="w50">{{getDetails(i, 'weaponType', 'explosives')}}</div>
+        <div class="w30">{{getDetails(i, 'weaponMods', 'explosives')}} | {{getDetails(i, 'weaponClip', 'explosives')}}</div>
+        <div class="w20">{{getDetails(i, 'weaponRange', 'explosives')}} m</div>
+        <div class="w70 bl-wh">{{getDetails(i, 'weaponPower', 'explosives')}}
+          ({{getDetails(i, 'weaponDamage', 'explosives')}})
+          {{getDetails(i, 'weaponDmgType', 'explosives')}}
+        </div>
         <app-levelcontrol class="w30"
         [baseValue]=0
+        [units]="' db'"
         [fcName]="getFormcontrol(i, 'explosives', 'weaponCount')"
         [disableIncrement]="this.yourMoney <= 0">
-      </app-levelcontrol>
-      <div class="w50 bl-wh">{{getDetails(i, 'weaponPower', 'explosives')}}
-        ({{getDetails(i, 'weaponDamage', 'explosives')}})
-        {{getDetails(i, 'weaponDmgType', 'explosives')}}
-      </div>
-      <button class="re-wh w20" type="button" (click)="removeTool(i, 'explosives')">Törlés</button>
+        </app-levelcontrol>
         <div class="w100">{{getDetails(i, 'weaponDesc', 'explosives')}}</div>
+        <button class="re-wh" type="button" (click)="removeTool(i, 'explosives')">Törlés</button>
       </div>
     </div>
   </fieldset>
@@ -116,21 +118,24 @@
         <div class="bl-wh w70">{{getDetails(i, 'equipmentName', 'equipments')}}</div>
         <app-levelcontrol class="w30"
         [baseValue]=0
+        [units]="' db'"
         [fcName]="getFormcontrol(i, 'equipments', 'equipmentCount')"
         [disableIncrement]="this.yourMoney <= 0">
-        </app-levelcontrol>
-        <div class="w50">{{getDetails(i, 'equipmentCategory', 'equipments')}}</div>
-        <div class="or-bl w30">{{getEquipSubTotal(i, 'Price', 'equipments')}} cr</div>
-        <div class="bl-wh w20">{{getEquipSubTotal(i, 'Weight', 'equipments')}} kg</div>
-        <div *ngIf="getDetails(i, 'equipmentLevel', 'equipments')>0" class="bl-wh w20">Szint</div>
-        <app-levelcontrol *ngIf="getDetails(i, 'equipmentLevel', 'equipments')>0"
-        [baseValue]=0
-        [fcName]="getFormcontrol(i, 'equipments', 'equipmentLevel')"
-        [disableIncrement]="this.yourMoney <= 0 || getFormcontrol(i, 'equipments', 'equipmentLevel').value >= 10">
       </app-levelcontrol>
-
-      <div class="w100">{{getDetails(i, 'equipmentDesc', 'equipments')}}</div>
-      <button class="re-wh" type="button" (click)="removeTool(i, 'equipments')">Törlés</button>
+      <div class="w50">{{getDetails(i, 'equipmentCategory', 'equipments')}}</div>
+      <div class="or-bl w30">{{getEquipSubTotal(i, 'Price', 'equipments')}} cr</div>
+      <div class="bl-wh w20">{{getEquipSubTotal(i, 'Weight', 'equipments')}} kg</div>
+      <div *ngIf="getDetails(i, 'equipmentMaxLevel', 'equipments')>1" class="bl-wh w70">
+        Maximális szint: {{getDetails(i, 'equipmentMaxLevel', 'equipments')}}, Szint:
+      </div>
+      <app-levelcontrol class="w30" *ngIf="getDetails(i, 'equipmentMaxLevel', 'equipments')>1"
+        [baseValue]=0
+        [prefix]="'Lv '"
+        [fcName]="getFormcontrol(i, 'equipments', 'equipmentLevel')"
+        [disableIncrement]="this.yourMoney <= 0 || getFormcontrol(i, 'equipments', 'equipmentLevel').value >= getDetails(i, 'equipmentMaxLevel', 'equipments')">
+        </app-levelcontrol>
+        <div class="w100">{{getDetails(i, 'equipmentDesc', 'equipments')}}</div>
+        <button class="re-wh" type="button" (click)="removeTool(i, 'equipments')">Törlés</button>
       </div>
     </div>
   </fieldset>

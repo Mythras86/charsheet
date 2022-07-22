@@ -38,5 +38,4 @@ export class AddonslistModalComponent implements OnInit, AModal {
 
   ngOnInit(): void {
   }
-
 }

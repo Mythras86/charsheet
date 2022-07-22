@@ -1,16 +1,19 @@
 <div class="listcont">
   <div class="charcont" *ngFor="let char of chars">
-    <h5>
-      {{char.charName}} // {{char.creator}}
-    </h5>
+    <h2>
+      {{char.teljesnev}}
+    </h2>
     <div>
-      {{char.charClass}}
+      {{char.anyanyelv}}
     </div>
     <div>
-      {{char.charDesc}}
+      {{char.magikus}}
+    </div>
+    <div>
+      {{char.creatorName}}
     </div>
     <div class="buttoncont">
-      <button class="bl-wh">Módosítás</button>
+      <button class="bl-wh" (click)="gotoUpdateChar(char.id)">Módosítás</button>
       <button class="re-wh" (click)="onDelete(char.id)">Törlés</button>
     </div>
   </div>

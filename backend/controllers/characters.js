@@ -2,17 +2,32 @@ const Char = require("../models/character");
 
 exports.createChar = (req, res, next) => {
   const char = new Char ({
-    creator: req.userData.userId,
-    creatorName: req.userData.userName,
-    charName: req.body.charName,
-    charClass: req.body.charClass,
-    charDesc: req.body.charDesc,
-    charEro: req.body.charEro,
-    charRef: req.body.charRef,
-    charUgy: req.body.charUgy,
-    charAll: req.body.charAll,
-    charEqu: req.body.charEqu,
-    charFegyver: req.body.charFegyver,
+    creatorID: req.userData.userId,
+    creatorName: req.body.creatorName,
+    teljesnev: req.body.teljesnev,
+    becenev: req.body.becenev,
+    alnev: req.body.alnev,
+    testalkat: req.body.testalkat,
+    hajstilus: req.body.hajstilus,
+    szakall: req.body.szakall,
+    nem: req.body.nem,
+    faj: req.body.faj,
+    anyanyelv: req.body.anyanyelv,
+    magikus: req.body.magikus,
+    spec: req.body.spec,
+    eletkor: req.body.eletkor,
+    magassag: req.body.magassag,
+    testsuly: req.body.testsuly,
+    szemszin: req.body.szemszin,
+    hajszin: req.body.hajszin,
+    szorszin: req.body.szorszin,
+    borszin: req.body.borszin,
+    felelem: req.body.felelem,
+    osztonzo: req.body.osztonzo,
+    gyulolet: req.body.gyulolet,
+    kedvenc: req.body.kedvenc,
+    irtozat: req.body.irtozat,
+    vonzalom: req.body.vonzalom,
   });
   char
     .save()
@@ -38,12 +53,34 @@ exports.updateChar = (req, res, next) => {
   }
   const char = new Char({
     _id: req.body.id,
-    charName: req.body.charName,
-    charClass: req.body.charClass,
-    charDesc: req.body.charDesc,
-    creator: req.userData.userId
+    creatorID: req.userData.userId,
+    creatorName: req.body.creatorName,
+    teljesnev: req.body.teljesnev,
+    becenev: req.body.becenev,
+    alnev: req.body.alnev,
+    testalkat: req.body.testalkat,
+    hajstilus: req.body.hajstilus,
+    szakall: req.body.szakall,
+    nem: req.body.nem,
+    faj: req.body.faj,
+    anyanyelv: req.body.anyanyelv,
+    magikus: req.body.magikus,
+    spec: req.body.spec,
+    eletkor: req.body.eletkor,
+    magassag: req.body.magassag,
+    testsuly: req.body.testsuly,
+    szemszin: req.body.szemszin,
+    hajszin: req.body.hajszin,
+    szorszin: req.body.szorszin,
+    borszin: req.body.borszin,
+    felelem: req.body.felelem,
+    osztonzo: req.body.osztonzo,
+    gyulolet: req.body.gyulolet,
+    kedvenc: req.body.kedvenc,
+    irtozat: req.body.irtozat,
+    vonzalom: req.body.vonzalom,
   });
-  char.updateOne({ _id: req.params.id, creator: req.userData.userId }, Char)
+  char.updateOne({ _id: req.params.id, creatorID: req.userData.userId }, Char)
     .then(result => {
       console.log (result);
       if (result.n > 0) {

@@ -13,8 +13,6 @@ export class CharEquipmentsService {
     public equipServ: EquipmentsService,
   ) { }
 
-  public selectedEquipID: Subject<string> = new Subject;
-
   addEquipment(id: string) {
     const toolsForm = this.fb.group({
     equipmentName: this.equipServ.equipmentsList.filter(x=>x.id == id).map(x=>x.equipmentName)[0],
@@ -23,14 +21,11 @@ export class CharEquipmentsService {
     equipmentPrice: this.equipServ.equipmentsList.filter(x=>x.id == id).map(x=>x.equipmentPrice)[0],
     equipmentDesc: this.equipServ.equipmentsList.filter(x=>x.id == id).map(x=>x.equipmentDesc)[0],
     equipmentCount: [1, {value: 1, disabled: false}],
-    equipmentLevel: this.equipServ.equipmentsList.filter(x=>x.id == id).map(x=>x.equipmentLevel)[0],
+    equipmentMaxLevel: this.equipServ.equipmentsList.filter(x=>x.id == id).map(x=>x.equipmentMaxLevel)[0],
+    equipmentLevel: [1, {value: 1, disabled: false}],
     equipmentTotalPrice: [0, {value: 0, disabled: false}],
     equipmentTotalWeight: [0, {value: 0, disabled: false}],
     });
     return toolsForm;
-  }
-
-  onEquipmentSelected(id: string) {
-    this.selectedEquipID.next(id);
   }
 }

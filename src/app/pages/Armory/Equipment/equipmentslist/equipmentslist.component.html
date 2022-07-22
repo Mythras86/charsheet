@@ -1,17 +1,17 @@
 
 <div class="sectioncont" *ngIf="equipsServ.equipmentsList !== null">
 
-  <div class="buttoncont">
-    <button class="gr-wh" type="button" (click)="gotoNewEquipment()" *ngIf="!selectionMode">Új Felszerelés Rögzítése</button>
-  </div>
-
   <div class="flexcont">
     <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
     <div class="w30 bl-wh"
     *ngFor="let categ of getEquipmentCats()" (click)="sortMeBy(categ)">
-      {{categ}}
-    </div>
+    {{categ}}
   </div>
+</div>
+
+<div class="buttoncont">
+  <button class="gr-wh" type="button" (click)="gotoNewEquipment()" *ngIf="!selectionMode">Új Felszerelés Rögzítése</button>
+</div>
 
   <h1>Felszerelések</h1>
 
@@ -23,8 +23,8 @@
       <div class="w50 bl-wh">{{item.equipmentName}}</div>
       <div class="w30 or-bl">{{item.equipmentPrice}} cr</div>
       <div class="w20 bl-wh">{{item.equipmentWeight}} kg</div>
-      <div class="or-bl w30">{{item.equipmentLevel}}</div>
-      <div class="bl-wh w70">Alapszint</div>
+      <div class="or-bl w30">{{item.equipmentMaxLevel}}</div>
+      <div class="bl-wh w70">Maximális szint</div>
       <div class="w100">{{item.equipmentDesc}}</div>
       <div class="" *ngIf="!selectionMode">
         <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>

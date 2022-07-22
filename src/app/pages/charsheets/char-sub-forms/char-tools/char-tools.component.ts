@@ -148,21 +148,12 @@ export class CharToolsComponent implements OnInit, AfterContentChecked {
     const equip = ((this.toolsForm.get('equipments') as FormArray).at(i) as FormGroup).get('equipment' +tag)?.value;
     const count = ((this.toolsForm.get('equipments') as FormArray).at(i) as FormGroup).get('equipmentCount')?.value;
     const level = ((this.toolsForm.get('equipments') as FormArray).at(i) as FormGroup).get('equipmentLevel')?.value;
-    if (level == 0) {
-      const total = Math.round((equip * count * 1 + Number.EPSILON) * 100) / 100;
-      ((this.toolsForm.get('equipments') as FormArray).at(i) as FormGroup).get('equipmentTotal'+tag)?.patchValue(total);
-      if (tag == 'Price') {
-        return Math.round(total);
-      }
-      return total;
-    } else {
-      const total = Math.round((equip * count * level + Number.EPSILON) * 100) / 100;
-      ((this.toolsForm.get('equipments') as FormArray).at(i) as FormGroup).get('equipmentTotal'+tag)?.patchValue(total);
-      if (tag == 'Price') {
-        return Math.round(total);
-      }
-      return total;
+    const total = Math.round((equip * count * level + Number.EPSILON) * 100) / 100;
+    ((this.toolsForm.get('equipments') as FormArray).at(i) as FormGroup).get('equipmentTotal'+tag)?.patchValue(total);
+    if (tag == 'Price') {
+      return Math.round(total);
     }
+    return total;
   }
 
   getSum(tag:string):number | null {

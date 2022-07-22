@@ -16,9 +16,9 @@ export class ListcharsComponent implements OnInit, OnDestroy {
   chars: Char[] = [];
   isLoading = false;
   userIsAuthenticated = false;
-  userId!: string;
-  private charsSub!: Subscription;
-  private authStatusSub!: Subscription;
+  userId: string;
+  private charsSub: Subscription;
+  private authStatusSub: Subscription;
 
   constructor(
     public charService: CharService,
@@ -28,6 +28,10 @@ export class ListcharsComponent implements OnInit, OnDestroy {
 
   gotoNewChar() {
     (<any>this.router).navigate(["/newchar"]);
+  }
+
+  gotoUpdateChar(id:string) {
+    (<any>this.router).navigate(["/charedit/"+id]);
   }
 
   ngOnInit() {

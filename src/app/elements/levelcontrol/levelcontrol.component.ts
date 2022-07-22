@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormControlName, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-levelcontrol',
@@ -10,6 +9,8 @@ export class LevelcontrolComponent implements OnInit {
 
   @Input() fcName: any;
   @Input() baseValue: number = 0;
+  @Input() prefix: string = '';
+  @Input() units: string = '';
   @Input() disableIncrement: boolean = false;
   @Input() disableDecrement: boolean = false;
 

@@ -11,8 +11,6 @@ export class CharArmorsService {
     private fb: FormBuilder,
   ) { }
 
-  public selectedArmorID: Subject<string> = new Subject;
-
   createArmors(): FormGroup {
     const armorsForm = {
       helms: this.fb.array([]),
@@ -21,9 +19,4 @@ export class CharArmorsService {
     };
     return this.fb.group(armorsForm);
   }
-
-  onArmorSelected(id: string) {
-    this.selectedArmorID.next(id);
-  }
-
 }

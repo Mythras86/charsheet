@@ -1,0 +1,25 @@
+<form class="sectioncont" [formGroup]="newCyberneticForm" (ngSubmit)="onSubmit()">
+
+  <label class="bl-wh w50" for="cyberneticName">Név</label>
+  <input class="w50" id="cyberneticName" type="text" formControlName="cyberneticName">
+
+  <label class="bl-wh w50" for="cyberneticCategory">Kategória</label>
+  <input class="w50" id="cyberneticCategory" type="text" formControlName="cyberneticCategory">
+
+  <label class="bl-wh w50" for="cyberneticMaxLevel">Max Szint</label>
+  <input class="w50" id="cyberneticMaxLevel" type="text" formControlName="cyberneticMaxLevel" placeholder="1, ha nem szintezhető">
+
+  <label class="bl-wh w50" for="cyberneticPrice">Ár</label>
+  <input class="w50" id="cyberneticPrice" type="number" formControlName="cyberneticPrice">
+
+  <label class="bl-wh w50" for="cyberneticEssence">Esszencia</label>
+  <input class="w50" id="cyberneticEssence" type="number" formControlName="cyberneticEssence">
+
+  <label class="bl-wh w100" for="cyberneticDesc">Megjegyzések</label>
+  <input class="w100" id="cyberneticDesc" type="text" formControlName="cyberneticDesc">
+
+  <div class="buttoncont">
+    <button class="bl-wh" type="submit">Mentés</button>
+    <button class="or-bl" type="button" (click)="backToList()">Vissza</button>
+  </div>
+</form>

@@ -1,0 +1,37 @@
+
+<div class="sectioncont" *ngIf="cybersServ.cybersList !== null">
+
+  <div class="flexcont">
+    <div class="w30 bl-wh" (click)="sortMeBy('none')">Összes</div>
+    <div class="w30 bl-wh"
+    *ngFor="let categ of getCyberneticCats()" (click)="sortMeBy(categ)">
+      {{categ}}
+    </div>
+  </div>
+
+  <div class="buttoncont">
+    <button class="gr-wh" type="button" (click)="gotoNewCybernetic()" *ngIf="!selectionMode">Új Kiberver Rögzítése</button>
+  </div>
+
+  <h1>Kiberverek</h1>
+
+  <div class="a100" *ngFor="let categ of getCyberneticCatsFiltered()">
+
+    <h2>{{categ}}</h2>
+
+    <div class="flexcont itemcont" (click)="sendCyberneticID(item.id)" *ngFor="let item of getCybernetics(categ)">
+      <div class="w50 bl-wh">{{item.cyberneticName}}</div>
+      <div class="w30 or-bl">{{item.cyberneticPrice}} cr</div>
+      <div class="bl-wh w30">Max szint</div>
+      <div class="or-bl w20">{{item.cyberneticMaxLevel}}</div>
+      <div class="bl-wh w30">Esszencia</div>
+      <div class="or-bl w20">{{item.cyberneticEssence}}</div>
+      <div class="w100">{{item.cyberneticDesc}}</div>
+      <div class="" *ngIf="!selectionMode">
+        <button class="bl-wh" type="button" (click)="gotoUpdate(item.id)">Módosítás</button>
+        <button class="re-wh" type="button" (click)="cybersServ.deleteOneCybernetic(item.id)">Törlés</button>
+      </div>
+    </div>
+  </div>
+
+</div>

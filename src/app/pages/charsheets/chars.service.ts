@@ -4,15 +4,18 @@ import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
-import { newChar } from './newchar.model';
 import { Char } from './char.model';
-import { EventEmitter } from '@angular/core';
+import { AuthService } from "src/app/authentication/auth.service";
 
 const BACKEND_URL = environment.apiUrl + "/chars/";
 
 @Injectable({ providedIn: "root" })
 export class CharService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public authServ: AuthService,
+    ) {}
 
   private chars: Char[] = [];
   private charsUpdated = new Subject<{ chars: Char[]}>();
@@ -35,37 +38,61 @@ export class CharService {
           return {
             chars: charsData.chars.map((char: {
               _id: string;
-              creator: string;
-              //details
-              charName: string;
-              charClass: string;
-              charDesc: string;
-              //attributes
-              charEro: string;
-              charRef: string;
-              charUgy: string;
-              charAll: string;
-              //eqiupment
-              charEqu: string;
-              //weapon
-              charFegyver: string;
+              creatorID: string;
+              creatorName: string;
+              teljesnev: string,
+              becenev:string,
+              alnev:string,
+              testalkat:string,
+              hajstilus:string,
+              szakall:string,
+              nem: string,
+              faj:string,
+              anyanyelv: string,
+              magikus:string,
+              spec:string,
+              eletkor:string,
+              magassag:string,
+              testsuly:string,
+              szemszin:string,
+              hajszin:string,
+              szorszin:string,
+              borszin:string,
+              felelem:string,
+              osztonzo:string,
+              gyulolet:string,
+              kedvenc:string,
+              irtozat:string,
+              vonzalom:string,
              }) => {
               return {
                 id: char._id,
-                creator: char.creator,
-                  //details
-                charName: char.charName,
-                charClass: char.charClass,
-                charDesc: char.charDesc,
-                  //attributes
-                charEro: char.charEro,
-                charRef: char.charRef,
-                charUgy: char.charUgy,
-                charAll: char.charAll,
-                //eqiupment
-                charEqu: char.charEqu,
-                //weapon
-                charFegyver: char.charFegyver,
+                creatorID: char.creatorID,
+                creatorName: char.creatorName,
+                teljesnev: char.teljesnev,
+                becenev: char.becenev,
+                alnev: char.alnev,
+                testalkat: char.testalkat,
+                hajstilus: char.hajstilus,
+                szakall: char.szakall,
+                nem: char.nem,
+                faj: char.faj,
+                anyanyelv: char.anyanyelv,
+                magikus: char.magikus,
+                spec: char.spec,
+                eletkor: char.eletkor,
+                magassag: char.magassag,
+                testsuly: char.testsuly,
+                szemszin: char.szemszin,
+                hajszin: char.hajszin,
+                szorszin: char.szorszin,
+                borszin: char.borszin,
+                felelem: char.felelem,
+                osztonzo: char.osztonzo,
+                gyulolet: char.gyulolet,
+                kedvenc: char.kedvenc,
+                irtozat: char.irtozat,
+                vonzalom: char.vonzalom,
               };
             }),
           };
@@ -86,53 +113,89 @@ export class CharService {
   getOneChar(id: string) {
     return this.http.get<{
       _id: string;
-      creator: string;
-      //details
-      charName: string;
-      charClass: string;
-      charDesc: string;
-      //attributes
-      charEro: string;
-      charRef: string;
-      charUgy: string;
-      charAll: string;
-      //eqiupment
-      charEqu: string;
-      //weapon
-      charFegyver: string;
-}>(BACKEND_URL + id);
+      creatorID: string;
+      creatorName: string;
+      teljesnev: string,
+      becenev:string,
+      alnev:string,
+      testalkat:string,
+      hajstilus:string,
+      szakall:string,
+      nem: string,
+      faj:string,
+      anyanyelv: string,
+      magikus:string,
+      spec:string,
+      eletkor:string,
+      magassag:string,
+      testsuly:string,
+      szemszin:string,
+      hajszin:string,
+      szorszin:string,
+      borszin:string,
+      felelem:string,
+      osztonzo:string,
+      gyulolet:string,
+      kedvenc:string,
+      irtozat:string,
+      vonzalom:string,
+    }>(BACKEND_URL + id);
   }
 
   addOneChar(
-    //details
-    charName: string,
-    charClass: string,
-    charDesc: string,
-    //attributes
-    charEro: string,
-    charRef: string,
-    charUgy: string,
-    charAll: string,
-    //eqiupment
-    charEqu: string,
-    //weapon
-    charFegyver: string,
-  ) {
-    const charData: newChar = {
-        //details
-      charName: charName,
-      charClass: charClass,
-      charDesc: charDesc,
-        //attributes
-      charEro: charEro,
-      charRef: charRef,
-      charUgy: charUgy,
-      charAll: charAll,
-      //eqiupment
-      charEqu: charEqu,
-      //weapon
-      charFegyver: charFegyver,
-
+    teljesnev: string,
+    becenev:string,
+    alnev:string,
+    testalkat:string,
+    hajstilus:string,
+    szakall:string,
+    nem: string,
+    faj:string,
+    anyanyelv: string,
+    magikus:string,
+    spec:string,
+    eletkor:string,
+    magassag:string,
+    testsuly:string,
+    szemszin:string,
+    hajszin:string,
+    szorszin:string,
+    borszin:string,
+    felelem:string,
+    osztonzo:string,
+    gyulolet:string,
+    kedvenc:string,
+    irtozat:string,
+    vonzalom:string,
+    ) {
+    const charData: Char = {
+      id: '',
+      creatorID: '',
+      creatorName: this.authServ.username,
+      teljesnev: teljesnev,
+      becenev: becenev,
+      alnev: alnev,
+      testalkat: testalkat,
+      hajstilus: hajstilus,
+      szakall: szakall,
+      nem: nem,
+      faj: faj,
+      anyanyelv: anyanyelv,
+      magikus: magikus,
+      spec: spec,
+      eletkor: eletkor,
+      magassag: magassag,
+      testsuly: testsuly,
+      szemszin: szemszin,
+      hajszin: hajszin,
+      szorszin: szorszin,
+      borszin: borszin,
+      felelem: felelem,
+      osztonzo: osztonzo,
+      gyulolet: gyulolet,
+      kedvenc: kedvenc,
+      irtozat: irtozat,
+      vonzalom: vonzalom,
     };
     this.http.post<{ message: string; char: Char }>(
       BACKEND_URL + "create", charData).subscribe(responseData => {
@@ -142,40 +205,64 @@ export class CharService {
 
   updateOneChar(
     id: string,
-    creator: string,
-    //details
-    charName: string,
-    charClass: string,
-    charDesc: string,
-    //attributes
-    charEro: string,
-    charRef: string,
-    charUgy: string,
-    charAll: string,
-    //eqiupment
-    charEqu: string,
-    //weapon
-    charFegyver: string,
+    creatorID: string,
+    creatorName: string,
+    teljesnev: string,
+    becenev:string,
+    alnev:string,
+    testalkat:string,
+    hajstilus:string,
+    szakall:string,
+    nem: string,
+    faj:string,
+    anyanyelv: string,
+    magikus:string,
+    spec:string,
+    eletkor:string,
+    magassag:string,
+    testsuly:string,
+    szemszin:string,
+    hajszin:string,
+    szorszin:string,
+    borszin:string,
+    felelem:string,
+    osztonzo:string,
+    gyulolet:string,
+    kedvenc:string,
+    irtozat:string,
+    vonzalom:string,
   ) {
     let charData: Char;
     charData = {
       id: id,
-      creator: creator,
-        //details
-      charName: charName,
-      charClass: charClass,
-      charDesc: charDesc,
-        //attributes
-      charEro: charEro,
-      charRef: charRef,
-      charUgy: charUgy,
-      charAll: charAll,
-      //eqiupment
-      charEqu: charEqu,
-      //weapon
-      charFegyver: charFegyver,
-};
-    this.http
+      creatorID: creatorID,
+      creatorName: creatorID,
+      teljesnev: teljesnev,
+      becenev: becenev,
+      alnev: alnev,
+      testalkat: testalkat,
+      hajstilus: hajstilus,
+      szakall: szakall,
+      nem: nem,
+      faj: faj,
+      anyanyelv: anyanyelv,
+      magikus: magikus,
+      spec: spec,
+      eletkor: eletkor,
+      magassag: magassag,
+      testsuly: testsuly,
+      szemszin: szemszin,
+      hajszin: hajszin,
+      szorszin: szorszin,
+      borszin: borszin,
+      felelem: felelem,
+      osztonzo: osztonzo,
+      gyulolet: gyulolet,
+      kedvenc: kedvenc,
+      irtozat: irtozat,
+      vonzalom: vonzalom,
+    };
+      this.http
       .put(BACKEND_URL + id, charData)
       .subscribe(response => {
         this.router.navigate(["/characters"]);

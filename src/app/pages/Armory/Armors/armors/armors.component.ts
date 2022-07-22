@@ -89,7 +89,7 @@ export class ArmorsComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has('id')) {
         this.mode = 'edit';
-        this.armorId = paramMap.get('id')!;
+        this.armorId = paramMap.get('id');
         this.armorServ.getOneArmor(this.armorId).subscribe(armorData => {
           this.newArmorForm = this.fb.group({
             id: armorData._id,

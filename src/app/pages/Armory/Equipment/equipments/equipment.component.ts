@@ -30,7 +30,7 @@ export class EquipmentComponent implements OnInit {
       id: ['', {value: '', disabled: false}],
       equipmentName: ['', {value: '', disabled: false}],
       equipmentCategory: ['', {value: '', disabled: false}],
-      equipmentLevel: [1, {value: 1, disabled: false}],
+      equipmentMaxLevel: [1, {value: 1, disabled: false}],
       equipmentWeight: [0, {value: 0, disabled: false}],
       equipmentPrice: [0, {value: 0, disabled: false}],
       equipmentDesc: ['', {value: '', disabled: false}],
@@ -46,7 +46,7 @@ export class EquipmentComponent implements OnInit {
     this.equipServ.addOneEquipment(
       form.value.equipmentName,
       form.value.equipmentCategory,
-      form.value.equipmentLevel,
+      form.value.equipmentMaxLevel,
       form.value.equipmentWeight,
       form.value.equipmentPrice,
       form.value.equipmentDesc
@@ -62,7 +62,7 @@ export class EquipmentComponent implements OnInit {
       this.equipServ.addOneEquipment(
         form.value.equipmentName,
         form.value.equipmentCategory,
-        form.value.equipmentLevel,
+        form.value.equipmentMaxLevel,
         form.value.equipmentWeight,
         form.value.equipmentPrice,
         form.value.equipmentDesc
@@ -72,7 +72,7 @@ export class EquipmentComponent implements OnInit {
         this.equipmentId,
         form.value.equipmentName,
         form.value.equipmentCategory,
-        form.value.equipmentLevel,
+        form.value.equipmentMaxLevel,
         form.value.equipmentWeight,
         form.value.equipmentPrice,
         form.value.equipmentDesc
@@ -96,7 +96,7 @@ export class EquipmentComponent implements OnInit {
             id: equipmentData._id,
             equipmentName: equipmentData.equipmentName,
             equipmentCategory: equipmentData.equipmentCategory,
-            equipmentLevel: equipmentData.equipmentLevel,
+            equipmentMaxLevel: equipmentData.equipmentMaxLevel,
             equipmentWeight: equipmentData.equipmentWeight,
             equipmentPrice: equipmentData.equipmentPrice,
             equipmentDesc: equipmentData.equipmentDesc,
@@ -104,7 +104,7 @@ export class EquipmentComponent implements OnInit {
           this.newEquipmentForm.patchValue({
             equipmentName: this.newEquipmentForm.get('equipmentName')?.value,
             equipmentCategory: this.newEquipmentForm.get('equipmentCategory')?.value,
-            equipmentLevel: this.newEquipmentForm.get('equipmentLevel')?.value,
+            equipmentMaxLevel: this.newEquipmentForm.get('equipmentMaxLevel')?.value,
             equipmentWeight: this.newEquipmentForm.get('equipmentWeight')?.value,
             equipmentPrice: this.newEquipmentForm.get('equipmentPrice')?.value,
             equipmentDesc: this.newEquipmentForm.get('equipmentDesc')?.value,

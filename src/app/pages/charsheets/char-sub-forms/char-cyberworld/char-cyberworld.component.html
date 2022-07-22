@@ -1,0 +1,43 @@
+<h1 (click)="toggleHide()">Kibervilág {{yourMoney}}/{{getSum('Price')}}</h1>
+
+<div class="sectioncont" [hidden]="hideMe" *ngIf="cyberworldForm" [formGroup]='cyberworldForm'>
+
+  <fieldset>
+    <legend>
+      <div>Kiberverek</div>
+    </legend>
+
+    <div class="buttoncont">
+      <button class="gr-wh" type="button" (click)="addNewCyber('cybernetics')"
+      [disabled]="this.yourMoney <= 0">Kiberver Beszerzése</button>
+    </div>
+
+    <div formArrayName="cybernetics">
+      <div class="flexcont itemcont" [formGroupName]='i' *ngFor="let item of cybernetics?.controls; let i = index">
+        <div class="bl-wh w70">{{getDetails(i, 'cyberneticName', 'cybernetics')}}</div>
+        <select class="w30" formControlName="cyberneticQuality">
+          <option value="" selected>Alap</option>
+          <option value="alfa">Alfa</option>
+          <option value="beta">Béta</option>
+          <option value="delta">Delta</option>
+        </select>
+            <div class="w50">{{getDetails(i, 'cyberneticCategory', 'cybernetics')}}</div>
+        <div class="or-bl w30">{{getCyberSubTotal(i, 'Price', 'cybernetics')}} cr</div>
+        <div class="bl-wh w20">{{getCyberSubTotal(i, 'Essence', 'cybernetics')}}</div>
+        <div *ngIf="getDetails(i, 'cyberneticMaxLevel', 'cybernetics')>1" class="bl-wh w70">
+          Maximális szint: {{getDetails(i, 'cyberneticMaxLevel', 'cybernetics')}}, Szint:
+        </div>
+        <app-levelcontrol class="w30" *ngIf="getDetails(i, 'cyberneticMaxLevel', 'cybernetics')>1"
+          [baseValue]=0
+          [prefix]="'Lv '"
+          [fcName]="getFormcontrol(i, 'cybernetics', 'cyberneticLevel')"
+          [disableIncrement]="this.yourMoney <= 0 || getFormcontrol(i, 'cybernetics', 'cyberneticLevel').value >= getDetails(i, 'cyberneticMaxLevel', 'cybernetics')">
+        </app-levelcontrol>
+        <div class="w100">{{getDetails(i, 'cyberneticDesc', 'cybernetics')}}</div>
+        <button class="re-wh" type="button" (click)="removeCyber(i, 'cybernetics')">Törlés</button>
+      </div>
+    </div>
+  </fieldset>
+
+
+</div>

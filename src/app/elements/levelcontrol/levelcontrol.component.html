@@ -1,9 +1,9 @@
 <div class="levelBtnCont">
   <button class="decBtn" type="button"
-  [disabled]="getFcValue()<1+baseValue || disableDecrement"
+  [disabled]="getFcValue()<=1+baseValue || disableDecrement"
   (click)='decrement()'>-</button>
 
-  <div class="fcvalue">{{getFcValue()}}</div>
+  <div class="fcvalue">{{prefix}}{{getFcValue()}}{{units}}</div>
 
   <button class="incBtn" type="button" [disabled]="disableIncrement"
     (click)='increment()'>+</button>

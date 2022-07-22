@@ -13,8 +13,6 @@ export class CharExplosivesService {
     public weapServ: WeaponsService,
   ) { }
 
-  public selectedWeaponID: Subject<string> = new Subject;
-
   addExplosive(id: string) {
     const toolsForm = this.fb.group({
     weaponName: this.weapServ.weaponsList.filter(x=>x.id == id).map(x=>x.weaponName)[0],
@@ -35,9 +33,4 @@ export class CharExplosivesService {
     });
     return toolsForm;
   }
-
-  onWeaponSelected(id: string) {
-    this.selectedWeaponID.next(id);
-  }
-
 }

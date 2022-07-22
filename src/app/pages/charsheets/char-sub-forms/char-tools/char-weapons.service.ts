@@ -12,8 +12,6 @@ export class CharWeaponsService {
     public weapServ: WeaponsService,
     ) { }
 
-    public selectedWeaponID: Subject<string> = new Subject;
-
     createTools(): FormGroup {
       const weaponsForm = {
         weapons: this.fb.array([]),
@@ -21,10 +19,6 @@ export class CharWeaponsService {
         equipments: this.fb.array([]),
       };
       return this.fb.group(weaponsForm);
-    }
-
-    onWeaponSelected(id: string) {
-      this.selectedWeaponID.next(id);
     }
 
     addWeapon(id:string) {
